@@ -1,0 +1,134 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 750px;
+}
+
+
+/* 全局 */
+input,button,a {
+    outline:0 none !important; blr:expression(this.onFocus=this.blur());
+}
+
+
+/* 按钮样式定义 */
+
+.btn {
+    padding: 0.25rem;
+    align-items: center;
+    text-align: center !important;
+    background: none;
+}
+
+.btn-blue {
+    background-color: #36a9fc;
+    color: white !important;
+}
+
+
+
+
+
+
+/* background*/
+
+.b-white {
+    background-color: white;
+}
+
+
+
+/* boder-line */
+
+.boder-bottom {
+    border-bottom: 0.02rem solid #e6e4e5 !important;
+}
+
+.bule-boder-bottom {
+    border-bottom: 0.02rem solid #36a9fc !important;
+}
+
+
+
+
+
+/* color */
+
+.color-bule {
+    color: #36a9fc !important;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #c5c5c5;
+}
+
+
+
+
+
+
+/* input 样式定义*/
+
+input[type='text'] {
+    padding: 0.15rem;
+}
+
+
+
+
+
+/* margin pading */
+
+.mb {
+    margin-bottom: 0.6rem !important;
+}
+
+.mb-model {
+    margin: 0 0.6rem !important;
+}
+
+.msb-model {
+    margin: 0 0.25rem !important;
+}
+
+.pd-model {
+    padding: 0 0.6rem !important;
+}
+
+.pd-list {
+    padding: 0.4rem !important;
+}
+
+
+
+/* 顶部导航 */
+
+.top-nav {
+    flex-flow: initial;
+    padding: 0.4rem !important;
+}
+
+.top-nav .back {
+    width: .2rem;
+    height: .36rem;
+    z-index: 100;
+}
+
+.top-nav .back figure {
+    width: 100%;
+    height: 100%;
+}
+
+.top-nav .top-title {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 0.4rem !important;
+    z-index: 99;
+}
