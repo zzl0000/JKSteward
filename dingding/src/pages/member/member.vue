@@ -1,21 +1,24 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb" > 
+	    <div class="top-nav b-white mb box-shadow" > 
 	    	<div class="back"></div>
 	        <div class="top-title"><span>个人中心</span></div>
 	    </div>	
 		<div class="content">
 			<!-- 用户信息 -->
 			<div class="user-ifon b-white mb">
-				<div class="user-header"><span>王</span></div>
+				<div class="user-header"><span class="t-white-color">王</span></div>
 				<div class="user-list">
-					<p>姓名:<span>王宝强</span></p>
-					<p>岗位:<span>项目管理人</span></p>
-					<p>公司:<span>金科物业服务集团</span></p>
+					<p class="td-color">姓名:<span class="t-bold-color">王宝强</span></p>
+					<p class="td-color">岗位:<span class="t-bold-color">项目管理人</span></p>
+					<p class="td-color">公司:<span class="t-bold-color">金科物业服务集团</span></p>
 				</div>
 				<div class="user-detail-btn">
-					<span @click="jump('memberIfon')">查看</span>
+					<div class="img" @click="jump('memberIfon')">
+						<img src="/static/img/look-icon.png" height="60" width="136">
+						<span>查看</span>
+					</div>
 				</div>
 			</div>	
 			<!-- 操作列表 -->
@@ -48,7 +51,7 @@
 
 		<!-- 退出登录 -->
 		<div class="register-operation">
-            <button class="btn b-white " @click="Logout"> 退出登录 </button>
+            <button class="btn b-white t-gray-color " @click="Logout"> 退出登录 </button>
        </div> 
 		
        <FooterComponent></FooterComponent>
@@ -75,19 +78,25 @@
 	.user-ifon{
 		padding: 0.4rem;
 		padding-right: 0;
-		flex-flow: initial;
+		flex-flow: nowrap;
+		flex-grow: 1;
 		justify-content: space-between;
 		align-items: center;
 	}
 	.user-ifon .user-header{
-		width: 1.4rem;
-		height: 1.4rem;
+		width: 1.60rem;
+		height: 1.60rem;
 		border-radius: 50%;
 		background-color: #36a9fc;
 		justify-content: center; 
+
 	}
 	.user-ifon .user-header span{
 		align-self: center;
+	}
+
+	.user-ifon .user-list{
+		flex-grow: 0.5 ;
 	}
 	.user-ifon .user-list p{
 		padding: 0.2rem 0;
@@ -98,6 +107,7 @@
 		font-size: .38rem;
 
 	}
+	
 	.user-detail-btn {
 		background-color: #36a9fc;
 		width: 1.35rem;
@@ -105,9 +115,20 @@
 		justify-content: center;
 		/*border-radius: 50% 0 0 50%;*/
 	}
-	.user-detail-btn span {
+	.user-detail-btn .img {
+		position: relative;
+		width: 2.04rem;
+		height: .90rem;
+		align-self: flex-end;
+	}
+	.user-detail-btn .img span{
+		position: absolute;
+		width: 100%;
+		left: 0;
 		color:white;
 		text-align: center;
+		line-height: .90rem;
+
 	}
 
 	.user-opreation-list {
@@ -126,12 +147,16 @@
 	}
 
 	.user-opreation-list li div.opreation-list-icon{
-		width: .44rem;
-		height: .44rem;
+		width: .50rem;
+		height: .66rem;
+
 	}
-	figure{
+	.user-opreation-list li div.opreation-list-icon figure{
 		width: 100%;
 		height: 100%;
+		background-size: 100% auto !important;
+		background-position: 60% 50% !important;
+
 	}
 	.user-opreation-list li span.title{
 		width: 100%;

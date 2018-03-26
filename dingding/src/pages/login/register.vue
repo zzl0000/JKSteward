@@ -2,7 +2,7 @@
 
   <div class="wrapper">
     <!-- 顶部导航栏 -->
-    <div class="top-nav b-white mb" >
+    <div class="top-nav b-white mb box-shadow" >
         <div class="back" @click="back"><img src="/static/img/back-icon.png" height="36" width="20"></div>
         <div class="top-title"><span>注册</span></div>
     </div>
@@ -25,13 +25,13 @@
              <label>姓名</label>
             <input type="text" class="" name="" placeholder="请输入你的姓名">
          </div>
-         <div class="form-group boder-bottom" @click="jump()">
+         <div class="form-group boder-bottom" @click="jump('1')">
              <label>所属项目</label>
-             <input type="text" class="" name="" placeholder="请选择">
+             <input type="text" readonly="readonly" class="" name="" placeholder="请选择">
          </div>
-         <div class="form-group boder-bottom" @click="">
+         <div class="form-group boder-bottom" @click="jump('2')">
              <label>所属部门</label>
-             <input type="text" class="" name="" placeholder="请选择">
+             <input type="text" readonly="readonly" class="" name="" placeholder="请选择">
          </div>
          <div class="form-group boder-bottom">
              <label>岗位</label>
@@ -60,14 +60,15 @@
       getRegister (){
 
       },
-      jump  () {
-          this.$router.push({
-             path: 'select',
-             params: { 
-                  name: 'name', 
-                  dataObj: this.msg
-              }
-          });
+      jump  (id) {
+        let title = '';
+        if( id == 1 ){
+            title = '请选择所属项目';
+        }else{
+            title = '请选择所属部门';
+        }
+          
+          this.$router.push({path:'select',  name:'select',params: { title: title,id: id }})
       }
     }
   }

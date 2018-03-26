@@ -6,10 +6,16 @@
 }
 
 
+
 /* 全局 */
-input,button,a {
-    outline:0 none !important; blr:expression(this.onFocus=this.blur());
+
+input,
+button,
+a {
+    outline: 0 none !important;
+    blr: expression(this.onFocus=this.blur());
 }
+
 
 
 /* 按钮样式定义 */
@@ -31,12 +37,35 @@ input,button,a {
 
 
 
+
 /* background*/
 
 .b-white {
     background-color: white;
 }
 
+.b-red {
+    background-color: #ff5b4e;
+}
+
+.b-y {
+    background-color: #e5c153;
+}
+
+.b-bule {
+    background-color: #45a4f2;
+}
+
+.b-green {
+    background-color: #7dd0b7;
+}
+
+
+/* box-shadow*/
+
+.box-shadow{
+    box-shadow: 1px -2px 19px 0px #c7c7c7;
+}
 
 
 /* boder-line */
@@ -50,14 +79,32 @@ input,button,a {
 }
 
 
+/* color text*/
 
-
-
-/* color */
-
-.color-bule {
-    color: #36a9fc !important;
+.td-color {
+    color: #515151 !important;
 }
+
+.t-bold-color {
+    color: #000000 !important;
+}
+
+.t-white-color {
+    color: white !important;
+}
+
+.t-red-color {
+    color: #ff5b4e !important;
+}
+
+.t-bule-color {
+    color: #45a4f2 !important;
+}
+
+.t-gray-color {
+    color: #454545 !important;
+}
+
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
@@ -69,11 +116,13 @@ textarea::-webkit-input-placeholder {
 
 
 
+
 /* input 样式定义*/
 
 input[type='text'] {
     padding: 0.15rem;
 }
+
 
 
 
@@ -100,6 +149,12 @@ input[type='text'] {
 .pd-list {
     padding: 0.4rem !important;
 }
+
+.mb-list {
+    margin-left: 0.25rem !important;
+    margin-right:  0.25rem !important;
+}
+
 
 
 

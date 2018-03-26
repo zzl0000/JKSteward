@@ -1,15 +1,15 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white  boder-bottom" >
+	    <div class="top-nav b-white  boder-bottom " >
 	        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-	        <div class="top-title"><span>{{msg}}</span></div>
+	        <div class="top-title"><span>{{ msg }}</span></div>
 	    </div>
 
 	    
 	    <div class="content">
 	    	<!-- 请选择所属部门 -->
-	    	<div class="b-white">
+	    	<div class="b-white" v-if="cur_key == 1">
 		          <ul>
 		        	 	<li class="pd-list boder-bottom">安全管理</li>
 		        	 	<li class="pd-list boder-bottom">工程管理</li>
@@ -18,7 +18,7 @@
 		          </ul>
 		      </div>
 		 	  <!-- 请选择所属项目 -->
-		 	  <div class="b-white">
+		 	  <div class="b-white"  v-else>
 		 	  	<div class="search boder-bottom">
 		 	  			<div class="search-control">
 		 	  				<div class="img"><img src="/static/img/search-icon.png" height="23" width="23"></div>
@@ -48,15 +48,11 @@
 	    name: 'select',
 	    data () {
 	      return {
-	        msg: ''
+	        msg: this.$route.params.title,
+	        cur_key: this.$route.params.id
 	      }
 	    },
 	    methods:{
-	      getParams () {
-	      	 console.log(this.$route.params)
-	      	 let routerParams = this.$router.params.dataobj;
-	      	 this.msg = routerParams;
-	      },
 	      back () {
 	        this.$router.go(-1);
 	      }

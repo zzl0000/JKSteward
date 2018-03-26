@@ -2,44 +2,67 @@
 	<!-- 底部导航 -->
 		<div class="footer-nav b-white">
             <ul>
-            	<li>
-            		<a @click="jump('home')">
-            			<div class="footer-icon"><img src="/static/img/nav-icon01.png" ></div>
-            			<span>消息</span>
-            		</a>
+            	<li @click="jump('home',1)">
+            			<div class="img">
+            				<img v-bind:src="imgUrl.home[0]" v-if="cur_id == 1">
+            				<img v-bind:src="imgUrl.home[1]" v-else></span>
+            			</div>
+            			<span>消息</span>           		
             	</li>
-            	<li>
-            		<a @click="jump('repository')">
-            			<div class="footer-icon"><img src="/static/img/nav-icon03.png"></div>
+            	<li @click="jump('repository',2)">
+            			<div class="img">
+            				<img v-bind:src="imgUrl.repository[0]" v-if="cur_id == 2">
+            				<img v-bind:src="imgUrl.repository[1]" v-else>
+            			</div>
             			<span>知识库</span>
-            		</a>
+         
             	</li>
-            	<li>
-            		<a @click="jump('workbench')">
-            			<div class="footer-icon"><img src="/static/img/nav-icon05.png"></div>
+            	<li @click="jump('workbench',3)">
+            			<div class="img">
+            				<img v-bind:src="imgUrl.workbench[0]" v-if="cur_id == 3">
+            				<img v-bind:src="imgUrl.workbench[1]" v-else>
+            			</div>
             			<span>工作台</span>
-            		</a>
+
             	</li>
-            	<li>
-            		<a @click="jump('statistics')">
-            			<div class="footer-icon"><img src="/static/img/nav-icon07.png"></div>
+            	<li @click="jump('statistics',4)">
+            			<div class="img">
+            				<img v-bind:src="imgUrl.statistics[0]" v-if="cur_id == 4">
+            				<img v-bind:src="imgUrl.statistics[1]" v-else>
+            			</div>
             			<span>自查统计</span>
-            		</a>
+
             	</li>
-            	<li>
-            		<a @click="jump('member')">
-            			<div class="footer-icon"><img src="/static/img/nav-icon10.png"></div>
+            	<li @click="jump('member',5)">
+            			<div class="img">
+            				<img v-bind:src="imgUrl.member[0]" v-if="cur_id == 5">
+            				<img v-bind:src="imgUrl.member[1]" v-else>
+            			</div>
             			<span>个人中心</span>
-            		</a>
             	</li>
             </ul>
        </div> 
 </template>
 <script>
 	export default {
+
+		name:'',
+		data () {
+		 let imgUrls ={
+	        	'home':['/static/img/nav-icon02.png','/static/img/nav-icon01.png'],
+	        	'repository':['/static/img/nav-icon04.png','/static/img/nav-icon03.png'],
+	        	'workbench':['/static/img/nav-icon06.png','/static/img/nav-icon05.png'],
+	        	'statistics':['/static/img/nav-icon08.png','/static/img/nav-icon07.png'],
+	        	'member':['/static/img/nav-icon10.png','/static/img/nav-icon09.png']
+	      }  
+	      return {
+	        imgUrl: imgUrls,
+	        cur_id : this.$route.params.id
+	      }
+	    },
 		methods: {	
-	        jump (url) {
-	          this.$router.push(url)
+	        jump (url,id) {
+	          this.$router.push({path:url,  name:url,params: {id: id}})
 	     	}
    		 }
 	}
@@ -54,32 +77,35 @@
 		width: 100%;
 	}
 	.footer-nav ul{ 
-		padding: .4rem 0;
+		padding-top: .25rem;
+		padding-bottom: .15rem;
 		display: flex;
 		flex-flow: initial;
 		justify-content: space-around;
 	}
 
-	.footer-nav ul li a{
+	.footer-nav ul li {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		width: 20%;
 	}
-	.footer-nav ul li .footer-icon{
-		width: .55rem;
-		height: .66rem;
+	.footer-nav ul li .img{
+		width: .53rem;
+		height: .53rem;
 	}
 
-	.footer-nav ul li .footer-icon figure{
+	.footer-nav ul li .img figure{
 		width: 100%;
 		height:100%;
+		background-size: auto 100% !important;
 	}
 
 	.footer-nav ul li span{
 		position: relative;
-		padding-top: .25rem;
+		padding-top: .15rem;
 		font-size: .24rem;
-		color: #333333;
+		color: #bfbfbf;
 	}
 
 </style>
