@@ -3,23 +3,28 @@
 		<!-- 顶部导航栏 -->
 	    <div class="top-nav mb b-white " > 
 	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>自查统计</span></div>
+        	<div class="top-title"><span>巡更提醒</span></div>
 	    </div>
 
-	<FooterComponent></FooterComponent>
 	</div>
 </template>
 <script>
-	import FooterComponent from '../../components/footercomponent.vue';
 	export default {
+		name:'workbench',
+		data () {
+			let imgUrls =[
+				'/static/img/partol-bg.png',
+				'/static/img/equipment-icon.png',
+				];
+	        return {
+	        	imgUrl: imgUrls
+	        }
+		},
 		methods: {
-			back (){
-				this.$router.push('/')
-			}
-   		 },
-   		components:{
-   			FooterComponent
-   		} 
+			 back () {
+		        this.$router.go(-1);
+		      }
+   		 }
 	}
 </script>
 

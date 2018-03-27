@@ -14,7 +14,17 @@ import select from '../pages/login/select.vue';
 
 import statistics from '../pages/statistics/statistics.vue';
 import repository from '../pages/repository/repository.vue';
+
+// 工作台
 import workbench from '../pages/workbench/workbench.vue';
+
+import patrolSystem from '../pages/workbench/patrolSystem.vue';
+import startPartol from '../pages/workbench/startPartol.vue';
+
+import pointLocation from '../pages/workbench/pointLocation.vue';
+import addPrtol from '../pages/workbench/addPrtol.vue';
+
+import partolRemind from '../pages/workbench/partolRemind.vue';
 
 // 会员中心
 import member from '../pages/member/member.vue';
@@ -51,6 +61,31 @@ const routes = [
     path: '/workbench',
     name: 'workbench',
     component: workbench
+  },
+  {
+    path: '/startPartol',
+    name: 'startPartol',
+    component: startPartol
+  },
+  {
+    path: '/patrolSystem',
+    name: 'patrolSystem',
+    component: patrolSystem
+  },
+  {
+    path: '/pointLocation',
+    name: 'pointLocation',
+    component: pointLocation
+  },
+  {
+    path: '/addPrtol',
+    name: 'addPrtol',
+    component: addPrtol
+  },
+  {
+    path: '/partolRemind',
+    name: 'partolRemind',
+    component: partolRemind
   },
   {
     path: '/statistics',

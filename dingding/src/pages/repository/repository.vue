@@ -13,15 +13,15 @@
 						<span class="title">巡检应用</span>
 					</div>
 					<ul class="apply-list">
-						<li @click='jump'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[0]"></div>
 							<span class="td-color">品质巡检知识库</span>
 						</li>
-						<li @click='jump'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[1]"></div>
 							<span class="td-color">设备巡检知识库</span>
 						</li>
-						<li @click='jump'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[2]"></div>
 							<span class="td-color">设备维保知识库</span>
 						</li>
@@ -47,9 +47,6 @@
 		},
 		methods: {
 
-			jump (){
-				
-			}
    		 },
    		components:{
    			FooterComponent

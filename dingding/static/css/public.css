@@ -7,6 +7,8 @@
 
 
 
+
+
 /* 全局 */
 
 input,
@@ -15,6 +17,8 @@ a {
     outline: 0 none !important;
     blr: expression(this.onFocus=this.blur());
 }
+
+
 
 
 
@@ -31,6 +35,8 @@ a {
     background-color: #36a9fc;
     color: white !important;
 }
+
+
 
 
 
@@ -60,12 +66,20 @@ a {
     background-color: #7dd0b7;
 }
 
+.b-gray{
+    background-color: #f5f5f7;
+}
+
+
+
 
 /* box-shadow*/
 
-.box-shadow{
+.box-shadow {
     box-shadow: 1px -2px 19px 0px #c7c7c7;
 }
+
+
 
 
 /* boder-line */
@@ -77,6 +91,12 @@ a {
 .bule-boder-bottom {
     border-bottom: 0.02rem solid #36a9fc !important;
 }
+
+.border-radius {
+    border-radius: 0.15rem;
+}
+
+
 
 
 /* color text*/
@@ -116,7 +136,6 @@ textarea::-webkit-input-placeholder {
 
 
 
-
 /* input 样式定义*/
 
 input[type='text'] {
@@ -131,11 +150,11 @@ input[type='text'] {
 /* margin pading */
 
 .mb {
-    margin-bottom: 0.6rem !important;
+    margin-bottom: 0.4rem !important;
 }
 
 .mb-model {
-    margin: 0 0.6rem !important;
+    margin: 0 0.4rem !important;
 }
 
 .msb-model {
@@ -152,8 +171,10 @@ input[type='text'] {
 
 .mb-list {
     margin-left: 0.25rem !important;
-    margin-right:  0.25rem !important;
+    margin-right: 0.25rem !important;
 }
+
+
 
 
 
@@ -186,4 +207,41 @@ input[type='text'] {
     text-align: center;
     padding-top: 0.4rem !important;
     z-index: 99;
+}
+
+
+
+
+/* table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing:0;
+}
+
+tr,
+th,
+td {
+    text-align: center !important;
+    color: #515151 !important;
+    font-size: .39rem !important;
+}
+
+thead {
+    background-color: #45a4f2;
+}
+
+th {
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    border: none !important;
+    color: white !important;
+    border:0.02rem solid #45a4f2 !important;
+}
+
+td {
+    padding-top: .15rem;
+    padding-bottom: .15rem;
+    border:0.02rem solid #979797 !important;
 }

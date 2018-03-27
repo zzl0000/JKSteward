@@ -6,26 +6,26 @@
 	        <div class="top-title"><span>金科服务集团</span></div>
 	    </div>
 
-		<div class="content">
+		<div class="pl-content">
 			<!-- 巡检应用 -->
 				<div class=" b-white mb">
 					<div class="subnav boder-bottom">
 						<span class="title">巡检应用</span>
 					</div>
 					<ul class="apply-list">
-						<li @click='jump()'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[0]"></div>
 							<span>工单池</span>
 						</li>
-						<li @click='jump()'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[1]"></div>
 							<span>品质巡检</span>
 						</li>
-						<li @click='jump()'>
+						<li @click='jump("patrolSystem")'>
 							<div class="img"><img v-bind:src="imgUrl[2]"></div>
 							<span>巡更</span>
 						</li>
-						<li @click='jump()'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[3]"></div>
 							<span>设备巡检</span>
 						</li>
@@ -39,11 +39,11 @@
 						<span class="title">常用应用</span>
 					</div>
 					<ul class="apply-list">
-						<li @click='jump'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[4]"></div>
 							<span>审批</span>
 						</li>
-						<li @click='jump'>
+						<li>
 							<div class="img"><img v-bind:src="imgUrl[5]"></div>
 							<span>通讯录</span>
 						</li>
@@ -71,9 +71,8 @@
 	        }
 		},
 		methods: {
-
-			jump (){
-				
+			jump (url){
+				this.$router.push(url);
 			}
    		 },
    		components:{
