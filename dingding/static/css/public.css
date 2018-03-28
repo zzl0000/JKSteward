@@ -62,6 +62,10 @@ a {
     background-color: #45a4f2;
 }
 
+.b-blues {
+    background-color: #035cff;
+}
+
 .b-green {
     background-color: #7dd0b7;
 }
@@ -69,6 +73,7 @@ a {
 .b-gray{
     background-color: #f5f5f7;
 }
+
 
 
 
@@ -85,11 +90,11 @@ a {
 /* boder-line */
 
 .boder-bottom {
-    border-bottom: 0.02rem solid #e6e4e5 !important;
+    border-bottom: 1px solid #e6e4e5 !important;
 }
 
 .bule-boder-bottom {
-    border-bottom: 0.02rem solid #36a9fc !important;
+    border-bottom: 1px solid #36a9fc !important;
 }
 
 .border-radius {
@@ -139,7 +144,7 @@ textarea::-webkit-input-placeholder {
 /* input 样式定义*/
 
 input[type='text'] {
-    padding: 0.15rem;
+    padding: 0.15rem 0;
 }
 
 
@@ -149,12 +154,16 @@ input[type='text'] {
 
 /* margin pading */
 
+.mt{
+    margin-top: 0.4rem !important;
+}
+}
 .mb {
     margin-bottom: 0.4rem !important;
 }
 
 .mb-model {
-    margin: 0 0.4rem !important;
+    margin: 0 0.6rem !important;
 }
 
 .msb-model {

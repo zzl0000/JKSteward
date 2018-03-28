@@ -20,9 +20,14 @@ import workbench from '../pages/workbench/workbench.vue';
 
 import patrolSystem from '../pages/workbench/patrolSystem.vue';
 import startPartol from '../pages/workbench/startPartol.vue';
+import partoling from '../pages/workbench/partoling.vue';
+import partoltask from '../pages/workbench/partoltask.vue';
+
+
 
 import pointLocation from '../pages/workbench/pointLocation.vue';
 import addPrtol from '../pages/workbench/addPrtol.vue';
+import missingLoaction from '../pages/workbench/missingLoaction.vue';
 
 import partolRemind from '../pages/workbench/partolRemind.vue';
 
@@ -31,6 +36,10 @@ import member from '../pages/member/member.vue';
 import memberIfon from '../pages/member/memberIfon.vue';
 import changePassword from '../pages/member/changePassword.vue';
 import aboutUS from '../pages/member/aboutUS.vue';
+import staffList from '../pages/member/staffList.vue';
+
+
+
 const routes = [ 
   {
     path:'/',
@@ -68,6 +77,16 @@ const routes = [
     component: startPartol
   },
   {
+    path: '/partoling',
+    name: 'partoling',
+    component: partoling
+  },
+  {
+    path: '/partoltask',
+    name: 'partoltask',
+    component: partoltask
+  },
+  {
     path: '/patrolSystem',
     name: 'patrolSystem',
     component: patrolSystem
@@ -76,6 +95,11 @@ const routes = [
     path: '/pointLocation',
     name: 'pointLocation',
     component: pointLocation
+  },
+  {
+    path: '/missingLoaction',
+    name: 'missingLoaction',
+    component: missingLoaction
   },
   {
     path: '/addPrtol',
@@ -111,6 +135,11 @@ const routes = [
     path: '/aboutUS',
     name: 'aboutUS',
     component: aboutUS
+  },
+  {
+    path: '/staffList',
+    name: 'staffList',
+    component: staffList
   }
 ];
 

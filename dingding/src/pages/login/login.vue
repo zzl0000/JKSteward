@@ -20,7 +20,7 @@
       </div>
       <div class="login-operation">
             <button class="btn btn-blue mb" @click="login" > 登录 </button>
-            <button class="btn" @click="jump"> 注册账号 </button>
+            <button class="btn td-color" @click="jump"> 注册账号 </button>
         </div>
       </div>  
     </div>
@@ -71,8 +71,8 @@
   }
   
   .login-form{
-    padding: 0.8rem;
-    border: 0.02rem solid #36a9fc;
+    padding: 0.9rem 0.6rem;
+    border: 1px solid #36a9fc;
     border-radius: 0.25rem;
   }
 
@@ -93,6 +93,8 @@
   .form-group input{
     align-self: flex-end;
     width: 90%;
+    font-size: .36rem;
+    letter-spacing:0.05rem;
   }
 
   input::-webkit-input-placeholder{

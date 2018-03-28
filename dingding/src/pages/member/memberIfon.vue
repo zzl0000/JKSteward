@@ -19,34 +19,24 @@
 			<div class="user-opreation-list b-white mb">
 				<ul>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">分公司</span>
 							<span class="">重庆分公司</span>
-						</a>
 					</li>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">项目</span>
 							<span class="">金科十年城东</span>
-						</a>
 					</li>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">部门</span>
 							<span class="">工程部</span>
-						</a>
 					</li>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">岗位</span>
 							<span class="">工程主管</span>
-						</a>
 					</li>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">岗位</span>
 							<span class="">电话</span>
-						</a>
 					</li>
 				</ul>
 			</div>

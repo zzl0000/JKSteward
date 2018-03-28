@@ -1,12 +1,12 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb box-shadow" > 
+	    <!-- <div class="top-nav b-white mb box-shadow" > 
 	    	<div class="back"></div>
 	        <div class="top-title"><span>金科服务集团</span></div>
-	    </div>
+	    </div> -->
 
-		<div class="pl-content">
+		<div class="pl-content mt">
 			<!-- 巡检应用 -->
 				<div class=" b-white mb">
 					<div class="subnav boder-bottom">

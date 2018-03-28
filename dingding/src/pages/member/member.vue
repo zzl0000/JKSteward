@@ -1,11 +1,11 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb box-shadow" > 
+	    <!-- <div class="top-nav b-white mb box-shadow" > 
 	    	<div class="back"></div>
 	        <div class="top-title"><span>个人中心</span></div>
-	    </div>	
-		<div class="content">
+	    </div> -->	
+		<div class="content mt">
 			<!-- 用户信息 -->
 			<div class="user-ifon b-white mb">
 				<div class="user-header"><span class="t-white-color">王</span></div>
@@ -24,26 +24,20 @@
 			<!-- 操作列表 -->
 			<div class="user-opreation-list b-white mb">
 				<ul>
-					<li class="boder-bottom">
-						<a>
+					<li class="boder-bottom" @click="jump('staffList')">
 							<div class="opreation-list-icon"><img src="/static/img/member-icon01.png" height="46" width="42"></div>
 							<span class="title">人员信息待审核</span>
 							<span class="advance"><img src="/static/img/advance-cion.png" height="32" width="18"></span>
-						</a>
 					</li>
-					<li class="boder-bottom">
-						<a @click="jump('changePassword')">
+					<li class="boder-bottom" @click="jump('changePassword')">
 							<div class="opreation-list-icon"><img src="/static/img/member-icon02.png" height="44" width="38"></div>
 							<span class="title">修改密码</span>
 							<span  class="advance"><img src="/static/img/advance-cion.png" height="32" width="18"></span>
-						</a>
 					</li>
-					<li class="">
-						<a @click="jump('aboutUs')">
+					<li class="" @click="jump('aboutUs')">
 							<div class="opreation-list-icon"><img src="/static/img/member-icon03.png" height="44" width="44"></div>
 							<span class="title">版本信息</span>
 							<span  class="advance"><img src="/static/img/advance-cion.png" height="32" width="18"></span>
-						</a>
 					</li>
 				</ul>
 			</div>
@@ -86,7 +80,7 @@
 	.user-ifon .user-header{
 		width: 1.60rem;
 		height: 1.60rem;
-		border-radius: 50%;
+		border-radius: 100%;
 		background-color: #36a9fc;
 		justify-content: center; 
 
@@ -96,7 +90,8 @@
 	}
 
 	.user-ifon .user-list{
-		flex-grow: 0.5 ;
+		flex-grow: 0.8 ;
+		padding-left: .25rem;
 	}
 	.user-ifon .user-list p{
 		padding: 0.2rem 0;
@@ -125,6 +120,8 @@
 		position: absolute;
 		width: 100%;
 		left: 0;
+		top: 0;
+		z-index: 1;
 		color:white;
 		text-align: center;
 		line-height: .90rem;
@@ -137,7 +134,7 @@
 		padding-right:0;
 	}
 
-	.user-opreation-list li a{
+	.user-opreation-list li {
 		padding: 0.4rem 0;
 		display: flex;
 		flex-flow: initial;

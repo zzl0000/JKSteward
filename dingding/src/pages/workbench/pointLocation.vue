@@ -18,7 +18,7 @@
 				<ul>
 					<li>
 						<label>漏检</label>
-						<div class="space-between">
+						<div class="space-between" @click="jump('missingLoaction')">
 							<span class="tips">8个</span>
 							<p class="td-color">金科智慧城巡更任务 09:00 12:00</p>
 							<div class="img"><img src="/static/img/advance-cion.png" height="32" width="18"></div>

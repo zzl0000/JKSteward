@@ -11,29 +11,23 @@
 			<div class="user-opreation-list b-white mb">
 				<ul>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">巡更人员</span>
 							<span class="">王小二</span>
-						</a>
 					</li>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">职位</span>
 							<span class="">协管班长</span>
-						</a>
 					</li>
 					<li class="boder-bottom">
-						<a>
 							<span class="td-color">当前时间</span>
 							<span class="">2017/06/15 09:20</span>
-						</a>
 					</li>
 				</ul>
 			</div>
 
 		</div>
 		<div class="subtn">
-				<button class="btn btn-blue mb-list border-radius" @click="jump('')">开始巡更</button>
+				<button class="btn btn-blue mb-list border-radius" @click="jump('partoling')">开始巡更</button>
 		</div>
 	</div>
 </template>
