@@ -1,10 +1,10 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <!-- <div class="top-nav b-white mb box-shadow" > 
+	    <div class="top-nav b-white mb box-shadow" > 
 	    	<div class="back" @click="back"><img src="/static/img/back-icon.png" height="36" width="20"></div>
 	        <div class="top-title"><span>主页</span></div>
-	    </div> -->	
+	    </div>	
 		<div class="content mt">
 			<!-- 我的消息 -->
 			<div class="news b-white mb mb-list">

@@ -10,12 +10,12 @@
       <div class="login-lump mb-model">
         <div class="login-form">
          <div class="mb form-group">
-            <img src="/static/img/user-icon.png" height="52" width="52">
-            <input type="text" class="bule-boder-bottom" name="" placeholder="请输入用户名">
+            <img src="/static/img/user-icon.png"  height="52" width="52">
+            <input type="text" class="bule-boder-bottom" v-model="userNumber" name="" placeholder="请输入用户名">
          </div>
-         <div class="form-group">
-             <img src="/static/img/pasword-icon.png" height="52" width="53">
-            <input type="text" class="bule-boder-bottom" name="" placeholder="请输入密码">
+         <div class="form-group mt">
+             <img src="/static/img/pasword-icon.png"   height="52" width="53">
+             <input type="text" class="bule-boder-bottom"  v-model="userPassword" name="" placeholder="请输入密码">
          </div>
       </div>
       <div class="login-operation">
@@ -24,17 +24,38 @@
         </div>
       </div>  
     </div>
-
+    <div :ref="'toast'" id="toast"></div>  
      <!-- 版权 -->
      <p class="Copyright">Copyright © 2016金科物业服务集团有限公司</p>
   </div>
 </template>
 <script>
+  
   export default {
+
     name: 'login',
+    data (){
+      return{
+            userNumber:'',  
+            userPassword:'' 
+      }
+    },
     methods:{
-      login(){
-         this.$router.push('home')
+
+      login (){
+
+          /*if(this.userNumber.length < 13){ 
+              // this.$refs.toast.$emit('toast','请输入手机号');  
+              return;  
+          }else if(this.userPassword.length < 1){  
+              // this.$refs.toast.$emit('toast','请输入密码');  
+              return;  
+          }*/
+
+          //this.$refs.toast.$emit('toast',"登录成功");  
+
+          //this.$router.push('home')
+
       },
       jump (){
         this.$router.push('register')
@@ -95,6 +116,7 @@
     width: 90%;
     font-size: .36rem;
     letter-spacing:0.05rem;
+    color: #454545;
   }
 
   input::-webkit-input-placeholder{

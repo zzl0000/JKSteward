@@ -3,7 +3,14 @@
 // 第一步 导入路由模板
 import VueRouter from 'vue-router';
 
-// 第二部导入组件
+// 第二步 引入订单 JSDK
+
+import dingtalk from 'weex-dingtalk';
+import journey from 'weex-dingtalk-journey';
+import { toast,setLeft } from '../lib/util.js';
+
+
+// 第三步导入组件
 
 import home from '../pages/home/index.vue';
 
@@ -143,6 +150,11 @@ const routes = [
   }
 ];
 
+
+dingtalk.error(function(err){
+  console.log(JSON.stringify(err))
+  toast('Error : ' + JSON.stringify(err));
+});
 export default function Router(Vue){
   Vue.use(VueRouter);
   const router = new VueRouter({
