@@ -7,7 +7,7 @@ import VueRouter from 'vue-router';
 
 import dingtalk from 'weex-dingtalk';
 import journey from 'weex-dingtalk-journey';
-import { toast,setLeft } from '../lib/util.js';
+// import { toast,setLeft } from '../lib/util.js';
 
 
 // 第三步导入组件
@@ -151,11 +151,12 @@ const routes = [
 ];
 
 
-dingtalk.error(function(err){
-  console.log(JSON.stringify(err))
-  toast('Error : ' + JSON.stringify(err));
-});
+// dingtalk.error(function(err){
+//   console.log(JSON.stringify(err))
+//   toast('Error : ' + JSON.stringify(err));
+// });
 export default function Router(Vue){
+
   Vue.use(VueRouter);
   const router = new VueRouter({
     routes: routes

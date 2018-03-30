@@ -1,0 +1,1 @@
+export const APPHOST = 'http://10.15.208.146:8080';

@@ -4,6 +4,7 @@ import journey from 'weex-dingtalk-journey';
 const { requireModule, querystring, url, env } = journey;
 const modal = requireModule('modal');
 const stream = requireModule('stream');
+
 let uid = 1;
 
 export function fetchBundleUrl() {

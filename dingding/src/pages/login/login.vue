@@ -32,7 +32,6 @@
 <script>
   
   export default {
-
     name: 'login',
     data (){
       return{
@@ -42,26 +41,38 @@
     },
     methods:{
 
-      login (){
+          login() {
 
-          /*if(this.userNumber.length < 13){ 
-              // this.$refs.toast.$emit('toast','请输入手机号');  
-              return;  
-          }else if(this.userPassword.length < 1){  
-              // this.$refs.toast.$emit('toast','请输入密码');  
-              return;  
-          }*/
+              // if(this.userNumber.length < 13){ 
+              //     // this.$refs.toast.$emit('toast','请输入手机号');  
+              //     return;  
+              // }else if(this.userPassword.length < 1){  
+              //     // this.$refs.toast.$emit('toast','请输入密码');  
+              //     return;  
+              // }
 
-          //this.$refs.toast.$emit('toast',"登录成功");  
 
-          //this.$router.push('home')
 
-      },
-      jump (){
-        this.$router.push('register')
+              let params = {
+                  userName:this.userNumber,
+                  passWord:this.userPassword,
+                  thirdParty:1
+                };
+
+            /*请求数据*/
+              this.$api.post('/Appinterface/userLogin',params,function(data) {
+                console.log(JSON.stringify(data));
+              })
+
+              //this.$router.push('home')
+
+          },
+          jump (){
+            this.$router.push('register')
+          }
       }
+      
     }
-  }
 </script>
 
 <style scoped>

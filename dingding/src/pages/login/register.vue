@@ -11,31 +11,31 @@
       <div class="login-lump b-white">
          <div class="form-group boder-bottom">
             <label>手机号码</label>
-            <input type="text" class="" name="" placeholder="请输入你的手机号码">
+            <input type="text" class="" name="" v-model="loginAcct" placeholder="请输入你的手机号码">
          </div>
          <div class="form-group boder-bottom">
              <label>密码</label>
-            <input type="text" class="" name="" placeholder="请输入密码">
+            <input type="text" class="" name="" v-model="password" placeholder="请输入密码">
          </div>
          <div class="form-group boder-bottom">
              <label>确认密码</label>
-            <input type="text" class="" name="" placeholder="确认密码">
+            <input type="text" class="" name="" v-model="qzPassword"  placeholder="确认密码">
          </div>
          <div class="form-group boder-bottom">
              <label>姓名</label>
-            <input type="text" class="" name="" placeholder="请输入你的姓名">
+            <input type="text" class="" name="" v-model="nickName" placeholder="请输入你的姓名">
          </div>
          <div class="form-group boder-bottom" @click="jump('1')">
              <label>所属项目</label>
-             <input type="text" readonly="readonly" class="" name="" placeholder="请选择">
+             <input type="text" readonly="readonly" v-model="organId" class="" name="" placeholder="请选择">
          </div>
          <div class="form-group boder-bottom" @click="jump('2')">
              <label>所属部门</label>
-             <input type="text" readonly="readonly" class="" name="" placeholder="请选择">
+             <input type="text" readonly="readonly" v-model="scenesID" class="" name="" placeholder="请选择">
          </div>
          <div class="form-group boder-bottom">
              <label>岗位</label>
-            <input type="text" class="" name="" placeholder="请输入你的岗位">
+            <input type="text" class="" name="" v-model="fax" placeholder="请输入你的岗位">
          </div>
 
       </div> 
@@ -47,18 +47,45 @@
 </template>
 <script>
   export default {
-    name: '',
+    name: 'register',
     data () {
       return {
-        msg: 'test message'
+        msg: 'test message',
+        loginAcct: '',
+        password: '',
+        qzPassword:'',
+        nickName: '',
+        organId: '',
+        scenesID: '',
+        fax:''
       }
+    },
+    created: function () {
+             this.organId = this.$route.params.data;
+             this.scenesID = this.$route.params.data;
     },
     methods: {
       back () {
           this.$router.push('/')
       },
       getRegister (){
+            if(this.loginAcct.length < 13){ 
+                  // this.$refs.toast.$emit('toast','请输入手机号');  
+                  return;  
+              }else if(this.userPassword.length < 1){  
+                  // this.$refs.toast.$emit('toast','请输入密码');  
+                  return;  
+              }
+              let params = {
+                  userName:this.userNumber,
+                  passWord:this.userPassword,
+                  thirdParty:1
+                };
 
+            /*请求数据*/
+              this.$api.post('/Cruiselch/Appinterface/register?',params,function(data) {
+                console.log(JSON.stringify(data));
+              })
       },
       jump  (id) {
         let title = '';

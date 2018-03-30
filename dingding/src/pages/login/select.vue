@@ -11,10 +11,10 @@
 	    	<!-- 请选择所属部门 -->
 	    	<div class="b-white" v-if="cur_key == 1">
 		          <ul>
-		        	 	<li class="pd-list boder-bottom">安全管理</li>
-		        	 	<li class="pd-list boder-bottom">工程管理</li>
-		        	 	<li class="pd-list boder-bottom">环境管理</li>
-		        	 	<li class="pd-list boder-bottom">客服管理</li>
+		        	 	<li @click="select('安全管理')" class="pd-list boder-bottom">安全管理</li>
+		        	 	<li @click="select('工程管理')" class="pd-list boder-bottom">工程管理</li>
+		        	 	<li @click="select('环境管理')" onautocomplete="" class="pd-list boder-bottom">环境管理</li>
+		        	 	<li @click="select('客服管理')" class="pd-list boder-bottom">客服管理</li>
 		          </ul>
 		      </div>
 		 	  <!-- 请选择所属项目 -->
@@ -31,8 +31,8 @@
 		 	  	</div>	
 		        <div class="search-list">
 		        	 <ul>
-		        	 	<li class="pd-list boder-bottom">金科物业有限公司</li>
-		        	 	<li class="pd-list boder-bottom">华北分公司</li>
+		        	 	<li @click="select('金科物业有限公司')" class="pd-list boder-bottom">金科物业有限公司</li>
+		        	 	<li @click="select('华北分公司')" class="pd-list boder-bottom">华北分公司</li>
 		        	 </ul>
 		        </div>
 		      </div>
@@ -52,7 +52,14 @@
 	        cur_key: this.$route.params.id
 	      }
 	    },
+	    created: function () {
+             this.cur_key = this.$route.params.id;
+        },
 	    methods:{
+	      select (rs){
+	      	this.$router.push({path:'register',  name:'register',params:{id:this.cur_key,data:rs}});
+	      },
+
 	      back () {
 	        this.$router.go(-1);
 	      }

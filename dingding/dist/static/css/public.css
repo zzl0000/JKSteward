@@ -9,6 +9,18 @@
 
 
 
+/* 全局 */
+
+input,
+button,
+a {
+    outline: 0 none !important;
+    blr: expression(this.onFocus=this.blur());
+}
+
+
+
+
 
 /* 按钮样式定义 */
 
@@ -27,10 +39,49 @@
 
 
 
+
+
+
+
+
 /* background*/
 
 .b-white {
     background-color: white;
+}
+
+.b-red {
+    background-color: #ff5b4e;
+}
+
+.b-y {
+    background-color: #e5c153;
+}
+
+.b-bule {
+    background-color: #45a4f2;
+}
+
+.b-blues {
+    background-color: #035cff;
+}
+
+.b-green {
+    background-color: #7dd0b7;
+}
+
+.b-gray{
+    background-color: #f5f5f7;
+}
+
+
+
+
+
+/* box-shadow*/
+
+.box-shadow {
+    box-shadow: 1px -2px 19px 0px #c7c7c7;
 }
 
 
@@ -39,22 +90,46 @@
 /* boder-line */
 
 .boder-bottom {
-    border-bottom: 0.02rem solid #e6e4e5 !important;
+    border-bottom: 1px solid #e6e4e5 !important;
 }
 
 .bule-boder-bottom {
-    border-bottom: 0.02rem solid #36a9fc !important;
+    border-bottom: 1px solid #36a9fc !important;
+}
+
+.border-radius {
+    border-radius: 0.15rem;
 }
 
 
 
 
+/* color text*/
 
-/* color */
-
-.color-bule {
-    color: #36a9fc !important;
+.td-color {
+    color: #515151 !important;
 }
+
+.t-bold-color {
+    color: #000000 !important;
+}
+
+.t-white-color {
+    color: white !important;
+}
+
+.t-red-color {
+    color: #ff5b4e !important;
+}
+
+.t-bule-color {
+    color: #45a4f2 !important;
+}
+
+.t-gray-color {
+    color: #454545 !important;
+}
+
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
@@ -69,8 +144,9 @@ textarea::-webkit-input-placeholder {
 /* input 样式定义*/
 
 input[type='text'] {
-    padding: 0.15rem;
+    padding: 0.15rem 0;
 }
+
 
 
 
@@ -78,8 +154,12 @@ input[type='text'] {
 
 /* margin pading */
 
+.mt{
+    margin-top: 0.4rem !important;
+}
+
 .mb {
-    margin-bottom: 0.6rem !important;
+    margin-bottom: 0.4rem !important;
 }
 
 .mb-model {
@@ -93,6 +173,18 @@ input[type='text'] {
 .pd-model {
     padding: 0 0.6rem !important;
 }
+
+.pd-list {
+    padding: 0.4rem !important;
+}
+
+.mb-list {
+    margin-left: 0.25rem !important;
+    margin-right: 0.25rem !important;
+}
+
+
+
 
 
 
@@ -124,4 +216,41 @@ input[type='text'] {
     text-align: center;
     padding-top: 0.4rem !important;
     z-index: 99;
+}
+
+
+
+
+/* table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing:0;
+}
+
+tr,
+th,
+td {
+    text-align: center !important;
+    color: #515151 !important;
+    font-size: .39rem !important;
+}
+
+thead {
+    background-color: #45a4f2;
+}
+
+th {
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    border: none !important;
+    color: white !important;
+    border:0.02rem solid #45a4f2 !important;
+}
+
+td {
+    padding-top: .15rem;
+    padding-bottom: .15rem;
+    border:0.02rem solid #979797 !important;
 }
