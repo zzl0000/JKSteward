@@ -3,22 +3,13 @@
 		<!-- 顶部导航栏 -->
 	    <div class="top-nav b-white  boder-bottom " >
 	        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-	        <div class="top-title"><span>{{ msg }}</span></div>
+	        <div class="top-title"><span>请选择所属项目</span></div>
 	    </div>
 
 	    
 	    <div class="content">
-	    	<!-- 请选择所属部门 -->
-	    	<div class="b-white" v-if="cur_key == 1">
-		          <ul>
-		        	 	<li @click="select('安全管理')" class="pd-list boder-bottom">安全管理</li>
-		        	 	<li @click="select('工程管理')" class="pd-list boder-bottom">工程管理</li>
-		        	 	<li @click="select('环境管理')" onautocomplete="" class="pd-list boder-bottom">环境管理</li>
-		        	 	<li @click="select('客服管理')" class="pd-list boder-bottom">客服管理</li>
-		          </ul>
-		      </div>
 		 	  <!-- 请选择所属项目 -->
-		 	  <div class="b-white"  v-else>
+		 	  <div class="b-white">
 		 	  	<div class="search boder-bottom">
 		 	  			<div class="search-control">
 		 	  				<div class="img"><img src="/static/img/search-icon.png" height="23" width="23"></div>
@@ -43,21 +34,19 @@
 <script>
 	
 
-	    
+	  
 	export default {
 	    name: 'select',
 	    data () {
 	      return {
-	        msg: this.$route.params.title,
-	        cur_key: this.$route.params.id
 	      }
 	    },
 	    created: function () {
-             this.cur_key = this.$route.params.id;
         },
 	    methods:{
-	      select (rs){
-	      	this.$router.push({path:'register',  name:'register',params:{id:this.cur_key,data:rs}});
+	      select (rs){ 
+	    	 this.$storage.setItem('organId', rs)
+	      	 this.$router.push('register');
 	      },
 
 	      back () {

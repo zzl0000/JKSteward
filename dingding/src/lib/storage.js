@@ -1,51 +1,33 @@
-import dingtalk from 'dingtalk-javascript-sdk';
-import { toast } from './util.js';
+import journey from 'weex-dingtalk-journey';
 
-export function getItem (name,cb){
-  const date = new Date();
-  dingtalk.ready(function(){
-    dingtalk.apis.util.domainStorage.getItem({
-      name: name,
-      onSuccess (res){
-        const value = res.value;
-        if (!value){
-          if (typeof cb === 'function'){
-            cb(1,value);
-          }
-          return;
-        }
-        if (typeof cb === 'function'){
-          try {
-            let item = JSON.parse(value);
-            cb(null, item);
-          }catch(e){
-            cb(e,res);
-          }
-        }
-      }
+// 配置Api 接口
+
+// 引入 弹窗组件 
+
+
+function setItem(name, parms, success) {
+    const { requireModule } = journey;
+    var storage = requireModule('storage');
+    storage.setItem(name, parms );
+};
+
+function getItem(storage_key, success) {
+    const { requireModule } = journey;
+    var storage = requireModule('storage');
+
+    storage.getItem(storage_key, event => {
+        console.log('get value:', event)
+        //this.state = 'value: ' + event.data
+        success(event.data);
     });
-  });
-}
+};
 
-export function clearItems (){
-  dingtalk.ready(function(){
-    dingtalk.apis.util.domainStorage.clearItems({});
-  });
-}
 
-export function removeItem (name){
-  dingtalk.ready(function(){
-    dingtalk.apis.util.domainStorage.removeItem({
-      name: name
-    });
-  });
-}
-
-export function setItem (name,val){
-  dingtalk.ready(function(){
-    dingtalk.apis.util.domainStorage.setItem({
-      name: name,
-      value: JSON.stringify(val)
-    });
-  });
+export default {
+    setItem: function(name,parms, success) {
+        setItem(name, parms, success);
+    },
+    getItem: function(storage_key, success) {
+        getItem(storage_key, success);
+    }
 }

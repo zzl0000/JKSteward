@@ -70,6 +70,17 @@
 <script>
 	import FooterComponent from '../../components/footercomponent.vue';
 	export default {
+		name:'home',
+		data () {
+			return{
+
+			}
+		},
+		created: function () {
+        let _self = this;
+        
+
+    	},
 		methods: {
 			back (){
 				this.$router.push('/')

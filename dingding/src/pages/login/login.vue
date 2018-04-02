@@ -39,6 +39,7 @@
             userPassword:'' 
       }
     },
+    
     methods:{
 
           login() {
@@ -51,8 +52,6 @@
               //     return;  
               // }
 
-
-
               let params = {
                   userName:this.userNumber,
                   passWord:this.userPassword,
@@ -64,7 +63,7 @@
                 console.log(JSON.stringify(data));
               })
 
-              //this.$router.push('home')
+              this.$router.push('home')
 
           },
           jump (){

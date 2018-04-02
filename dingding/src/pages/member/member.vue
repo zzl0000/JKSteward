@@ -1,11 +1,11 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <!-- <div class="top-nav b-white mb box-shadow" > 
+	    <div class="top-nav b-white mb box-shadow" > 
 	    	<div class="back"></div>
 	        <div class="top-title"><span>个人中心</span></div>
-	    </div> -->	
-		<div class="content mt">
+	    </div>	
+		<div class="content ">
 			<!-- 用户信息 -->
 			<div class="user-ifon b-white mb">
 				<div class="user-header"><span class="t-white-color">王</span></div>
@@ -54,8 +54,35 @@
 <script>
 	import FooterComponent from '../../components/footercomponent.vue';
 	export default {
+		name:'member',
+		data () {
+			return{
+
+			}
+		},
+		created: function () {
+       		 let _self = this;
+       		 let params = {
+                  userId:'1476940667833',
+                  sessionId:'7cf13e169eb34d02be5b12e6c7e243ab',
+                  thirdParty:1
+             };
+        	 /*请求数据*/
+             this.$api.post('/Appinterface/userInfo',params,function(data) {
+                console.log(JSON.stringify(data));
+              })
+
+    	},
 		methods: {
 			Logout () {
+				let params = {
+                  userId:'1476940667833',
+                  sessionId:'7cf13e169eb34d02be5b12e6c7e243ab',
+                  thirdParty:1
+             	};
+				this.$api.post('/Appinterface/userLoginOut',params,function(data) {
+                console.log(JSON.stringify(data));
+              	})
 				this.$router.push('/')
 			},
 			jump (url){ 

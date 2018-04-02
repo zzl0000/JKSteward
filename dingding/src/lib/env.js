@@ -1,1 +1,1 @@
-export const APPHOST = 'http://10.15.208.146:8080';
+export const APPHOST = 'http://dev-oa-api.tq-service.com';

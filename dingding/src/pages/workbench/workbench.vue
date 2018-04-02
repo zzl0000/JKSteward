@@ -1,33 +1,21 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <!-- <div class="top-nav b-white mb box-shadow" > 
+	    <div class="top-nav b-white mb box-shadow"> 
 	    	<div class="back"></div>
 	        <div class="top-title"><span>金科服务集团</span></div>
-	    </div> -->
+	    </div>
 
-		<div class="pl-content mt">
+		<div class="pl-content">
 			<!-- 巡检应用 -->
 				<div class=" b-white mb">
 					<div class="subnav boder-bottom">
 						<span class="title">巡检应用</span>
 					</div>
 					<ul class="apply-list">
-						<li>
-							<div class="img"><img v-bind:src="imgUrl[0]"></div>
-							<span>工单池</span>
-						</li>
-						<li>
-							<div class="img"><img v-bind:src="imgUrl[1]"></div>
-							<span>品质巡检</span>
-						</li>
-						<li @click='jump("patrolSystem")'>
-							<div class="img"><img v-bind:src="imgUrl[2]"></div>
-							<span>巡更</span>
-						</li>
-						<li>
-							<div class="img"><img v-bind:src="imgUrl[3]"></div>
-							<span>设备巡检</span>
+						<li v-for="item in  items" @click="jump(item.url)">
+							<div class="img"><img v-bind:src="item.imgurl"></div>
+							<span>{{item.title}}</span>
 						</li>
 					</ul>
 				</div>
@@ -40,11 +28,11 @@
 					</div>
 					<ul class="apply-list">
 						<li>
-							<div class="img"><img v-bind:src="imgUrl[4]"></div>
+							<div class="img"><img v-bind:src="imgUrl[0]"></div>
 							<span>审批</span>
 						</li>
 						<li>
-							<div class="img"><img v-bind:src="imgUrl[5]"></div>
+							<div class="img"><img v-bind:src="imgUrl[1]"></div>
 							<span>通讯录</span>
 						</li>
 					</ul>
@@ -59,16 +47,40 @@
 	export default {
 		name:'workbench',
 		data () {
+			let itemArray =[
+				{
+					imgurl:'/static/img/apply-icon01.png',
+					title:'工单池',
+					url:''
+				},
+				{
+					imgurl:'/static/img/apply-icon02.png',
+					title:'品质巡检',
+					url:''
+				},
+				{
+					imgurl:'/static/img/apply-icon03.png',
+					title:'巡更',
+					url:'patrolSystem'
+				},
+				{
+					imgurl:'/static/img/apply-icon04.png',
+					title:'设备巡检',
+					url:''
+				}
+			]
+				
 			let imgUrls =[
-				'/static/img/apply-icon01.png',
-				'/static/img/apply-icon02.png',
-				'/static/img/apply-icon03.png',
-				'/static/img/apply-icon04.png',
 				'/static/img/apply-icon05.png',
 				'/static/img/apply-icon06.png'];
+
 	        return {
-	        	imgUrl: imgUrls
+	        	items:itemArray,
+	        	imgUrl:	imgUrls       	
 	        }
+		},
+		created: function () {
+			
 		},
 		methods: {
 			jump (url){

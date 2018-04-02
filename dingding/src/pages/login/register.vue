@@ -25,11 +25,11 @@
              <label>姓名</label>
             <input type="text" class="" name="" v-model="nickName" placeholder="请输入你的姓名">
          </div>
-         <div class="form-group boder-bottom" @click="jump('1')">
+         <div class="form-group boder-bottom" @click="jump('selectItem')">
              <label>所属项目</label>
              <input type="text" readonly="readonly" v-model="organId" class="" name="" placeholder="请选择">
          </div>
-         <div class="form-group boder-bottom" @click="jump('2')">
+         <div class="form-group boder-bottom" @click="jump('selectSector')">
              <label>所属部门</label>
              <input type="text" readonly="readonly" v-model="scenesID" class="" name="" placeholder="请选择">
          </div>
@@ -46,6 +46,7 @@
   </div>
 </template>
 <script>
+
   export default {
     name: 'register',
     data () {
@@ -61,8 +62,15 @@
       }
     },
     created: function () {
-             this.organId = this.$route.params.data;
-             this.scenesID = this.$route.params.data;
+        let _self = this;
+        this.$storage.getItem('organId',function(rs){
+           _self.organId = rs;
+         });
+
+        this.$storage.getItem('scenesID',function(rs){
+           _self.scenesID = rs;
+         });
+
     },
     methods: {
       back () {
@@ -87,15 +95,8 @@
                 console.log(JSON.stringify(data));
               })
       },
-      jump  (id) {
-        let title = '';
-        if( id == 1 ){
-            title = '请选择所属项目';
-        }else{
-            title = '请选择所属部门';
-        }
-          
-          this.$router.push({path:'select',  name:'select',params: { title: title,id: id }})
+      jump  (url) {
+          this.$router.push(url)
       }
     }
   }

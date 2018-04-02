@@ -11,11 +11,11 @@
       <div class="b-white">
          <div class="form-group boder-bottom">
             <label>原密码</label>
-            <input type="text" class="" name="" placeholder="原密码">
+            <input type="text" class="" v-model="lastpwd" name="" placeholder="原密码">
          </div>
          <div class="form-group boder-bottom">
              <label>新密码</label>
-            <input type="text" class="" name="" placeholder="新密码">
+            <input type="text" class="" v-model="newpwd" name="" placeholder="新密码">
          </div>
          <div class="form-group boder-bottom">
              <label>确认密码</label>
@@ -30,12 +30,30 @@
 </template>
 <script>
   export default {
+    name:'changePassword',
+      data (){
+        return{
+            lastpwd:'',
+            newpwd:''
+        }
+      },
     methods: {
+      
       back () {
           this.$router.go(-1);
       },
       getRegister (){
 
+            let params ={
+                sessionId:'',
+                userId:'',
+                lastpwd:'',
+                newpwd:''
+            }
+            /*请求数据*/
+              this.$api.post('/Appinterface/userLogin',params,function(data) {
+                console.log(JSON.stringify(data));
+              })
       }
     }
   }

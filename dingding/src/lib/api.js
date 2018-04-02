@@ -2,7 +2,6 @@
 
 import journey from 'weex-dingtalk-journey';
 // 引入 弹窗组件 
-
 const { requireModule } = journey;
 
 
@@ -58,7 +57,7 @@ export function apiStream(method, url, params, success, failuer) {
             type: 'text',
             mode: "cors",
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/json"
             },
             url: baseUrl + url + toParams(params)
         }, function(res) {
@@ -75,17 +74,18 @@ export function apiStream(method, url, params, success, failuer) {
     } else if (method === 'POST') {
         stream.fetch({
                 method: 'POST',
-                type: 'text',
-                url: baseUrl + url,
                 mode: "cors",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
+                url: baseUrl + url,
                 body: toParams(params)
             },
             function(res) {
+                console.log("fetch request ", JSON.stringify(res.ok))
                 if (res.ok) {
                     // 解密
+
                     success(res.data);
                 } else {
                     modal.toast({
@@ -95,7 +95,7 @@ export function apiStream(method, url, params, success, failuer) {
                 }
             },
             function(progress) {
-                //
+                
             })
 
     }

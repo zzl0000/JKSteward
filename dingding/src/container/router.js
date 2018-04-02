@@ -17,8 +17,8 @@ import home from '../pages/home/index.vue';
 // 登录注册
 import login from '../pages/login/login.vue';
 import register from '../pages/login/register.vue';
-import select from '../pages/login/select.vue';
-
+import selectItem from '../pages/login/selectItem.vue';
+import selectSector from '../pages/login/selectSector.vue';
 import statistics from '../pages/statistics/statistics.vue';
 import repository from '../pages/repository/repository.vue';
 
@@ -29,8 +29,6 @@ import patrolSystem from '../pages/workbench/patrolSystem.vue';
 import startPartol from '../pages/workbench/startPartol.vue';
 import partoling from '../pages/workbench/partoling.vue';
 import partoltask from '../pages/workbench/partoltask.vue';
-
-
 
 import pointLocation from '../pages/workbench/pointLocation.vue';
 import addPrtol from '../pages/workbench/addPrtol.vue';
@@ -59,9 +57,14 @@ const routes = [
     component: home
   },
   {
-    path: '/select',
-    name: 'select',
-    component: select
+    path: '/selectItem',
+    name: 'selectItem',
+    component: selectItem
+  },
+  {
+    path: '/selectSector',
+    name: 'selectSector',
+    component: selectSector
   },
   {
     path: '/register',
@@ -151,10 +154,12 @@ const routes = [
 ];
 
 
-// dingtalk.error(function(err){
-//   console.log(JSON.stringify(err))
-//   toast('Error : ' + JSON.stringify(err));
-// });
+dingtalk.error(function(err){
+  console.log(JSON.stringify(err))
+  toast('Error : ' + JSON.stringify(err));
+});
+
+
 export default function Router(Vue){
 
   Vue.use(VueRouter);
@@ -173,6 +178,7 @@ export default function Router(Vue){
 
     router.go(-1);
   }
+
   //setLeft(left, backHandler);
   // jsApiOAuth().then(function(){
   //   console.log('签名完成');
