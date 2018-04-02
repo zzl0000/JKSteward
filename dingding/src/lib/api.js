@@ -82,11 +82,10 @@ export function apiStream(method, url, params, success, failuer) {
                 body: toParams(params)
             },
             function(res) {
-                console.log("fetch request ", JSON.stringify(res.ok))
+                //console.log("fetch request ", JSON.stringify(res.ok))
                 if (res.ok) {
                     // 解密
-
-                    success(res.data);
+                    success(JSON.parse(res.data));
                 } else {
                     modal.toast({
                         message: '请求失败,请检查网络!',

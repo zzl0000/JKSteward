@@ -30,7 +30,8 @@
   </div>
 </template>
 <script>
-  
+
+
   export default {
     name: 'login',
     data (){
@@ -43,14 +44,23 @@
     methods:{
 
           login() {
-
-              // if(this.userNumber.length < 13){ 
-              //     // this.$refs.toast.$emit('toast','请输入手机号');  
-              //     return;  
-              // }else if(this.userPassword.length < 1){  
-              //     // this.$refs.toast.$emit('toast','请输入密码');  
-              //     return;  
-              // }
+              var _self = this;
+               const modal = weex.requireModule('modal');  
+              if(this.userNumber.length < 1){ 
+                  // this.$refs.toast.$emit('toast','请输入手机号');  
+                   modal.toast({
+                        message: '请输入手机号',
+                        duration: 2
+                    })
+                  return;  
+              }else if(this.userPassword.length < 1){  
+                  modal.toast({
+                        message: '请输入密码',
+                        duration: 2
+                    })
+                  // this.$refs.toast.$emit('toast','请输入密码');  
+                  return;  
+              }
 
               let params = {
                   userName:this.userNumber,
@@ -59,12 +69,27 @@
                 };
 
             /*请求数据*/
-              this.$api.post('/Appinterface/userLogin',params,function(data) {
-                console.log(JSON.stringify(data));
+              this.$api.post('/Appinterface/userLogin',params,function(res) {
+                console.log(res);
+                if(res.errcode == 1){
+                    //保存userID
+                   _self.$storage.setItem('userId',res.userId);
+                    //保存sessionId
+                   _self.$storage.setItem('sessionId',res.sessionId);
+                   modal.toast({
+                        message: res.msg,
+                        duration: 2
+                    },function(){
+                        this.$router.push('home');
+                    })
+                }else{
+                      modal.toast({
+                        message: res.errmsg,
+                        duration: 2
+                    })
+                }
+                
               })
-
-              this.$router.push('home')
-
           },
           jump (){
             this.$router.push('register')
@@ -125,7 +150,7 @@
     align-self: flex-end;
     width: 90%;
     font-size: .36rem;
-    letter-spacing:0.05rem;
+    letter-spacing:0.02rem;
     color: #454545;
   }
 

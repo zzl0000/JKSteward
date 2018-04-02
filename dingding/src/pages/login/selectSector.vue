@@ -34,7 +34,13 @@
 	      }
 	    },
 	    created: function () {
-             
+	    	let params ={
+	    		orgId:1,
+	    		thirdParty:1
+	    	}
+             this.$api.post('/Appinterface/deptList',params,function(res) {
+
+              })
         },
 	    methods:{
 	      select (rs){

@@ -64,11 +64,24 @@
     created: function () {
         let _self = this;
         this.$storage.getItem('organId',function(rs){
-           _self.organId = rs;
+           // console.log(rs);
+            if(rs == "undefined"){
+
+
+                _self.organId = '';
+            }else {
+               _self.organId = rs;
+            }
+          
          });
 
         this.$storage.getItem('scenesID',function(rs){
-           _self.scenesID = rs;
+          if(rs == "undefined"){
+                _self.scenesID = '';
+            } else {
+              _self.scenesID = rs;
+            }
+           
          });
 
     },
@@ -77,22 +90,44 @@
           this.$router.push('/')
       },
       getRegister (){
-            if(this.loginAcct.length < 13){ 
+              const modal = weex.requireModule('modal');
+              /*if(this.loginAcct.length < 13){ 
                   // this.$refs.toast.$emit('toast','请输入手机号');  
                   return;  
               }else if(this.userPassword.length < 1){  
                   // this.$refs.toast.$emit('toast','请输入密码');  
                   return;  
-              }
+              }*/
               let params = {
-                  userName:this.userNumber,
-                  passWord:this.userPassword,
+                  loginAcct:this.loginAcct,
+                  password:this.password,
+                  nickName:this.nickName,
+                  organId:this.organId,
+                  scenesID:this.scenesID,
+                  fax:this.fax,
                   thirdParty:1
                 };
 
             /*请求数据*/
-              this.$api.post('/Cruiselch/Appinterface/register?',params,function(data) {
-                console.log(JSON.stringify(data));
+              this.$api.post('/Appinterface/register?',params,function(res) {
+                console.log(res);
+                if(res.errcode == 1){
+                    //保存userID
+                   _self.$storage.setItem('userId',res.userId);
+                    //保存sessionId
+                   _self.$storage.setItem('sessionId',res.sessionId);
+                   modal.toast({
+                        message: res.msg,
+                        duration: 2
+                    },function(){
+                        this.$router.push('home');
+                    })
+                }else{
+                      modal.toast({
+                        message: res.errmsg,
+                        duration: 2
+                    })
+                }
               })
       },
       jump  (url) {
