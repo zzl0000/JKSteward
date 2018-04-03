@@ -63,27 +63,9 @@
     },
     created: function () {
         let _self = this;
-        this.$storage.getItem('organId',function(rs){
-           // console.log(rs);
-            if(rs == "undefined"){
-
-
-                _self.organId = '';
-            }else {
-               _self.organId = rs;
-            }
-          
-         });
-
-        this.$storage.getItem('scenesID',function(rs){
-          if(rs == "undefined"){
-                _self.scenesID = '';
-            } else {
-              _self.scenesID = rs;
-            }
-           
-         });
-
+        console.log(this.$storage.getItem('organId'));
+        _self.scenesID = this.$storage.getItem('organId');
+        _self.organId =  this.$storage.getItem('scenesID');
     },
     methods: {
       back () {
@@ -120,13 +102,10 @@
                         message: res.msg,
                         duration: 2
                     },function(){
-                        this.$router.push('home');
+                        this.$router.push('/');
                     })
                 }else{
-                      modal.toast({
-                        message: res.errmsg,
-                        duration: 2
-                    })
+                  _self.$api.toast(res.errmsg); 
                 }
               })
       },

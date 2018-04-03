@@ -47,6 +47,15 @@
 </template>
 <script>
 	export default {
+		name:'staffList',
+		data (){
+			return{
+
+			}
+		},
+		created: function(){
+
+		},
 		methods: {
 			back () {
 				this.$router.go(-1);

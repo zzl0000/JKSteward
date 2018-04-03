@@ -19,7 +19,7 @@
          </div>
          <div class="form-group boder-bottom">
              <label>确认密码</label>
-            <input type="text" class="" name="" placeholder="确认密码">
+            <input type="text" class="" v-model="confpwd" name="" placeholder="确认密码">
          </div>
       </div> 
       <div class="register-operation mb-model">
@@ -30,31 +30,41 @@
 </template>
 <script>
   export default {
-    name:'changePassword',
+      name:'changePassword',
       data (){
+       
         return{
             lastpwd:'',
-            newpwd:''
+            newpwd:'',
+            confpwd:''
         }
       },
-    methods: {
+      methods: {
       
-      back () {
-          this.$router.go(-1);
-      },
-      getRegister (){
-
-            let params ={
-                sessionId:'',
-                userId:'',
-                lastpwd:'',
-                newpwd:''
-            }
-            /*请求数据*/
+        back () {
+            this.$router.go(-1);
+        },
+        getRegister (){
+              var _self = this;
+              const modal = weex.requireModule('modal');  
+              if(_self.lastpwd.length < 1 || _self.newpwd.length < 1){  
+                   _self.$api.toast('密码不能为空')
+                  return;  
+              }else if(_self.newpwd != _self.confpwd){  
+                  _self.$api.toast('两次密码输入不一致')  
+                  return;  
+              };
+              let params ={
+                  userId: this.$storage.getItem('userId'),
+                  sessionId: this.$storage.getItem('sessionId'),
+                  lastpwd:_self.lastpwd,
+                  newpwd:_self.newpwd
+              }
+              /*请求数据*/
               this.$api.post('/Appinterface/userLogin',params,function(data) {
                 console.log(JSON.stringify(data));
               })
-      }
+        }
     }
   }
 

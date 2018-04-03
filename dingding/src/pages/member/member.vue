@@ -1,4 +1,5 @@
 <template>
+
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
 	    <div class="top-nav b-white mb box-shadow" > 
@@ -10,9 +11,9 @@
 			<div class="user-ifon b-white mb">
 				<div class="user-header"><span class="t-white-color">王</span></div>
 				<div class="user-list">
-					<p class="td-color">姓名:<span class="t-bold-color">王宝强</span></p>
-					<p class="td-color">岗位:<span class="t-bold-color">项目管理人</span></p>
-					<p class="td-color">公司:<span class="t-bold-color">金科物业服务集团</span></p>
+					<p class="td-color">姓名:<span class="t-bold-color">{{nickName}}</span></p>
+					<p class="td-color">岗位:<span class="t-bold-color">{{fax}}</span></p>
+					<p class="td-color">公司:<span class="t-bold-color">{{commpany}}</span></p>
 				</div>
 				<div class="user-detail-btn">
 					<div class="img" @click="jump('memberIfon')">
@@ -47,46 +48,47 @@
 		<div class="register-operation">
             <button class="btn b-white t-gray-color " @click="Logout"> 退出登录 </button>
        </div> 
-		
+	   
        <FooterComponent></FooterComponent>
+
 	</div>
+
 </template>
 <script>
 	import FooterComponent from '../../components/footercomponent.vue';
 	export default {
 		name:'member',
 		data () {
+			let params = {
+                  userId: this.$storage.getItem('userId'),
+                  sessionId: this.$storage.getItem('sessionId'),
+                  thirdParty:1
+            };
 			return{
-
+				params : params,
+				nickName:'王宝强',
+				fax:'项目管理人',
+				commpany:'金科物业服务集团'
 			}
 		},
 		created: function () {
        		 let _self = this;
-       		 let params = {
-                  userId:'1476940667833',
-                  sessionId:'7cf13e169eb34d02be5b12e6c7e243ab',
-                  thirdParty:1
-             };
         	 /*请求数据*/
-             this.$api.post('/Appinterface/userInfo',params,function(data) {
-                console.log(JSON.stringify(data));
+             this.$api.post('/Appinterface/userInfo',_self.params,function(data) {
+                	console.log(data);
               })
 
     	},
 		methods: {
 			Logout () {
-				let params = {
-                  userId:'1476940667833',
-                  sessionId:'7cf13e169eb34d02be5b12e6c7e243ab',
-                  thirdParty:1
-             	};
-				this.$api.post('/Appinterface/userLoginOut',params,function(data) {
-                console.log(JSON.stringify(data));
+				let _self = this;
+				this.$api.post('/Appinterface/userLoginOut',_self.params,function(data) {
+                	console.log(data);
               	})
-				this.$router.push('/')
+				this.$router.push('/');
 			},
 			jump (url){ 
-				this.$router.push(url)
+				this.$router.push(url);
 			}
 		},
    		components:{

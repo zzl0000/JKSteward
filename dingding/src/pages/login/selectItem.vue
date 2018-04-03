@@ -22,8 +22,7 @@
 		 	  	</div>	
 		        <div class="search-list">
 		        	 <ul>
-		        	 	<li @click="select('金科物业有限公司')" class="pd-list boder-bottom">金科物业有限公司</li>
-		        	 	<li @click="select('华北分公司')" class="pd-list boder-bottom">华北分公司</li>
+		        	 	<li v-for="item in  items" @click="select(item.id)" class="pd-list boder-bottom" >{{item.text}}</li>
 		        	 </ul>
 		        </div>
 		      </div>
@@ -38,10 +37,16 @@
 	export default {
 	    name: 'select',
 	    data () {
-	      return {
-	      }
+	    	let items = [
+		    		{id:9,text:"金科物业有限公司"},
+		    		{id:9,text:"华北分公司"},
+		    	];
+		      return {
+		      		items:items
+		      }
 	    },
 	    created: function () {
+	    	
         },
 	    methods:{
 	      select (rs){ 

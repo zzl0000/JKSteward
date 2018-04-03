@@ -11,10 +11,7 @@
 	    	<!-- 请选择所属部门 -->
 	    	<div class="b-white">
 		          <ul>
-		        	 	<li @click="select('安全管理')" class="pd-list boder-bottom">安全管理</li>
-		        	 	<li @click="select('工程管理')" class="pd-list boder-bottom">工程管理</li>
-		        	 	<li @click="select('环境管理')" onautocomplete="" class="pd-list boder-bottom">环境管理</li>
-		        	 	<li @click="select('客服管理')" class="pd-list boder-bottom">客服管理</li>
+		          		<li v-for="item in  items" @click="select(item.id)" class="pd-list boder-bottom" >{{item.text}}</li>
 		          </ul>
 		    </div>
 		 	 
@@ -29,17 +26,23 @@
 	export default {
 	    name: 'select',
 	    data () {
-	      return {
-
-	      }
+		    	let items = [
+		    		{id:10,text:"客服板块"},
+		    		{id:10,text:"环境板块"},
+		    		{id:10,text:"安全板块"},
+		    		{id:10,text:"工程板块"}
+		    	];
+		      return {
+		      		items:items
+		      }
 	    },
 	    created: function () {
-	    	let params ={
-	    		orgId:1,
+	    	let params = {
+	    		orgId:'6849',
 	    		thirdParty:1
 	    	}
-             this.$api.post('/Appinterface/deptList',params,function(res) {
-
+             this.$api.post('/Appinterface/deptList?',params,function(res) {
+             		console.log(res);
               })
         },
 	    methods:{

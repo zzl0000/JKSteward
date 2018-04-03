@@ -82,7 +82,7 @@
 </template>
 <script>
 	export default {
-		name:'workbench',
+		name:'pointLocation',
 		data () {
 			let imgUrls =[
 				'/static/img/partol-bg.png',

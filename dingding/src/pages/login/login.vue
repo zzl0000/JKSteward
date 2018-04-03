@@ -46,19 +46,11 @@
           login() {
               var _self = this;
                const modal = weex.requireModule('modal');  
-              if(this.userNumber.length < 1){ 
-                  // this.$refs.toast.$emit('toast','请输入手机号');  
-                   modal.toast({
-                        message: '请输入手机号',
-                        duration: 2
-                    })
+              if(this.userNumber.length < 1){  
+                   _self.$api.toast('请输入手机号')
                   return;  
               }else if(this.userPassword.length < 1){  
-                  modal.toast({
-                        message: '请输入密码',
-                        duration: 2
-                    })
-                  // this.$refs.toast.$emit('toast','请输入密码');  
+                  _self.$api.toast('请输入密码')  
                   return;  
               }
 
@@ -72,16 +64,19 @@
               this.$api.post('/Appinterface/userLogin',params,function(res) {
                 console.log(res);
                 if(res.errcode == 1){
+
                     //保存userID
                    _self.$storage.setItem('userId',res.userId);
                     //保存sessionId
                    _self.$storage.setItem('sessionId',res.sessionId);
+
                    modal.toast({
-                        message: res.msg,
-                        duration: 2
-                    },function(){
-                        this.$router.push('home');
-                    })
+                        message: '登录成功',
+                        duration: 1
+                    });
+                  setTimeout(function(){
+                    _self.$router.push('home');
+                  },2000)
                 }else{
                       modal.toast({
                         message: res.errmsg,

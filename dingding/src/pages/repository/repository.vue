@@ -1,12 +1,12 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <!-- <div class="top-nav b-white mb box-shadow" > 
+	    <div class="top-nav b-white mb box-shadow" > 
 	    	<div class="back"></div>
 	        <div class="top-title"><span>知识库</span></div>
-	    </div> -->
+	    </div>
 
-		<div class="content mt">
+		<div class="content ">
 			<!-- 巡检应用 -->
 				<div class=" b-white mb">
 					<div class="subnav boder-bottom">

@@ -55,10 +55,6 @@ export function apiStream(method, url, params, success, failuer) {
         stream.fetch({
             method: 'GET',
             type: 'text',
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
             url: baseUrl + url + toParams(params)
         }, function(res) {
             if (res.ok) {
@@ -74,7 +70,8 @@ export function apiStream(method, url, params, success, failuer) {
     } else if (method === 'POST') {
         stream.fetch({
                 method: 'POST',
-                mode: "cors",
+                type: 'text',
+                mode: 'cors',
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
@@ -94,12 +91,23 @@ export function apiStream(method, url, params, success, failuer) {
                 }
             },
             function(progress) {
-                
+
             })
 
     }
 
 }
+
+// 弹窗定义
+
+export function toast(msg) {
+    const modal = requireModule('modal');
+    modal.toast({
+        message: msg,
+        duration: 2
+    });
+}
+
 
 
 // 返回在vue模板中的调用接口
@@ -109,5 +117,8 @@ export default {
     },
     post: function(url, params, success, failure) {
         return apiStream('POST', url, params, success, failure)
+    },
+    toast: function(msg) {
+        return toast(msg);
     }
 }
