@@ -72,6 +72,29 @@
 	        	pImgUrl: pImgUrls
 	        }
 		},
+		created (){
+			var _self = this;
+			const modal = weex.requireModule('modal'); 
+			let params = {
+				openId: '1497405254263',
+				projectId: '210',
+				thirdParty: 1,
+			}
+			this.$api.post('/dian/app/getToken',params,function(res) {
+				console.log(res);
+			  	if(res.errcode == 1){
+                    //存储 Token 及用户信息
+                   _self.$storage.setItem('Token',res.token);
+                   _self.$storage.setItem('staffName',res.staffName);
+                   _self.$storage.setItem('position',res.position);
+                }else{
+                      modal.toast({
+                        message: res.errmsg,
+                        duration: 2
+                    })
+                }
+			 })
+		},
 		methods: {
 			 back () {
 		        this.$router.go(-1);

@@ -3,7 +3,7 @@
 		<!-- 顶部导航栏 -->
 	    <div class="top-nav b-white mb box-shadow" > 
 	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>开始巡更</span></div>
+        	<div class="top-title"><span>员工签到</span></div>
 	    </div>
 
 		<div class="pl-content">
@@ -12,15 +12,15 @@
 				<ul>
 					<li class="boder-bottom">
 							<span class="td-color">巡更人员</span>
-							<span class="">王小二</span>
+							<span class="">{{item.staffName}}</span>
 					</li>
 					<li class="boder-bottom">
 							<span class="td-color">职位</span>
-							<span class="">协管班长</span>
+							<span class="">{{item.position}}</span>
 					</li>
 					<li class="boder-bottom">
 							<span class="td-color">当前时间</span>
-							<span class="">2017/06/15 09:20</span>
+							<span class="">{{item.currTime}}</span>
 					</li>
 				</ul>
 			</div>
@@ -40,15 +40,34 @@
 				'/static/img/partol-bg.png',
 				'/static/img/equipment-icon.png',
 				];
+			let items = {
+					staffName:'王小二',
+					position:'值班班长',
+					currTime:'2017/06/15 09:20',
+				};	
 	        return {
-	        	imgUrl: imgUrls
+	        	imgUrl: imgUrls,
+	        	item: items
 	        }
+		},
+		created (){
+		     this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
+		     this.item.position = this.$storage.getItem('staffName') || this.item.position;
 		},
 		methods: {
 			 back () {
 		        this.$router.go(-1);
 		      },
 		     jump (url) {
+		     	let _self = this;
+		     	let params ={
+		     		token : _self.$storage.getItem('token'),
+		     		signTime:_self.item.currTime,
+		     		thirdParty:1
+		     	}
+		     	this.$api.post('/dian/app/signPatrol',params,function(res) {
+			  			console.log(res);
+			  	})
 		     	this.$router.push(url)
 		     }
 

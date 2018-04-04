@@ -2,11 +2,11 @@
 
   <div class="wrapper">
     <!-- 顶部导航栏 -->
-    <div class="top-nav b-white mb box-shadow" >
+    <div class="top-nav b-white mb box-shadow" v-if="isComplete == 0">
         <div class="back" @click="back"><img src="/static/img/back-icon.png" height="36" width="20"></div>
         <div class="top-title"><span>注册</span></div>
     </div>
-    <div class="">
+    <div class="" v-if="isComplete == 0">
       <!-- 注册 -->
       <div class="login-lump b-white">
          <div class="form-group boder-bottom">
@@ -25,13 +25,13 @@
              <label>姓名</label>
             <input type="text" class="" name="" v-model="nickName" placeholder="请输入你的姓名">
          </div>
-         <div class="form-group boder-bottom" @click="jump('selectItem')">
+         <div class="form-group boder-bottom" @click="jump(1)">
              <label>所属项目</label>
-             <input type="text" readonly="readonly" v-model="organId" class="" name="" placeholder="请选择">
+             <input type="text" readonly="readonly" v-model="organName" class="" name="" placeholder="请选择">
          </div>
-         <div class="form-group boder-bottom" @click="jump('selectSector')">
+         <div class="form-group boder-bottom" @click="jump(2)">
              <label>所属部门</label>
-             <input type="text" readonly="readonly" v-model="scenesID" class="" name="" placeholder="请选择">
+             <input type="text" readonly="readonly" v-model="scenesName" class="" name="" placeholder="请选择">
          </div>
          <div class="form-group boder-bottom">
              <label>岗位</label>
@@ -43,29 +43,32 @@
             <button class="btn btn-blue " @click="getRegister"> 立即注册 </button>
        </div> 
     </div>
+    <selectItem v-else-if="isComplete == 1"  v-on:fn="hidePanel"></selectItem>
+    <selectSector v-else-if="isComplete == 2"  v-on:fn="hidePanel"></selectSector>
   </div>
 </template>
 <script>
-
+  import selectItem from '../../components/selectItem.vue';
+  import selectSector from '../../components/selectSector.vue';
   export default {
     name: 'register',
     data () {
       return {
+        isComplete:0,
         msg: 'test message',
         loginAcct: '',
         password: '',
         qzPassword:'',
         nickName: '',
         organId: '',
+        organName: '',
         scenesID: '',
+        scenesName: '',
         fax:''
       }
     },
     created: function () {
-        let _self = this;
-        console.log(this.$storage.getItem('organId'));
-        _self.scenesID = this.$storage.getItem('organId');
-        _self.organId =  this.$storage.getItem('scenesID');
+
     },
     methods: {
       back () {
@@ -109,9 +112,28 @@
                 }
               })
       },
-      jump  (url) {
-          this.$router.push(url)
+      jump (key) {
+          this.isComplete = key;         
+      },
+      hidePanel(rs){
+        console.log(rs);
+          this.isComplete = 0;  
+          if(rs != ''){
+              if(rs.key == 1){
+                  this.organId = rs.id;
+                  this.organName = rs.text;
+              }
+              if(rs.key == 2){
+                 this.scenesID = rs.id;
+                 this.scenesName = rs.text;
+              }          
+                        
+          } 
       }
+    },
+    components:{
+        selectItem,
+        selectSector
     }
   }
 

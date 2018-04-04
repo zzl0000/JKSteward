@@ -13,22 +13,16 @@
 			<div class="user-opreation-list b-white mb b-white">
 				<ul>
 					<li class="boder-bottom">
-
 							<span class="td-color">巡更人员</span>
-							<span class="">王小二</span>
-
+							<span class="">{{item.staffName}}</span>
 					</li>
 					<li class="boder-bottom">
-
 							<span class="td-color">职位</span>
-							<span class="">协管班长</span>
-
+							<span class="">{{item.position}}</span>
 					</li>
-					<li class="">
-
+					<li class="boder-bottom">
 							<span class="td-color">当前时间</span>
-							<span class="">2017/06/15 09:20</span>
-
+							<span class="">{{item.currTime}}</span>
 					</li>
 				</ul>
 			</div>
@@ -62,7 +56,7 @@
                     </tr>
                     <tr>
                       <td>2号点位</td>
-                      <td>9.15.222</td>
+                      <td>9.15.22</td>
                       <td>已检</td>
                     </tr>
                 </tbody>
@@ -87,9 +81,19 @@
 				'/static/img/partol-bg.png',
 				'/static/img/equipment-icon.png',
 				];
+			let items = {
+					staffName:'王小二',
+					position:'值班班长',
+					currTime:'2017/06/15 09:20',
+				};	
 	        return {
-	        	imgUrl: imgUrls
+	        	imgUrl: imgUrls,
+	        	item: items
 	        }
+		},
+		created (){
+		     this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
+		     this.item.position = this.$storage.getItem('staffName') || this.item.position;
 		},
 		methods: {
 			 back () {

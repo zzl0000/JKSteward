@@ -82,10 +82,23 @@
 		methods: {
 			Logout () {
 				let _self = this;
-				this.$api.post('/Appinterface/userLoginOut',_self.params,function(data) {
-                	console.log(data);
-              	})
-				this.$router.push('/');
+				const modal = weex.requireModule('modal');
+				modal.confirm({
+				    message: '请确认是否退出当前登录',
+				    duration: 0.3,
+				    okTitle :'确定',
+				    cancelTitle :'取消'
+				}, function (value) {
+					if(value == '确定'){
+						 _self.$api.post('/Appinterface/userLoginOut',_self.params,function(data) {
+	                		console.log(data);
+	              		});
+	              		_self.$router.push('/');
+					}			   
+				})
+				
+				
+				//this.$router.push('/');
 			},
 			jump (url){ 
 				this.$router.push(url);

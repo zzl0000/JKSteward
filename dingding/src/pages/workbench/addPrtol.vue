@@ -2,13 +2,13 @@
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
 	    <div class="top-nav b-white  box-shadow" > 
-	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>新增巡更点位</span></div>
+	    	<div class="back" @click="back(todo.isComplete)"><img src="/static/img/back-icon.png" height="36" width="20"></div>
+        	<div class="top-title"><span>{{todo.title}}</span></div>
 	    </div>
 
-		<div class="pl-content">
+		<div class="pl-content" v-if="todo.isComplete == false">
 			<!-- 加载层 -->
-		    <div class="loading-layer">
+		    <div class="loading-layer" >
 		    	<div class="loading-bg img">
 		    		<img v-bind:src="imgUrl[0]" height="1206" width="750">
 		    	</div>
@@ -31,27 +31,28 @@
 		    		<label>你所在的项目</label>
 		    		<input type="text" name="" value="金科十年城">
 		    	</div>
-		    	<div class="form-group">
+		    	<div class="form-group" @click="choosePointLocation">
 		    		<label>巡更点名称</label>
-		    		<p>
-		    			<span>请选择需要替换的点位名称</span>
+		    		<p style="padding:0;">
+		    			<span v-text="todo.pointName"></span>
 		    			<div class="img"><img src="/static/img/advance-cion.png" height="32" width="18"></div>
 		    		</p>
 		    		
 		    	</div>
 		    	<div class="form-group">
 		    		<label>备注</label>
-		    		<input type="text" name="" value="此设备异常">
+		    		<input type="text" name="" value="" placeholder="请输入备注信息">
 		    	</div>
 		    </div>
 			<div class="subtn">
-					<button class="btn btn-blue mb-list border-radius" @click="save">保存</button>
+					<button class="btn btn-blue mb-list border-radius" @click="submit">保存</button>
 			</div>
 		</div>
+		<selectComponent v-on:fn="hidePanel" v-else v-bind="todo" ></selectComponent>
 	</div>
 </template>
 <script>
-	import FooterComponent from '../../components/footercomponent.vue';
+	import selectComponent from '../../components/selectComponent.vue';
 	export default {
 		name:'workbench',
 		data () {
@@ -59,21 +60,58 @@
 				'/static/img/partol-bg01.png',
 				'/static/img/equipment-icon01.png'
 				];
+			let todos = {
+				isComplete:false,
+	        	title:'新增巡更点位',
+	        	pointName:'请选择需要替换的点位名称',
+	        	pointId:''
+			}	
 	        return {
 	        	imgUrl: imgUrls,
+	        	todo : todos
 	        }
 		},
+		created (){
+	        
+		},
 		methods: {
-			 back () {
-		        this.$router.go(-1);
+			 back (type) {
+			 	if(type){
+			 		this.todo.isComplete = false;
+		      		this.title = '新增巡更点位';
+			 	}else{
+			 		 this.$router.go(-1);
+			 	}
+		       
 		      },
-		     save () {
-
-		     }
+		      choosePointLocation (){
+		      		this.todo.isComplete = true;
+		      		this.title = '巡更点';
+		      },
+		      hidePanel(rs){
+		      		console.log(rs);
+		      		this.todo.isComplete = false;
+		      		this.title = '新增巡更点位';
+		      		this.todo.pointName = rs.pointName;
+	       		    this.todo.pointId = rs.Id;
+		      },
+			  submit () {
+				  	let params = {
+				  		token:'',
+				  		id:'',
+				  		projectId:'',
+				  		pointName:'',
+				  		remark:'',
+				  		thirdParty:1
+				  	}
+			  		this.$api.post('/dian/app/addPoint',params,function(res) {
+			  			console.log(res);
+			  		})
+			  }
 
    		 },
    		components:{
-   			FooterComponent
+   			selectComponent
    		} 
 	}
 </script>
@@ -98,6 +136,7 @@
 	.add-form .form-group input{
 		background:none; 
 		font-size: .42rem;
+		 color: #333333;
 	}
 
 	.add-form .form-group label{
@@ -110,14 +149,22 @@
 		padding: .15rem;
 	}
 	.add-form .form-group p span{
-		
+		color: #333333;
 		font-size: .42rem;
 	}
 	.add-form .form-group .img{
 		flex-grow: 0;
 		width: .24rem;
 		height: .42rem;
+		position: absolute;
+   		right: .35rem;
 
 	}
+
+	.add-form .form-group input::-webkit-input-placeholder {
+		  color: #333333;
+	}
+
+
 
 </style>

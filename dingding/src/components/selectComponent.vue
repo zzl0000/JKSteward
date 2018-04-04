@@ -1,63 +1,47 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white  boder-bottom " >
-	        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-	        <div class="top-title"><span>请选择所属部门</span></div>
-	    </div>
 
-	    
 	    <div class="content">
 	    	<!-- 请选择所属部门 -->
 	    	<div class="b-white">
 		          <ul>
-		          		<li v-for="item in  items" @click="select(item.id)" class="pd-list boder-bottom" >{{item.text}}</li>
+		          		<li v-for="item in  items" @click="select(item.id,item.pointName)" class="pd-list boder-bottom" >{{item.pointName}}</li>
 		          </ul>
 		    </div>
-		 	 
 	    </div>
 	</div>
 </template>
 
 <script>
 	
-
-	  
 	export default {
 	    name: 'select',
+		props: ['todo'],
 	    data () {
 		    	let items = [
-		    		{id:10,text:"客服板块"},
-		    		{id:10,text:"环境板块"},
-		    		{id:10,text:"安全板块"},
-		    		{id:10,text:"工程板块"}
+		    		{id:10,pointName:"1号大厅"},
+		    		{id:10,pointName:"门岗一号"},
+		    		{id:10,pointName:"链家门口点位"},
+		    		{id:10,pointName:"小雨火锅侧面点位"}
 		    	];
 		      return {
 		      		items:items
 		      }
 	    },
 	    created: function () {
+    	
 	    	let params = {
 	    		orgId:'6849',
 	    		thirdParty:1
 	    	}
-             this.$api.post('/Appinterface/deptList?',params,function(res) {
+            /* this.$api.post('/Appinterface/deptList?',params,function(res) {
              		console.log(res);
-              })
+              })*/
         },
 	    methods:{
-	      select (rs){
-	     	 this.$storage.setItem('scenesID', rs)
-	      	 this.$router.push('register');
-	      },
-
-	      back () {
-	        this.$router.go(-1);
+	      select (id,pointName){
+	     	 this.$emit('fn',{id,pointName});
 	      }
-	    },
-	    watch: {
-	    // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
-	      '$router': 'getParams',
 	    }
 	  }
 </script>

@@ -17,8 +17,6 @@ import home from '../pages/home/index.vue';
 // 登录注册
 import login from '../pages/login/login.vue';
 import register from '../pages/login/register.vue';
-import selectItem from '../pages/login/selectItem.vue';
-import selectSector from '../pages/login/selectSector.vue';
 import statistics from '../pages/statistics/statistics.vue';
 import repository from '../pages/repository/repository.vue';
 
@@ -58,16 +56,6 @@ const routes = [{
         path: '/home',
         name: 'home',
         component: home
-    },
-    {
-        path: '/selectItem',
-        name: 'selectItem',
-        component: selectItem
-    },
-    {
-        path: '/selectSector',
-        name: 'selectSector',
-        component: selectSector
     },
     {
         path: '/register',

@@ -22,7 +22,7 @@
 		 	  	</div>	
 		        <div class="search-list">
 		        	 <ul>
-		        	 	<li v-for="item in  items" @click="select(item.id)" class="pd-list boder-bottom" >{{item.text}}</li>
+		        	 	<li v-for="item in  items" @click="select(1,item.id,item.text)" class="pd-list boder-bottom" >{{item.text}}</li>
 		        	 </ul>
 		        </div>
 		      </div>
@@ -49,13 +49,12 @@
 	    	
         },
 	    methods:{
-	      select (rs){ 
-	    	 this.$storage.setItem('organId', rs)
-	      	 this.$router.push('register');
+	      select (key,id,text){ 
+	      	 this.$emit('fn',{key,id,text});
 	      },
 
 	      back () {
-	        this.$router.go(-1);
+	      	this.$emit('fn','');
 	      }
 	    },
 	    watch: {
