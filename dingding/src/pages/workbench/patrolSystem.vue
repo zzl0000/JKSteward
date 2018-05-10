@@ -56,7 +56,7 @@
 <script>
 	import FooterComponent from '../../components/footercomponent.vue';
 	export default {
-		name:'workbench',
+		name:'patrolSystem',
 		data () {
 			let imgUrls =[
 				'/static/img/partol-bg.png',

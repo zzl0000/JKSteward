@@ -5,7 +5,7 @@
 	    	<div class="back" @click="back"><img src="/static/img/back-icon.png" height="36" width="20"></div>
 	        <div class="top-title"><span>主页</span></div>
 	    </div>	
-		<div class="content mt">
+		<div class="content">
 			<!-- 我的消息 -->
 			<div class="news b-white mb mb-list">
 					<div class="subnav boder-bottom">
@@ -72,14 +72,22 @@
 	export default {
 		name:'home',
 		data () {
+			let params = {
+                  userId: this.$storage.getItem('userId'),
+                  sessionId: this.$storage.getItem('sessionId'),
+                  orgId:'6849',
+                  thirdParty:1
+            };
 			return{
-
+				params : params
 			}
 		},
 		created: function () {
-        let _self = this;
-        
-
+        	let _self = this;
+        	/*请求数据*/
+            this.$api.post('/Appinterface/todayWork',_self.params,function(data) {
+                	console.log(data);
+              })
     	},
 		methods: {
 			back (){
