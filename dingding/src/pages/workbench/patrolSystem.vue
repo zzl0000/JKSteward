@@ -58,6 +58,12 @@
 	export default {
 		name:'patrolSystem',
 		data () {
+            let params = {
+                userId: this.$storage.getItem('userId'),
+                sessionId: this.$storage.getItem('sessionId'),
+                appKey:'wGQt7hiz7MeSbQbdyBp1',
+                thirdParty: 1
+            };
 			let imgUrls =[
 				'/static/img/partol-bg.png',
 				'/static/img/equipment-icon.png'
@@ -68,32 +74,52 @@
 				'/static/img/partol-icon03.png'
 			]
 	        return {
+                params:params,
 	        	imgUrl: imgUrls,
-	        	pImgUrl: pImgUrls
+	        	pImgUrl: pImgUrls,
+                openId:'',
+
 	        }
 		},
 		created (){
 			var _self = this;
-			const modal = weex.requireModule('modal'); 
-			let params = {
-				openId: '1497405254263',
-				projectId: '210',
-				thirdParty: 1,
-			}
-			this.$api.post('/dian/app/getToken',params,function(res) {
-				console.log(res);
-			  	if(res.errcode == 1){
+			const modal = weex.requireModule('modal');
+
+            this.$api.post('/APIInterface/platformOauth',_self.params,function(res) {
+
+                if(res.errcode == 1){
                     //存储 Token 及用户信息
-                   _self.$storage.setItem('Token',res.token);
-                   _self.$storage.setItem('staffName',res.staffName);
-                   _self.$storage.setItem('position',res.position);
+                    _self.openId = res.data.openId;
+                    let params = {
+                        openId:_self.openId,
+                        projectId:_self.$storage.getItem('projectId'),
+                        thirdParty:1,
+                    }
+                    _self.$api.post('/dian/app/getToken',params,function(res) {
+                        console.log(res);
+                        if(res.errcode == 200){
+                            //存储 Token 及用户信息
+                            _self.$storage.setItem('token',res.data.token);
+                            _self.$storage.setItem('staffName',res.data.staffName);
+                            _self.$storage.setItem('position',res.data.position);
+                        }else{
+                            modal.toast({
+                                message: res.errmsg,
+                                duration: 2
+                            })
+                        }
+                    });
                 }else{
-                      modal.toast({
+                    modal.toast({
                         message: res.errmsg,
                         duration: 2
                     })
                 }
-			 })
+            })
+
+
+
+
 		},
 		methods: {
 			 back () {

@@ -43,7 +43,7 @@
 			let items = {
 					staffName:'王小二',
 					position:'值班班长',
-					currTime:'2017/06/15 09:20',
+					currTime: this.$api.formats()
 				};	
 	        return {
 	        	imgUrl: imgUrls,
@@ -52,7 +52,7 @@
 		},
 		created (){
 		     this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
-		     this.item.position = this.$storage.getItem('staffName') || this.item.position;
+		     this.item.position = this.$storage.getItem('position') || this.item.position;
 		},
 		methods: {
 			 back () {
@@ -60,6 +60,7 @@
 		      },
 		     jump (url) {
 		     	let _self = this;
+		     	const modal = weex.requireModule('modal');
 		     	let params ={
 		     		token : _self.$storage.getItem('token'),
 		     		signTime:_self.item.currTime,
@@ -67,8 +68,24 @@
 		     	}
 		     	this.$api.post('/dian/app/signPatrol',params,function(res) {
 			  			console.log(res);
+                    if(res.errcode == 200){
+                        //存储 Token 及用户信息
+                        _self.$storage.setItem('signId',res.data.signId);
+                        modal.toast({
+                            message: res.errmsg,
+                            duration: 2
+                        })
+						setTimeout(function(){
+                            _self.$router.push(url);
+						},2001)
+                    }else{
+                        modal.toast({
+                            message: res.errmsg,
+                            duration: 2
+                        })
+                    }
+
 			  	})
-		     	this.$router.push(url)
 		     }
 
    		 },

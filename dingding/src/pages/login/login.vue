@@ -69,6 +69,8 @@
                    _self.$storage.setItem('userId',res.userId);
                     //保存sessionId
                    _self.$storage.setItem('sessionId',res.sessionId);
+                    //保存
+                   _self.$storage.setItem('projectId',res.data.organization2.orgCode);
 
                    modal.toast({
                         message: '登录成功',

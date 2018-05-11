@@ -55,6 +55,7 @@ export function apiStream(method, url, params, success, failuer) {
         stream.fetch({
             method: 'GET',
             type: 'text',
+
             url: baseUrl + url + toParams(params)
         }, function(res) {
             if (res.ok) {
@@ -108,6 +109,25 @@ export function toast(msg) {
     });
 }
 
+/*时间渲染*/
+export function add0(m) {
+    return m < 10 ? '0' + m : m
+}
+
+
+// 格式化时间
+
+export function formats() {
+    var time = new Date();
+    var y = time.getFullYear();
+    var m = time.getMonth() + 1;
+    var d = time.getDate();
+    var h = time.getHours();
+    var mm = time.getMinutes();
+    var s = time.getSeconds();
+    return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) +':' + add0(s);
+}
+
 
 
 // 返回在vue模板中的调用接口
@@ -120,5 +140,8 @@ export default {
     },
     toast: function(msg) {
         return toast(msg);
-    }
+    },
+    formats:function(rs) {
+        return formats(rs);
+    },
 }
