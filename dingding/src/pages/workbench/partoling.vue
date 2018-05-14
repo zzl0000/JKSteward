@@ -2,9 +2,10 @@
     <div class="wrapper">
         <!-- 顶部导航栏 -->
         <div class="top-nav mb b-white ">
-            <div class="back" @click="back(todo.isComplete)"><img src="/static/img/back-icon.png" height="36" width="20"></div>
+            <div class="back" @click="back(todo.isComplete)"><img src="/static/img/back-icon.png" height="36"
+                                                                  width="20"></div>
             <div class="top-title"><span>{{todo.title}}</span></div>
-            <div class="replacePL" @click="jump('')"><span class="">巡检登记</span></div>
+            <div class="replacePL" @click="" v-if="todo.isComplete == false"><span class="">巡检登记</span></div>
         </div>
 
         <div class="pl-content" v-if="todo.isComplete == false">
@@ -29,9 +30,9 @@
             <!-- 巡更任务 -->
             <div class="partol-task b-white pd-list boder-bottom">
                 <label>巡更任务</label>
-                <input type="text" readonly="readonly" name="">
-                <div class="select" @click="choosePointLocation">
-                    <span>请选择</span>
+                <input type="text" readonly="readonly" name="" v-model="todo.pointName">
+                <div class="select">
+                    <span  @click="choosePointLocation">请选择</span>
                     <div class="img"><img src="/static/img/advance-cion.png" height="32" width="18"></div>
                 </div>
 
@@ -48,28 +49,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1号点位</td>
-                        <td>9.15.22</td>
-                        <td>已检</td>
-                    </tr>
-                    <tr>
-                        <td>2号点位</td>
-                        <td>9.15.22</td>
-                        <td>已检</td>
+                    <tr v-for="item in  list">
+                        <td>{{item.pointName}}</td>
+                        <td>{{item.completeTime}}</td>
+                        <td>{{item.pointState | capitalize}}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
-
         </div>
 
         <!-- 悬浮块 -->
-        <div class="subtn">
+        <div class="subtn" v-if="todo.isComplete == false">
             <button class="btn btn-blue mb-list border-radius" @click="endpPatrol('patrolSystem')">结束巡更</button>
         </div>
-        <!--<selectComponent v-on:fn="hidePanel" v-else v-bind="todo"></selectComponent>-->
+
+        <selectComponent v-on:fn="hidePanel" v-else post-url="getTaskInfo"></selectComponent>
+
     </div>
 </template>
 <script>
@@ -88,40 +85,44 @@
                 currTime: this.$api.formats()
             };
             let todos = {
-                isComplete:false,
-                title:'巡更中',
-                pointName:'请选择需要替换的点位名称',
-                pointId:''
+                isComplete: false,
+                title: '巡更中',
+                pointName: '',
+                pointId: ''
             }
             return {
                 imgUrl: imgUrls,
                 item: items,
-                todo : todos
+                todo: todos,
+                list: ''
             }
         },
         created() {
             this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
             this.item.position = this.$storage.getItem('position') || this.item.position;
+
         },
         methods: {
             back(type) {
-                if(type){
+                if (type) {
                     this.todo.isComplete = false;
                     this.title = '巡更中';
-                }else{
+                } else {
                     this.$router.go(-1);
                 }
+
             },
             choosePointLocation() {
                 this.todo.isComplete = true;
-                this.title = '巡更任务';
+                this.todo.title = '巡更任务';
             },
             hidePanel(rs) {
-                console.log(rs);
+                //console.log(rs);
                 this.todo.isComplete = false;
-                this.title = '巡更中';
+                this.todo.title = '巡更中';
                 this.todo.pointName = rs.pointName;
                 this.todo.pointId = rs.Id;
+                this.getPointList(rs);
             },
             endpPatrol(url) {
                 let _self = this;
@@ -150,9 +151,41 @@
                         })
                     }
                 })
+            },
+            getPointList(rs){
+                //console.log(id)
+                let _slef = this;
+                let params = {
+                    token: this.$storage.getItem('token'),
+                    taskId:rs.id,
+                    thirdParty:1
+                }
+                this.$api.post('/dian/app/isStart', params, function (res) {
+                    console.log(res);
+                    if (res.errcode == 200) {
+                        _slef.list = res.data.listData
+                    } else {
+                        modal.toast({
+                            message: res.errmsg,
+                            duration: 2
+                        })
+                    }
+                })
             }
         },
-        components:{
+        filters: {
+            capitalize: function (value) {
+                console.log(value)
+                if (!value) return ''
+                if(value == "N"){
+                    value = '已检'
+                }else{
+                    value = '未检'
+                }
+                return value
+            }
+        },
+        components: {
             selectComponent
         }
     }

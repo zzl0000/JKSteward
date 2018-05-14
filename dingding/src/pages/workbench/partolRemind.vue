@@ -5,37 +5,17 @@
 	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
         	<div class="top-title"><span>巡更提醒</span></div>
 	    </div>
-		<div class="error-tips">
+		<div class="error-tips" v-if="isComplete == false">
 	    		<p class="">你的项目未设置巡更时间请联系项目主管后台添加</p>
 	    </div>
-	    <div class="pl-content b-white" v-show=''>
+	    <div class="pl-content b-white" v-else >
 	    	
 	    	
 	    	<div class="remind-list pd-list" >
 	    		<ul>
-					<li class="boder-bottom">
+					<li v-for="item in  items" class="boder-bottom" >
 						<p class="">
 							<span class="time">7.50</span>
-							<em class="">每天</em>
-						</p>
-						<div class="img">
-							<img src="/static/img/close-icon.png" height="74" width="108">
-						</div>
-					</li>
-
-					<li class="boder-bottom">
-						<p class="">
-							<span class="time">17.50</span>
-							<em class="">每天</em>
-						</p>
-						<div class="img">
-							<img src="/static/img/close-icon.png" height="74" width="108">
-						</div>
-					</li>
-
-					<li class="boder-bottom">
-						<p class="">
-							<span class="time">22.50</span>
 							<em class="">每天</em>
 						</p>
 						<div class="img">
@@ -57,9 +37,37 @@
 				'/static/img/equipment-icon.png',
 				];
 	        return {
-	        	imgUrl: imgUrls
+	        	imgUrl: imgUrls,
+                isComplete:true,
+				items:''
 	        }
 		},
+        created: function () {
+
+            let _self = this;
+            let params = {
+                token: this.$storage.getItem('token'),
+                projectId: this.$storage.getItem('projectId'),
+                thirdParty:1
+            }
+            this.$api.post('/dian/app/getRemindTime?',params,function(res) {
+                if (res.errcode == 200) {
+                    if(res.data.listData.length == 0){
+                        _self.isComplete = false;
+					}else{
+                        _self.isComplete = true;
+                        _self.items = res.data.listData
+					}
+
+                } else {
+                    modal.toast({
+                        message: res.errmsg,
+                        duration: 2
+                    })
+                }
+
+            })
+        },
 		methods: {
 			 back () {
 		        this.$router.go(-1);

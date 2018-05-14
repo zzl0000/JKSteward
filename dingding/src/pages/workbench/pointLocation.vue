@@ -4,7 +4,7 @@
 	    <div class="top-nav mb b-white " > 
 	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
         	<div class="top-title"><span>巡更点位管理</span></div>
-        	<div class="replacePL" @click="jump('addPrtol')"><span class="">替换点位</span></div>
+        	<div class="replacePL" @click="jump('replacePrtol')"><span class="">替换点位</span></div>
 	    </div>
 
 		<div class="pl-content b-white">

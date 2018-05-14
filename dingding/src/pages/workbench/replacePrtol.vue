@@ -62,7 +62,7 @@
 				];
 			let todos = {
 				isComplete:false,
-	        	title:'新增巡更点位',
+	        	title:'替换巡更点位',
 	        	pointName:'请选择需要替换的点位名称',
 	        	pointId:''
 			}	
@@ -92,7 +92,7 @@
 		      hidePanel(rs){
 		      		console.log(rs);
 		      		this.todo.isComplete = false;
-		      		this.title = '新增巡更点位';
+		      		this.title = '替换巡更点位';
 		      		this.todo.pointName = rs.pointName;
 	       		    this.todo.pointId = rs.id;
 		      },
@@ -100,16 +100,18 @@
                   	const modal = weex.requireModule('modal');
 				  	let params = {
 				  		token: this.$storage.getItem('token'),
-				  		id: this.todo.pointId,
-				  		projectId: this.$storage.getItem('projectId'),
-				  		pointName:this.todo.pointName,
+                        oldPoint: this.todo.pointId,
+                        newPoint: this.todo.pointId,
 				  		remark:this.remark,
 				  		thirdParty:1
 				  	}
-			  		this.$api.post('/dian/app/addPoint',params,function(res) {
+			  		this.$api.post('/dian/app/replacePoint',params,function(res) {
 			  			console.log(res);
                         if (res.errcode == 200) {
-
+                            modal.toast({
+                                message: res.errmsg,
+                                duration: 2
+                            })
                         } else {
                             modal.toast({
                                 message: res.errmsg,

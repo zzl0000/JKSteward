@@ -60,6 +60,8 @@
 		name:'member',
 		data () {
 			let params = {
+				  signature:'jkwycruise',
+                  uid:this.$storage.getItem('userId'),
                   userId: this.$storage.getItem('userId'),
                   sessionId: this.$storage.getItem('sessionId'),
                   thirdParty:1

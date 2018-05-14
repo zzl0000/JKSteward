@@ -32,7 +32,10 @@ import partoltask from '../pages/workbench/partoltask.vue';
 
 import pointLocation from '../pages/workbench/pointLocation.vue';
 import addPrtol from '../pages/workbench/addPrtol.vue';
+import replacePrtol from '../pages/workbench/replacePrtol.vue';
 import missingLoaction from '../pages/workbench/missingLoaction.vue';
+
+
 
 import partolRemind from '../pages/workbench/partolRemind.vue';
 
@@ -112,6 +115,11 @@ const routes = [{
                 path: 'addPrtol',
                 name: 'addPrtol',
                 component: addPrtol
+            },
+            {
+                path: 'replacePrtol',
+                name: 'replacePrtol',
+                component: replacePrtol
             },
             {
                 path: 'partolRemind',
