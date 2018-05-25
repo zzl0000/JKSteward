@@ -60,7 +60,7 @@
 		name:'member',
 		data () {
 			let params = {
-				  signature:'jkwycruise',
+				  signature:this.$storage.getItem('signature'),
                   uid:this.$storage.getItem('userId'),
                   userId: this.$storage.getItem('userId'),
                   sessionId: this.$storage.getItem('sessionId'),
@@ -76,7 +76,7 @@
 		created: function () {
        		 let _self = this;
         	 /*请求数据*/
-             this.$api.post('/Appinterface/userInfo',_self.params,function(data) {
+             this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
                 	console.log(data);
               })
 

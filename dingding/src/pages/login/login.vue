@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-
+  import crypto from 'crypto'
 
   export default {
     name: 'login',
@@ -62,7 +62,6 @@
 
             /*请求数据*/
               this.$api.post('/Appinterface/userLogin',params,function(res) {
-                console.log(res);
                 if(res.errcode == 1){
 
                     //保存userID
@@ -71,7 +70,7 @@
                    _self.$storage.setItem('sessionId',res.sessionId);
                     //保存
                    _self.$storage.setItem('projectId',res.data.organization2.orgCode);
-
+                    _self.$storage.setItem('signature',_self.getmd5(_self.userNumber,_self.userPassword));
                    modal.toast({
                         message: '登录成功',
                         duration: 1
@@ -90,7 +89,24 @@
           },
           jump (){
             this.$router.push('register')
-          }
+          },
+          getmd5(key,pass){
+                //console.log(key,id)
+                var a;
+                let b = function(){
+                    var c;
+                    var md5 = crypto.createHash("md5");
+                    md5.update(pass);
+                    var c = md5.digest('hex');
+                    return c;
+                }
+
+               var md5 = crypto.createHash("md5");
+               md5.update(key + b() +'jkwycruise');
+               var a = md5.digest('hex');
+               console.log(a);
+               return a;
+            }
       }
       
     }

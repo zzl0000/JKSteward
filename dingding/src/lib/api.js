@@ -55,7 +55,6 @@ export function apiStream(method, url, params, success, failuer) {
         stream.fetch({
             method: 'GET',
             type: 'text',
-
             url: baseUrl + url + toParams(params)
         }, function(res) {
             if (res.ok) {
