@@ -1,10 +1,5 @@
 <template>
-	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white  box-shadow" > 
-	    	<div class="back" @click="back(todo.isComplete)"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>{{todo.title}}</span></div>
-	    </div>
+	<div class="wrapper mt-none">
 
 		<div class="pl-content" v-if="todo.isComplete == false">
 			<!-- 加载层 -->
@@ -73,21 +68,14 @@
 	        }
 		},
 		created (){
-	        
+            this.$setTitle(this.todo.title)
 		},
 		methods: {
-			 back (type) {
-			 	if(type){
-			 		this.todo.isComplete = false;
-		      		this.title = '巡更点位';
-			 	}else{
-			 		 this.$router.go(-1);
-			 	}
-		       
-		      },
+
 		      choosePointLocation (){
 		      		this.todo.isComplete = true;
 		      		this.title = '巡更点';
+                  this.$setTitle(this.todo.title)
 		      },
 		      hidePanel(rs){
 		      		console.log(rs);
@@ -95,6 +83,7 @@
 		      		this.title = '新增巡更点位';
 		      		this.todo.pointName = rs.pointName;
 	       		    this.todo.pointId = rs.id;
+                    this.$setTitle(this.todo.title)
 		      },
 			  submit () {
                   	const modal = weex.requireModule('modal');
@@ -127,6 +116,7 @@
 </script>
 
 <style>
+
 	.add-form{
 		position: absolute;
 		left: 0;
@@ -145,7 +135,7 @@
 	}
 	.add-form .form-group input{
 		background:none; 
-		font-size: .42rem;
+		font-size: .4rem;
 		 color: #333333;
 	}
 
@@ -154,13 +144,14 @@
 		text-align: right;
 		width: 30%;
 		margin-right: .26rem;
+		font-size: .4rem;
 	}
 	.add-form .form-group p{
 		padding: .15rem;
 	}
 	.add-form .form-group p span{
 		color: #333333;
-		font-size: .42rem;
+		font-size: .4rem;
 	}
 	.add-form .form-group .img{
 		flex-grow: 0;

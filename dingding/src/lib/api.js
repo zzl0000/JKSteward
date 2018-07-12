@@ -45,16 +45,25 @@ export function apiStream(method, url, params, success, failuer) {
     const modal = weex.requireModule('modal');
     const stream = weex.requireModule('stream');
     const baseUrl = 'http://dev-oa-api.tq-service.com';
+    let headers;
     if (params) {
         params = filterNull(params);
     }
-
-
+    if(params.headers != undefined){
+        headers = {
+            "signature": "Token uynn887989afs989s8df9afa08&^&huh",
+            "uid": "Token uynn887989afs989s8df9afa08&^&huh",
+            "Content-Type": "application/application/json",
+        }
+    }else{
+        headers = {"Content-Type": "application/x-www-form-urlencoded" };
+    }
+    console.log(headers)
+    // return;
     /* stream */
     if (method === 'GET') {
         stream.fetch({
             method: 'GET',
-            type: 'text',
             url: baseUrl + url + toParams(params)
         }, function(res) {
             if (res.ok) {
@@ -70,11 +79,8 @@ export function apiStream(method, url, params, success, failuer) {
     } else if (method === 'POST') {
         stream.fetch({
                 method: 'POST',
-                type: 'text',
                 mode: 'cors',
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
+                headers:headers,
                 url: baseUrl + url,
                 body: toParams(params)
             },

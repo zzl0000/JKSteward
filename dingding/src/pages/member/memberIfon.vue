@@ -1,10 +1,6 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb box-shadow" > 
-	    	<div class="back" @click="back"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-	        <div class="top-title"><span>我的资料</span></div>
-	    </div>	
 		<div class="content">
 			<!-- 用户信息 -->
 			<div class="user-ifon b-white mb">
@@ -61,6 +57,15 @@
 				data : params				
 			}
 		},
+        created: function () {
+            this.$setTitle('我的资料');
+            let _self = this;
+            /*请求数据*/
+            // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
+            //    	console.log(data);
+            //  })
+
+        },
 		methods: {
 			back () {
 				this.$router.go(-1);

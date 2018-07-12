@@ -1,11 +1,6 @@
 <template>
 
   <div class="wrapper">
-    <!-- 顶部导航栏 -->
-    <div class="top-nav b-white  boder-bottom" >
-        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        <div class="top-title"><span>关于我们</span></div>
-    </div>
     <div class="content b-white">
          <div class="aboutus-group boder-bottom">
               <div class="aboutus-icon"><img src="/static/img/log-icon.png" height="168" width="197"></div>
@@ -22,6 +17,15 @@
 <script>
   export default {
     name: 'aboutUs',
+    created: function () {
+          this.$setTitle('关于我们');
+          let _self = this;
+          /*请求数据*/
+          // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
+          //    	console.log(data);
+          //  })
+
+      },
     methods:{
       back (){
         this.$router.go(-1);

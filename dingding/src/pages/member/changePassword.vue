@@ -1,11 +1,6 @@
 <template>
 
   <div class="wrapper">
-    <!-- 顶部导航栏 -->
-    <div class="top-nav b-white mb" >
-        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        <div class="top-title"><span>修改密码</span></div>
-    </div>
     <div class="">
       <!-- 注册 -->
       <div class="b-white">
@@ -38,6 +33,15 @@
             newpwd:'',
             confpwd:''
         }
+      },
+      created: function () {
+          this.$setTitle('修改密码');
+          let _self = this;
+          /*请求数据*/
+          // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
+          //    	console.log(data);
+          //  })
+
       },
       methods: {
       

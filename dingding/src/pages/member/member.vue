@@ -1,12 +1,7 @@
 <template>
 
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb box-shadow" > 
-	    	<div class="back"></div>
-	        <div class="top-title"><span>个人中心</span></div>
-	    </div>	
-		<div class="content ">
+		<div class="content">
 			<!-- 用户信息 -->
 			<div class="user-ifon b-white mb">
 				<div class="user-header"><span class="t-white-color">王</span></div>
@@ -60,11 +55,13 @@
 		name:'member',
 		data () {
 			let params = {
-				  signature:this.$storage.getItem('signature'),
-                  uid:this.$storage.getItem('userId'),
                   userId: this.$storage.getItem('userId'),
                   sessionId: this.$storage.getItem('sessionId'),
-                  thirdParty:1
+                  thirdParty:1,
+				  headers:{
+                      "signature":this.$storage.getItem('signature'),
+                      "uid":this.$storage.getItem('userId'),
+				  }
             };
 			return{
 				params : params,
@@ -74,11 +71,12 @@
 			}
 		},
 		created: function () {
+             this.$setTitle('个人中心');
        		 let _self = this;
         	 /*请求数据*/
-             this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
-                	console.log(data);
-              })
+             // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
+             //    	console.log(data);
+             //  })
 
     	},
 		methods: {

@@ -1,12 +1,6 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav mb b-white " > 
-	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>巡更点位管理</span></div>
-        	<div class="replacePL" @click="jump('replacePrtol')"><span class="">替换点位</span></div>
-	    </div>
-
+		<!--<div class="replacePL" @click="jump('replacePrtol')"><span class="">替换点位</span></div>-->
 		<div class="pl-content b-white">
 
 			<!-- 巡更列表 -->
@@ -77,6 +71,13 @@
 				<span>添加</span>
 			</div>
 		</div>
+		<!-- 悬浮块 -->
+
+		<div class="qd-content qd-content2">
+			<div class="b-bule" @click="jump('replacePrtol')">
+				<span>替换</span>
+			</div>
+		</div>
 
 	</div>
 </template>
@@ -91,6 +92,9 @@
 	        return {
 	        	imgUrl: imgUrls
 	        }
+		},
+        created() {
+            this.$setTitle('巡更点位管理')
 		},
 		methods: {
 			 back () {
@@ -169,6 +173,10 @@
 		width: .24rem;
 		height: .42rem;
 
+	}
+
+	.qd-content2{
+		bottom: 1rem;
 	}
 
 

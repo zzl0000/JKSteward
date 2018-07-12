@@ -3,11 +3,13 @@ import weex from 'weex-vue-render';
 import api from '../../lib/api.js';
 import storage from '../../lib/storage.js';
 import validate from '../../lib/validate.js';
+import { setTitle } from '../../lib/util.js';
 
 weex.init(Vue);
 import App from '../../container/App.vue';
 import Router from '../../container/router.js';
 
+Vue.prototype.$setTitle = setTitle;
 Vue.prototype.$api = api;
 Vue.prototype.$storage = storage;
 Vue.prototype.$isValidate = validate;

@@ -1,10 +1,6 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav mb b-white " > 
-	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>巡更提醒</span></div>
-	    </div>
+
 		<div class="error-tips" v-if="isComplete == false">
 	    		<p class="">你的项目未设置巡更时间请联系项目主管后台添加</p>
 	    </div>
@@ -43,7 +39,7 @@
 	        }
 		},
         created: function () {
-
+            this.$setTitle('巡更提醒');
             let _self = this;
             let params = {
                 token: this.$storage.getItem('token'),

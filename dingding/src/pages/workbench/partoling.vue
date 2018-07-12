@@ -1,12 +1,6 @@
 <template>
     <div class="wrapper">
         <!-- 顶部导航栏 -->
-        <div class="top-nav mb b-white ">
-            <div class="back" @click="back(todo.isComplete)"><img src="/static/img/back-icon.png" height="36"
-                                                                  width="20"></div>
-            <div class="top-title"><span>{{todo.title}}</span></div>
-            <div class="replacePL" @click="" v-if="todo.isComplete == false"><span class="">巡检登记</span></div>
-        </div>
 
         <div class="pl-content" v-if="todo.isComplete == false">
 
@@ -59,6 +53,13 @@
             </div>
 
         </div>
+        <!-- 抢单块 -->
+
+        <div class="qd-content" v-if="todo.isComplete == false" @click="jump('addPrtol')">
+            <div class="b-bule">
+                <span>巡检登记</span>
+            </div>
+        </div>
 
         <!-- 悬浮块 -->
         <div class="subtn" v-if="todo.isComplete == false">
@@ -98,23 +99,18 @@
             }
         },
         created() {
+            this.$setTitle(this.todo.title)
             this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
             this.item.position = this.$storage.getItem('position') || this.item.position;
-
         },
         methods: {
-            back(type) {
-                if (type) {
-                    this.todo.isComplete = false;
-                    this.title = '巡更中';
-                } else {
-                    this.$router.go(-1);
-                }
-
+            jump (url) {
+                this.$router.push({path:url,  name:url})
             },
             choosePointLocation() {
                 this.todo.isComplete = true;
                 this.todo.title = '巡更任务';
+                this.$setTitle(this.todo.title)
             },
             hidePanel(rs) {
                 //console.log(rs);
@@ -122,6 +118,7 @@
                 this.todo.title = '巡更中';
                 this.todo.pointName = rs.pointName;
                 this.todo.pointId = rs.Id;
+                this.$setTitle(this.todo.title)
                 this.getPointList(rs);
             },
             endpPatrol(url) {
@@ -210,6 +207,16 @@
         width: .21rem;
         height: .36rem;
         margin-left: .15rem;
+    }
+
+    .qd-content{
+       bottom: 2.8rem;
+    }
+
+    .qd-content span{
+        width: 50%;
+        font-size: .36rem;
+        text-align: center;
     }
 
 

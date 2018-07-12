@@ -39,7 +39,7 @@ module.exports = {
     env: require('./dev.env'),
     port: 8089,
     assetsSubDirectory: 'dist',
-    assetsPublicPath: '/'
+    assetsPublicPath: './'
   },
   weexBuild: {
     env: require('./prod.env')

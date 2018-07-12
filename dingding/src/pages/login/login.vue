@@ -22,9 +22,9 @@
             <button class="btn btn-blue mb" @click="login" > 登录 </button>
             <button class="btn td-color" @click="jump"> 注册账号 </button>
         </div>
-      </div>  
+      </div>
     </div>
-    <div :ref="'toast'" id="toast"></div>  
+    <div :ref="'toast'" id="toast"></div>
      <!-- 版权 -->
      <p class="Copyright">Copyright © 2016金科物业服务集团有限公司</p>
   </div>
@@ -36,22 +36,21 @@
     name: 'login',
     data (){
       return{
-            userNumber:'',  
-            userPassword:'' 
+            userNumber:'',
+            userPassword:''
       }
     },
-    
     methods:{
 
           login() {
               var _self = this;
-               const modal = weex.requireModule('modal');  
-              if(this.userNumber.length < 1){  
+               const modal = weex.requireModule('modal');
+              if(this.userNumber.length < 1){
                    _self.$api.toast('请输入手机号')
-                  return;  
-              }else if(this.userPassword.length < 1){  
-                  _self.$api.toast('请输入密码')  
-                  return;  
+                  return;
+              }else if(this.userPassword.length < 1){
+                  _self.$api.toast('请输入密码')
+                  return;
               }
 
               let params = {
@@ -84,7 +83,7 @@
                         duration: 2
                     })
                 }
-                
+
               })
           },
           jump (){
@@ -108,14 +107,14 @@
                return a;
             }
       }
-      
     }
 </script>
 
 <style scoped>
- 
+
   .login-model{
       top: 2.5rem;
+      background: white;
   }
   .login-top{
      justify-content:center;
@@ -125,7 +124,7 @@
   .log{
     width: 1.97rem;
     height: 1.68rem;
-   
+
   }
   .log figure{
     width: 100%;
@@ -138,7 +137,7 @@
   .login-lump{
     top: 1rem;
   }
-  
+
   .login-form{
     padding: 0.9rem 0.6rem;
     border: 1px solid #36a9fc;
@@ -181,6 +180,6 @@
     width: 100%;
     font-size: 0.12rem;
     color: #888887;
-    
+
   }
 </style>

@@ -72,7 +72,6 @@ const routes = [{
     },
     {
         path: '/workbench',
-        name: 'workbenchView',
         component: workbenchView,
         children: [
             {
@@ -137,7 +136,6 @@ const routes = [{
     },
     {
         path: '/member',
-        name: 'memberView',
         component: memberView,
         children: [{
                 path: '/',

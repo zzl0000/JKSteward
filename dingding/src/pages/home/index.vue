@@ -1,11 +1,7 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb box-shadow" > 
-	    	<div class="back" @click="back"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-	        <div class="top-title"><span>主页</span></div>
-	    </div>	
-		<div class="content">
+		<div class="content ">
 			<!-- 我的消息 -->
 			<div class="news b-white mb mb-list">
 					<div class="subnav boder-bottom">
@@ -69,6 +65,7 @@
 </template>
 <script>
 	import FooterComponent from '../../components/footercomponent.vue';
+
 	export default {
 		name:'home',
 		data () {
@@ -83,11 +80,12 @@
 			}
 		},
 		created: function () {
+            this.$setTitle('金科大管家');
         	let _self = this;
         	/*请求数据*/
-            this.$api.post('/Appinterface/todayWork',_self.params,function(data) {
-                	console.log(data);
-              })
+            // this.$api.post('/Appinterface/todayWork',_self.params,function(data) {
+			// 	console.log(data);
+			// })
     	},
 		methods: {
 			back (){

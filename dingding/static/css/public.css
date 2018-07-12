@@ -1,12 +1,12 @@
+
+
 .wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 750px;
+    margin-top: 0.4rem !important;
 }
-
-
-
 
 
 /* 全局 */
@@ -17,10 +17,6 @@ a {
     outline: 0 none !important;
     blr: expression(this.onFocus=this.blur());
 }
-
-
-
-
 
 /* 按钮样式定义 */
 
@@ -35,10 +31,6 @@ a {
     background-color: #36a9fc;
     color: white !important;
 }
-
-
-
-
 
 
 
@@ -153,6 +145,9 @@ input[type='text'] {
 
 
 /* margin pading */
+.mt-none{
+    margin-top: 0 !important;
+}
 
 .mt{
     margin-top: 0.4rem !important;

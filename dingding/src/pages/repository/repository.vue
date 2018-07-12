@@ -1,10 +1,5 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb box-shadow" > 
-	    	<div class="back"></div>
-	        <div class="top-title"><span>知识库</span></div>
-	    </div>
 
 		<div class="content ">
 			<!-- 巡检应用 -->
@@ -45,6 +40,15 @@
 	        	imgUrl: imgUrls
 	        }
 		},
+        created: function () {
+            this.$setTitle('知识库');
+            let _self = this;
+            /*请求数据*/
+            // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
+            //    	console.log(data);
+            //  })
+
+        },
 		methods: {
 
    		 },

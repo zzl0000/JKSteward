@@ -1,10 +1,5 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb  box-shadow" > 
-	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>智能巡更</span></div>
-	    </div>
 
 	    <!-- 加载层 -->
 
@@ -82,6 +77,7 @@
 	        }
 		},
 		created (){
+            this.$setTitle('智能巡更');
 			var _self = this;
 			const modal = weex.requireModule('modal');
 
@@ -160,7 +156,7 @@
 		
 	}
 	.tips-layer{
-		top: 3.9rem;
+		top: 3em;
 		align-items: center;
 	}
 	.tips-layer div{
@@ -194,7 +190,7 @@
 
 	.pl-content{
 		width: 100%;
-		height: calc(100vh - 1.6rem);
+		height: calc(100vh - .4rem);
 	}
 
 	.partol-tbl{

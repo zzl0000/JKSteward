@@ -12,5 +12,6 @@
 <style>
   .app-container{
     background-color: #f5f5f7;
+    height: 100%;
   }
 </style>

@@ -1,11 +1,5 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white mb box-shadow" > 
-	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>员工签到</span></div>
-	    </div>
-
 		<div class="pl-content">
 			<!-- 操作列表 -->
 			<div class="user-opreation-list b-white mb">
@@ -51,6 +45,7 @@
 	        }
 		},
 		created (){
+             this.$setTitle('员工签到');
 		     this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
 		     this.item.position = this.$storage.getItem('position') || this.item.position;
 		},

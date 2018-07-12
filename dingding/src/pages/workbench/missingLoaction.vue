@@ -1,11 +1,5 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav mb b-white " > 
-	    	<div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        	<div class="top-title"><span>漏检点位</span></div>
-	    </div>
-
 		<div class="pl-content b-white">
 
 			<!-- 巡更 table -->
@@ -42,7 +36,9 @@
 <script>
 	export default {
 		name:'',
-
+        created (){
+            this.$setTitle('漏检点位')
+        },
 		methods: {
 			 back () {
 		        this.$router.go(-1);
