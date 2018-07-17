@@ -104,7 +104,7 @@
 				  		remark:this.remark,
 				  		thirdParty:1
 				  	}
-			  		this.$api.post('/dian/app/replacePoint',params,function(res) {
+			  		this.$api.post('/dian/app/replacePoint',params,'', function(res) {
 			  			console.log(res);
                         if (res.errcode == 200) {
                             modal.toast({

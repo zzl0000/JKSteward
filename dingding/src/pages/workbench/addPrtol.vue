@@ -95,7 +95,7 @@
 				  		remark:this.remark,
 				  		thirdParty:1
 				  	}
-			  		this.$api.post('/dian/app/addPoint',params,function(res) {
+			  		this.$api.post('/dian/app/addPoint',params,'',function(res) {
 			  			console.log(res);
                         if (res.errcode == 200) {
 

@@ -1,12 +1,6 @@
 <template>
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white  boder-bottom " >
-	        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-	        <div class="top-title"><span>请选择所属部门</span></div>
-	    </div>
-
-	    
 	    <div class="content">
 	    	<!-- 请选择所属部门 -->
 	    	<div class="b-white">
@@ -14,7 +8,6 @@
 		          		<li v-for="item in  items" @click="select(2,item.id,item.text)" class="pd-list boder-bottom" >{{item.text}}</li>
 		          </ul>
 		    </div>
-		 	 
 	    </div>
 	</div>
 </template>
@@ -37,6 +30,7 @@
 		      }
 	    },
 	    created: function () {
+            this.$setTitle('请选择所属部门');
 	    	let params = {
 	    		orgId:'6849',
 	    		thirdParty:1

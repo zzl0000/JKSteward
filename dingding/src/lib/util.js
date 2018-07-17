@@ -17,7 +17,7 @@ export function openUrl(url) {
             url: url
         });
     });
-}
+}2
 
 export function request(config, cb, progressCb) {
     let { method, uri, body, type, headers } = config;

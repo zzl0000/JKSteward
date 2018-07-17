@@ -81,7 +81,7 @@
 			var _self = this;
 			const modal = weex.requireModule('modal');
 
-            this.$api.post('/APIInterface/platformOauth',_self.params,function(res) {
+            this.$api.post('/APIInterface/platformOauth',_self.params,'',function(res) {
 
                 if(res.errcode == 1){
                     //存储 Token 及用户信息
@@ -91,7 +91,7 @@
                         projectId:_self.$storage.getItem('projectId'),
                         thirdParty:1,
                     }
-                    _self.$api.post('/dian/app/getToken',params,function(res) {
+                    _self.$api.post('/dian/app/getToken',params,'',function(res) {
                         console.log(res);
                         if(res.errcode == 200){
                             //存储 Token 及用户信息

@@ -130,7 +130,7 @@
                     outTime: _self.item.currTime,
                     thirdParty: 1
                 }
-                this.$api.post('/dian/app/signOutPatrol', params, function (res) {
+                this.$api.post('/dian/app/signOutPatrol', params,'', function (res) {
                     console.log(res);
                     if (res.errcode == 200) {
                         //存储 Token 及用户信息
@@ -157,7 +157,7 @@
                     taskId:rs.id,
                     thirdParty:1
                 }
-                this.$api.post('/dian/app/isStart', params, function (res) {
+                this.$api.post('/dian/app/isStart', params,'', function (res) {
                     console.log(res);
                     if (res.errcode == 200) {
                         _slef.list = res.data.listData

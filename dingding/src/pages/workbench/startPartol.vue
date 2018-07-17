@@ -61,7 +61,7 @@
 		     		signTime:_self.item.currTime,
 		     		thirdParty:1
 		     	}
-		     	this.$api.post('/dian/app/signPatrol',params,function(res) {
+		     	this.$api.post('/dian/app/signPatrol',params,'',function(res) {
 			  			console.log(res);
                     if(res.errcode == 200){
                         //存储 Token 及用户信息

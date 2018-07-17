@@ -46,7 +46,7 @@
                 projectId: this.$storage.getItem('projectId'),
                 thirdParty:1
             }
-            this.$api.post('/dian/app/getRemindTime?',params,function(res) {
+            this.$api.post('/dian/app/getRemindTime?',params,'',function(res) {
                 if (res.errcode == 200) {
                     if(res.data.listData.length == 0){
                         _self.isComplete = false;

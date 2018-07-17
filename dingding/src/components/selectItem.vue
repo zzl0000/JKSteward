@@ -1,12 +1,5 @@
 <template>
 	<div class="wrapper">
-		<!-- 顶部导航栏 -->
-	    <div class="top-nav b-white  boder-bottom " >
-	        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-	        <div class="top-title"><span>请选择所属项目</span></div>
-	    </div>
-
-	    
 	    <div class="content">
 		 	  <!-- 请选择所属项目 -->
 		 	  <div class="b-white">
@@ -46,7 +39,7 @@
 		      }
 	    },
 	    created: function () {
-	    	
+            this.$setTitle('请选择所属项目');
         },
 	    methods:{
 	      select (key,id,text){ 

@@ -1,11 +1,7 @@
 <template>
 
   <div class="wrapper">
-    <!-- 顶部导航栏 -->
-    <div class="top-nav b-white mb box-shadow" v-if="isComplete == 0">
-        <div class="back" @click="back"><img src="/static/img/back-icon.png" height="36" width="20"></div>
-        <div class="top-title"><span>注册</span></div>
-    </div>
+
     <div class="" v-if="isComplete == 0">
       <!-- 注册 -->
       <div class="login-lump b-white">
@@ -68,7 +64,7 @@
       }
     },
     created: function () {
-
+        this.$setTitle('注册');
     },
     methods: {
       back () {
@@ -94,7 +90,7 @@
                 };
 
             /*请求数据*/
-              this.$api.post('/Appinterface/register?',params,function(res) {
+              this.$api.post('/Appinterface/register?',params,'',function(res) {
                 console.log(res);
                 if(res.errcode == 1){
                     //保存userID

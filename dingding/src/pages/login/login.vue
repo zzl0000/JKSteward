@@ -15,7 +15,7 @@
          </div>
          <div class="form-group mt">
              <img src="/static/img/pasword-icon.png"   height="52" width="53">
-             <input type="text" class="bule-boder-bottom"  v-model="userPassword" name="" placeholder="请输入密码">
+             <input type="password" class="bule-boder-bottom"  v-model="userPassword" name="" placeholder="请输入密码">
          </div>
       </div>
       <div class="login-operation">
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-  import crypto from 'crypto'
+
 
   export default {
     name: 'login',
@@ -60,7 +60,7 @@
                 };
 
             /*请求数据*/
-              this.$api.post('/Appinterface/userLogin',params,function(res) {
+              this.$api.post('/Appinterface/userLogin',params,'',function(res) {
                 if(res.errcode == 1){
 
                     //保存userID
@@ -90,21 +90,22 @@
             this.$router.push('register')
           },
           getmd5(key,pass){
-                //console.log(key,id)
+                let _self = this;
                 var a;
                 let b = function(){
                     var c;
-                    var md5 = crypto.createHash("md5");
+                    var md5 = _self.$crypto.createHash("md5"); // 密码加密
                     md5.update(pass);
                     var c = md5.digest('hex');
                     return c;
                 }
 
-               var md5 = crypto.createHash("md5");
-               md5.update(key + b() +'jkwycruise');
+               var md5 = self.$crypto.createHash("md5");
+               md5.update(key + b() +'jkwycruise'); //生成Key
                var a = md5.digest('hex');
                console.log(a);
                return a;
+
             }
       }
     }

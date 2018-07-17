@@ -37,11 +37,6 @@
       created: function () {
           this.$setTitle('修改密码');
           let _self = this;
-          /*请求数据*/
-          // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
-          //    	console.log(data);
-          //  })
-
       },
       methods: {
       

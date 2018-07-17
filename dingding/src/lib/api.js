@@ -41,7 +41,7 @@ export function toParams(obj) {
 // 接口处理 
 
 
-export function apiStream(method, url, params, success, failuer) {
+export function apiStream(method, url, params,headersData,success, failuer) {
     const modal = weex.requireModule('modal');
     const stream = weex.requireModule('stream');
     const baseUrl = 'http://dev-oa-api.tq-service.com';
@@ -49,16 +49,16 @@ export function apiStream(method, url, params, success, failuer) {
     if (params) {
         params = filterNull(params);
     }
-    if(params.headers != undefined){
+    if(headersData != ''){
         headers = {
-            "signature": "Token uynn887989afs989s8df9afa08&^&huh",
-            "uid": "Token uynn887989afs989s8df9afa08&^&huh",
-            "Content-Type": "application/application/json",
+            "signature": headersData.signature,
+            "uid": headersData.uid,
+            "Content-Type": "application/x-www-form-urlencoded",
         }
     }else{
         headers = {"Content-Type": "application/x-www-form-urlencoded" };
     }
-    console.log(headers)
+    // console.log(headers)
     // return;
     /* stream */
     if (method === 'GET') {
@@ -77,6 +77,7 @@ export function apiStream(method, url, params, success, failuer) {
         })
 
     } else if (method === 'POST') {
+
         stream.fetch({
                 method: 'POST',
                 mode: 'cors',
@@ -140,8 +141,9 @@ export default {
     get: function(url, params, success, failure) {
         return apiStream('GET', url, params, success, failure)
     },
-    post: function(url, params, success, failure) {
-        return apiStream('POST', url, params, success, failure)
+    post: function(url, params,headersData, success, failure) {
+
+        return apiStream('POST', url, params,headersData, success, failure)
     },
     toast: function(msg) {
         return toast(msg);

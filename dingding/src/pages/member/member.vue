@@ -58,25 +58,30 @@
                   userId: this.$storage.getItem('userId'),
                   sessionId: this.$storage.getItem('sessionId'),
                   thirdParty:1,
-				  headers:{
-                      "signature":this.$storage.getItem('signature'),
-                      "uid":this.$storage.getItem('userId'),
-				  }
             };
 			return{
 				params : params,
+                headersData:[],
 				nickName:'王宝强',
 				fax:'项目管理人',
 				commpany:'金科物业服务集团'
 			}
 		},
 		created: function () {
+            let _self = this;
+            _self.headersData = {
+                signature:_self.setmd5(_self.$storage.getItem('signature')),
+                uid:_self.$storage.getItem('userId'),
+             }
              this.$setTitle('个人中心');
-       		 let _self = this;
+
         	 /*请求数据*/
-             // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
-             //    	console.log(data);
-             //  })
+             this.$api.post('/Appinterface/userInfo?',_self.params,_self.headersData,function(rs) {
+                 _self.nickName = rs.data[0].nickName;
+                 _self.commpany = rs.data[0].commpany;
+                 _self.fax = rs.data[0].fax
+                // console.log(rs);
+              })
 
     	},
 		methods: {
@@ -90,19 +95,24 @@
 				    cancelTitle :'取消'
 				}, function (value) {
 					if(value == '确定'){
-						 _self.$api.post('/Appinterface/userLoginOut',_self.params,function(data) {
+						 _self.$api.post('/Appinterface/userLoginOut',_self.params,'',function(data) {
 	                		console.log(data);
 	              		});
 	              		_self.$router.push('/');
 					}			   
 				})
-				
-				
-				//this.$router.push('/');
 			},
 			jump (url){ 
 				this.$router.push(url);
-			}
+			},
+            setmd5(key){
+
+                var md5 = this.$crypto.createHash("md5");
+                md5.update('sessionId='+ this.params.sessionId +'&thirdParty=1&userId='+ this.params.userId +'&key='+ key +''); //这个是 排序加密
+                var d= md5.digest('hex').toUpperCase();
+                console.log(d);
+                return d;
+            }
 		},
    		components:{
    			FooterComponent

@@ -45,34 +45,52 @@
 		name:'memberIfon',
 		data (){
 			let params = {
-				nickName:'王宝强',
-				fax:'项目管理人',
-				commpany:'金科物业服务集团',
-				fenCompany:'重庆分公司',
-				ors:'金科十年城东',
-				deptName:'工程主管',
-				phone:'13426474705'
+				nickName:'',
+				fax:'',
+				commpany:'',
+				fenCompany:'',
+				ors:'',
+				deptName:'',
+				phone:''
 			};
+            let getParams = {
+                userId: this.$storage.getItem('userId'),
+                sessionId: this.$storage.getItem('sessionId'),
+                thirdParty:1,
+            };
 			return{
-				data : params				
+				data : params,
+                getParams: getParams,
 			}
 		},
         created: function () {
             this.$setTitle('我的资料');
             let _self = this;
+
+            _self.headersData = {
+                signature:_self.setmd5(_self.$storage.getItem('signature')),
+                uid:_self.$storage.getItem('userId'),
+            }
             /*请求数据*/
-            // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
-            //    	console.log(data);
-            //  })
+            this.$api.post('/Appinterface/userInfo?',_self.getParams,_self.headersData,function(rs) {
+                _self.data = rs.data[0];
+                _self.data.ors = rs.data[0].ors[0]
+
+                // console.log(rs);
+            })
 
         },
 		methods: {
 			back () {
 				this.$router.go(-1);
 			},
-			Logout () {
-				this.$router.push('/')
-			}
+            setmd5(key){
+                var md5 = this.$crypto.createHash("md5");
+                md5.update('sessionId='+ this.getParams.sessionId +'&thirdParty=1&userId='+ this.getParams.userId +'&key='+ key +''); //这个是 排序加密
+                var d= md5.digest('hex').toUpperCase();
+                console.log(d);
+                return d;
+            }
 		},
    		components:{
    			FooterComponent
