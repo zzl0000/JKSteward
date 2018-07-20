@@ -12,28 +12,28 @@
 				</div>
 				<div class="user-detail-btn">
 					<div class="img" @click="jump('memberIfon')">
-						<img src="/static/img/look-icon.png" height="60" width="136">
+						<img src="../../../static/img/look-icon.png" height="60" width="136">
 						<span>查看</span>
 					</div>
 				</div>
-			</div>	
+			</div>
 			<!-- 操作列表 -->
 			<div class="user-opreation-list b-white mb">
 				<ul>
 					<li class="boder-bottom" @click="jump('staffList')">
-							<div class="opreation-list-icon"><img src="/static/img/member-icon01.png" height="46" width="42"></div>
-							<span class="title">人员信息待审核</span>
-							<span class="advance"><img src="/static/img/advance-cion.png" height="32" width="18"></span>
+						<div class="opreation-list-icon"><img src="../../../static/img/member-icon01.png" height="46" width="42"></div>
+						<span class="title">人员信息待审核</span>
+						<span class="advance"><img src="../../../static/img/advance-cion.png" height="32" width="18"></span>
 					</li>
 					<li class="boder-bottom" @click="jump('changePassword')">
-							<div class="opreation-list-icon"><img src="/static/img/member-icon02.png" height="44" width="38"></div>
-							<span class="title">修改密码</span>
-							<span  class="advance"><img src="/static/img/advance-cion.png" height="32" width="18"></span>
+						<div class="opreation-list-icon"><img src="../../../static/img/member-icon02.png" height="44" width="38"></div>
+						<span class="title">修改密码</span>
+						<span  class="advance"><img src="../../../static/img/advance-cion.png" height="32" width="18"></span>
 					</li>
 					<li class="" @click="jump('aboutUs')">
-							<div class="opreation-list-icon"><img src="/static/img/member-icon03.png" height="44" width="44"></div>
-							<span class="title">版本信息</span>
-							<span  class="advance"><img src="/static/img/advance-cion.png" height="32" width="18"></span>
+						<div class="opreation-list-icon"><img src="../../../static/img/member-icon03.png" height="44" width="44"></div>
+						<span class="title">版本信息</span>
+						<span  class="advance"><img src="../../../static/img/advance-cion.png" height="32" width="18"></span>
 					</li>
 				</ul>
 			</div>
@@ -41,83 +41,84 @@
 
 		<!-- 退出登录 -->
 		<div class="register-operation">
-            <button class="btn b-white t-gray-color " @click="Logout"> 退出登录 </button>
-       </div> 
-	   
-       <FooterComponent></FooterComponent>
+			<button class="btn b-white t-gray-color " @click="Logout"> 退出登录 </button>
+		</div>
+
+		<FooterComponent></FooterComponent>
 
 	</div>
 
 </template>
 <script>
-	import FooterComponent from '../../components/footercomponent.vue';
-	export default {
-		name:'member',
-		data () {
-			let params = {
-                  userId: this.$storage.getItem('userId'),
-                  sessionId: this.$storage.getItem('sessionId'),
-                  thirdParty:1,
+    import FooterComponent from '../../components/footercomponent.vue';
+    export default {
+        name:'member',
+        data () {
+            let params = {
+                sessionId: this.$storage.getItem('sessionId'),
+                thirdParty:1,
+                userId: this.$storage.getItem('userId')
             };
-			return{
-				params : params,
+            return{
+                params : params,
                 headersData:[],
-				nickName:'王宝强',
-				fax:'项目管理人',
-				commpany:'金科物业服务集团'
-			}
-		},
-		created: function () {
+                nickName:'',
+                fax:'',
+                commpany:''
+            }
+        },
+        created: function () {
             let _self = this;
+
             _self.headersData = {
                 signature:_self.setmd5(_self.$storage.getItem('signature')),
                 uid:_self.$storage.getItem('userId'),
-             }
-             this.$setTitle('个人中心');
+            }
+            this.$setTitle('个人中心');
 
-        	 /*请求数据*/
-             this.$api.post('/Appinterface/userInfo?',_self.params,_self.headersData,function(rs) {
-                 _self.nickName = rs.data[0].nickName;
-                 _self.commpany = rs.data[0].commpany;
-                 _self.fax = rs.data[0].fax
+            /*请求数据*/
+            this.$api.post('/Appinterface/userInfo?',_self.params,_self.headersData,function(rs) {
+                _self.nickName = rs.data[0].nickName;
+                _self.commpany = rs.data[0].commpany;
+                _self.fax = rs.data[0].fax
                 // console.log(rs);
-              })
+            })
 
-    	},
-		methods: {
-			Logout () {
-				let _self = this;
-				const modal = weex.requireModule('modal');
-				modal.confirm({
-				    message: '请确认是否退出当前登录',
-				    duration: 0.3,
-				    okTitle :'确定',
-				    cancelTitle :'取消'
-				}, function (value) {
-					if(value == '确定'){
-						 _self.$api.post('/Appinterface/userLoginOut',_self.params,'',function(data) {
-	                		console.log(data);
-	              		});
-	              		_self.$router.push('/');
-					}			   
-				})
-			},
-			jump (url){ 
-				this.$router.push(url);
-			},
+        },
+        methods: {
+            Logout () {
+                let _self = this;
+                const modal = weex.requireModule('modal');
+                modal.confirm({
+                    message: '请确认是否退出当前登录',
+                    duration: 0.3,
+                    okTitle :'确定',
+                    cancelTitle :'取消'
+                }, function (value) {
+                    if(value == '确定'){
+                        _self.$api.post('/Appinterface/userLoginOut',_self.params,'',function(data) {
+                            console.log(data);
+                        });
+                        _self.$router.push('/');
+                    }
+                })
+            },
+            jump (url){
+                this.$router.push(url);
+            },
             setmd5(key){
-
-                var md5 = this.$crypto.createHash("md5");
-                md5.update('sessionId='+ this.params.sessionId +'&thirdParty=1&userId='+ this.params.userId +'&key='+ key +''); //这个是 排序加密
+                var _self = this;
+                var md5 = _self.$crypto.createHash("md5");
+                md5.update(_self.$urlEncode(_self.params).substring(1) + '&key='+ key +''); //这个是 排序加密
                 var d= md5.digest('hex').toUpperCase();
                 console.log(d);
                 return d;
             }
-		},
-   		components:{
-   			FooterComponent
-   		} 
-	}
+        },
+        components:{
+            FooterComponent
+        }
+    }
 </script>
 
 <style>
@@ -134,7 +135,7 @@
 		height: 1.60rem;
 		border-radius: 100%;
 		background-color: #36a9fc;
-		justify-content: center; 
+		justify-content: center;
 
 	}
 	.user-ifon .user-header span{
@@ -154,7 +155,7 @@
 		font-size: .38rem;
 
 	}
-	
+
 	.user-detail-btn {
 		background-color: #36a9fc;
 		width: 1.35rem;

@@ -7,29 +7,29 @@
 			<div class="partol-list m-list  pd-list b-gray">
 				<div class="partol-list-title">
 					<span class="td-color">所在项目| </span>
-					<span>金科智慧城</span>
+					<span>{{this.orgName}}</span>
 				</div>
 				<ul>
-					<li>
+					<li v-for="item in  taskItems" v-if="item.state == 3">
 						<label>漏检</label>
 						<div class="space-between" @click="jump('missingLoaction')">
 							<span class="tips">8个</span>
-							<p class="td-color">金科智慧城巡更任务 09:00 12:00</p>
-							<div class="img"><img src="/static/img/advance-cion.png" height="32" width="18"></div>
+							<p class="td-color">{{item.taskName}} {{item.startTime}} {{item.endTime}}</p>
+							<div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18"></div>
 						</div>
 					</li>
-					<li>
+					<li v-for="item in  taskItems" v-if="item.state == 1">
 						<label>已完成</label>
 						<div>
 							<span></span>
-							<p class="td-color">金科智慧城巡更任务 09:00 12:00</p>
+							<p class="td-color">{{item.taskName}} {{item.startTime}} {{item.endTime}}</p>
 						</div>
 					</li>
-					<li>
+					<li v-for="item in  taskItems" v-if="item.state == 2">
 						<label>进行中</label>
 						<div>
 							<span></span>
-							<p class="td-color">金科智慧城巡更任务 09:00 12:00</p>						
+							<p class="td-color">{{item.taskName}} {{item.startTime}} {{item.endTime}}</p>
 						</div>
 					</li>
 				</ul>
@@ -47,15 +47,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                      <td>1号点位</td>
-                      <td>11</td>
-                      <td>11</td>
-                    </tr>
-                    <tr>
-                      <td>2号点位</td>
-                      <td>22</td>
-                      <td>22</td>
+                    <tr v-for="item in  items" >
+                      <td>{{item.pointName}}</td>
+                      <td>{{item.todayNum}}</td>
+                      <td>{{item.monthNum}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -90,11 +85,39 @@
 				'/static/img/equipment-icon.png',
 				];
 	        return {
-	        	imgUrl: imgUrls
+                items: '',
+                taskItems:'',
+	        	imgUrl: imgUrls,
+                orgName: this.$storage.getItem('orgName')
 	        }
 		},
         created() {
-            this.$setTitle('巡更点位管理')
+		    var _self = this
+            this.$setTitle('巡更点位管理');
+			// 获取点位信息
+            let params ={
+                token : _self.$storage.getItem('token'),
+                projectId:_self.$storage.getItem('projectId'),
+                thirdParty:1
+            }
+            this.$api.post('/dian/app/getPointList', params,'', function (res) {
+                if (res.errcode == 200) {
+                    //console.log(res)
+                    _self.items = res.data.listData
+                }
+            })
+
+			// 获取各个状态的任务列表
+
+            this.$api.post('/dian/app/getTimeOutTask', params,'', function (res) {
+                if (res.errcode == 200) {
+                    _self.taskItems = res.data;
+                    console.log(_self.taskItems)
+                }
+            })
+
+
+
 		},
 		methods: {
 			 back () {
@@ -131,6 +154,8 @@
 	.partol-list ul{
 		display: flex;
 		flex-flow: wrap;
+		height: 3.5rem;
+		overflow-y: scroll;
 		padding-top: .6em;
 	}
 

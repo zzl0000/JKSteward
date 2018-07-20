@@ -2,37 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d051ab2-9b43-4753-abb6-6707515465a7" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dingding/build/dev-server.js" afterPath="$PROJECT_DIR$/dingding/build/dev-server.js" />
-      <change beforePath="$PROJECT_DIR$/dingding/config/index.js" afterPath="$PROJECT_DIR$/dingding/config/index.js" />
-      <change beforePath="$PROJECT_DIR$/dingding/dist/index.html" afterPath="$PROJECT_DIR$/dingding/dist/index.html" />
-      <change beforePath="$PROJECT_DIR$/dingding/dist/static/js/manifest.js" afterPath="$PROJECT_DIR$/dingding/dist/static/js/manifest.js" />
-      <change beforePath="$PROJECT_DIR$/dingding/dist/static/js/vendor.js" afterPath="$PROJECT_DIR$/dingding/dist/static/js/vendor.js" />
-      <change beforePath="$PROJECT_DIR$/dingding/dist/static/js/vue-bundle.js" afterPath="$PROJECT_DIR$/dingding/dist/static/js/vue-bundle.js" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/container/App.vue" afterPath="$PROJECT_DIR$/dingding/src/container/App.vue" />
+      <change beforePath="$PROJECT_DIR$/dingding/src/components/selectComponent.vue" afterPath="$PROJECT_DIR$/dingding/src/components/selectComponent.vue" />
+      <change beforePath="$PROJECT_DIR$/dingding/src/components/selectItem.vue" afterPath="$PROJECT_DIR$/dingding/src/components/selectItem.vue" />
+      <change beforePath="$PROJECT_DIR$/dingding/src/components/selectSector.vue" afterPath="$PROJECT_DIR$/dingding/src/components/selectSector.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/container/router.js" afterPath="$PROJECT_DIR$/dingding/src/container/router.js" />
       <change beforePath="$PROJECT_DIR$/dingding/src/lib/api.js" afterPath="$PROJECT_DIR$/dingding/src/lib/api.js" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/Statistics/statistics.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/Statistics/statistics.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/home/index.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/home/index.vue" />
+      <change beforePath="$PROJECT_DIR$/dingding/src/lib/formdata.js" afterPath="$PROJECT_DIR$/dingding/src/lib/urlEncode.js" />
+      <change beforePath="$PROJECT_DIR$/dingding/src/lib/util.js" afterPath="$PROJECT_DIR$/dingding/src/lib/util.js" />
       <change beforePath="$PROJECT_DIR$/dingding/src/pages/login/login.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/login/login.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/member/aboutUs.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/member/aboutUs.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/member/changePassword.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/member/changePassword.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/pages/member/member.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/member/member.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/pages/member/memberIfon.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/member/memberIfon.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/member/staffList.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/member/staffList.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/repository/repository.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/repository/repository.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/addPrtol.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/addPrtol.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/missingLoaction.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/missingLoaction.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/partolRemind.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/partolRemind.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/partoling.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/partoling.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/pointLocation.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/pointLocation.vue" />
-      <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/replacePrtol.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/replacePrtol.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/startPartol.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/startPartol.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/pages/workbench/workbench.vue" afterPath="$PROJECT_DIR$/dingding/src/pages/workbench/workbench.vue" />
       <change beforePath="$PROJECT_DIR$/dingding/src/platforms/web/web.entry.js" afterPath="$PROJECT_DIR$/dingding/src/platforms/web/web.entry.js" />
-      <change beforePath="$PROJECT_DIR$/dingding/static/css/public.css" afterPath="$PROJECT_DIR$/dingding/static/css/public.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,109 +31,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="selectComponent.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/components/selectComponent.vue">
+      <file leaf-file-name="workbench.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/workbench.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="patrolSystem.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="partoling.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partoling.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="139" column="19" lean-forward="false" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addPrtol.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/addPrtol.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1120">
-              <caret line="70" column="43" lean-forward="false" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="replacePrtol.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/replacePrtol.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1120">
-              <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="72" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footercomponent.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/components/footercomponent.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1040">
-              <caret line="65" column="13" lean-forward="false" selection-start-line="63" selection-start-column="12" selection-end-line="65" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="missingLoaction.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/missingLoaction.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="44" column="15" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="44" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="partoltask.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partoltask.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="public.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/static/css/public.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2352">
-              <caret line="147" column="8" lean-forward="false" selection-start-line="147" selection-start-column="1" selection-end-line="147" selection-end-column="8" />
+            <state relative-caret-position="512">
+              <caret line="108" column="49" lean-forward="true" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="49" />
               <folding>
-                <marker date="1531300627783" expanded="true" signature="219:243" ph="{...}" />
+                <element signature="e#1581#1638#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingding/src/pages/home/index.vue">
+      <file leaf-file-name="member.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/member.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+            <state relative-caret-position="688">
+              <caret line="84" column="14" lean-forward="true" selection-start-line="79" selection-start-column="12" selection-end-line="84" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingding/src/lib/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="75" column="44" lean-forward="true" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selectItem.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dingding/src/components/selectItem.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="69" column="35" lean-forward="true" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -163,6 +96,9 @@
       <find>toast</find>
       <find>pl-content</find>
       <find>tips-layer</find>
+      <find>crypto</find>
+      <find>setLeft</find>
+      <find>jump</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -176,35 +112,42 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$USER_HOME$/Desktop/新建文本文档.txt" />
-        <option value="$PROJECT_DIR$/dingding/src/components/selectComponent.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/lib/api.js" />
         <option value="$PROJECT_DIR$/dingding/dist/index.html" />
         <option value="$PROJECT_DIR$/dingding/build/dev-server.js" />
         <option value="$PROJECT_DIR$/dingding/config/index.js" />
-        <option value="$PROJECT_DIR$/dingding/src/container/router.js" />
         <option value="$PROJECT_DIR$/dingding/index.html" />
-        <option value="$PROJECT_DIR$/dingding/src/lib/util.js" />
-        <option value="$PROJECT_DIR$/dingding/src/platforms/web/web.entry.js" />
         <option value="$PROJECT_DIR$/dingding/src/pages/home/index.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/member/member.vue" />
         <option value="$PROJECT_DIR$/dingding/src/pages/repository/repository.vue" />
         <option value="$PROJECT_DIR$/dingding/src/pages/Statistics/statistics.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/workbench.vue" />
         <option value="$PROJECT_DIR$/dingding/src/pages/member/staffList.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/member/memberIfon.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/member/changePassword.vue" />
         <option value="$PROJECT_DIR$/dingding/src/pages/member/aboutUs.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/startPartol.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/partolRemind.vue" />
         <option value="$PROJECT_DIR$/dingding/src/container/App.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/login/login.vue" />
         <option value="$PROJECT_DIR$/dingding/src/pages/workbench/pointLocation.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue" />
         <option value="$PROJECT_DIR$/dingding/static/css/public.css" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/addPrtol.vue" />
-        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/replacePrtol.vue" />
         <option value="$PROJECT_DIR$/dingding/src/pages/workbench/missingLoaction.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/login/register.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/addPrtol.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/partolRemind.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/replacePrtol.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/lib/测试.html" />
+        <option value="$USER_HOME$/Desktop/测试.html" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/member/changePassword.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/login/login.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/lib/formdata.js" />
+        <option value="$PROJECT_DIR$/dingding/src/lib/urlEncode.js" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/member/memberIfon.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/platforms/web/web.entry.js" />
+        <option value="$PROJECT_DIR$/dingding/src/components/selectSector.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/lib/util.js" />
+        <option value="$PROJECT_DIR$/dingding/src/container/router.js" />
+        <option value="$PROJECT_DIR$/dingding/src/components/selectComponent.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/startPartol.vue" />
         <option value="$PROJECT_DIR$/dingding/src/pages/workbench/partoling.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/member/member.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/pages/workbench/workbench.vue" />
+        <option value="$PROJECT_DIR$/dingding/src/lib/api.js" />
+        <option value="$PROJECT_DIR$/dingding/src/components/selectItem.vue" />
       </list>
     </option>
   </component>
@@ -217,9 +160,9 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/dingding/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="73" />
-    <option name="y" value="72" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="70" />
+    <option name="y" value="70" />
     <option name="width" value="1845" />
     <option name="height" value="845" />
   </component>
@@ -258,8 +201,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,13 +218,6 @@
               <item name="JKSteward" type="462c0819:PsiDirectoryNode" />
               <item name="dingding" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JKSteward" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JKSteward" type="462c0819:PsiDirectoryNode" />
-              <item name="dingding" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JKSteward" type="b2602c69:ProjectViewProjectNode" />
@@ -312,14 +246,6 @@
               <item name="dingding" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JKSteward" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JKSteward" type="462c0819:PsiDirectoryNode" />
-              <item name="dingding" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -329,22 +255,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="member" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JKSteward" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JKSteward" type="462c0819:PsiDirectoryNode" />
-              <item name="dingding" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JKSteward" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JKSteward" type="462c0819:PsiDirectoryNode" />
-              <item name="dingding" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Statistics" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JKSteward" type="b2602c69:ProjectViewProjectNode" />
@@ -375,25 +285,21 @@
               <item name="dingding" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="JKSteward" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JKSteward" type="462c0819:PsiDirectoryNode" />
-              <item name="dingding" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/大寺哑/weixin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../which-language-demo/weex-vue-fed-todo" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -461,26 +367,29 @@
       <workItem from="1531216639281" duration="68000" />
       <workItem from="1531217294472" duration="77000" />
       <workItem from="1531270659725" duration="17105000" />
-      <workItem from="1531357489127" duration="228000" />
+      <workItem from="1531357489127" duration="5927000" />
+      <workItem from="1531444495951" duration="2575000" />
+      <workItem from="1531704153311" duration="18624000" />
+      <workItem from="1531807463783" duration="12550000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103701000" />
+    <option name="totallyTimeSpent" value="143149000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23802084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2265625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -508,39 +417,11 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dingding/src/lib/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1664">
-          <caret line="104" column="41" lean-forward="false" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="32" column="45" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/pointLocation.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/member.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1184">
-          <caret line="74" column="30" lean-forward="false" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partoling.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1744">
@@ -563,27 +444,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Desktop/新建文本文档.txt" />
-    <entry file="file://$PROJECT_DIR$/dingding/src/lib/env.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/login/register.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="860">
-          <caret line="90" column="41" lean-forward="false" selection-start-line="90" selection-start-column="41" selection-end-line="90" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/workbenchView.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dingding/config/prod.env.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -641,49 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/lib/storage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/lib/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="109" column="41" lean-forward="true" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/container/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="171" column="44" lean-forward="true" selection-start-line="171" selection-start-column="44" selection-end-line="171" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/lib/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="122" column="1" lean-forward="true" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/repository/repository.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/staffList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/memberView.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -698,59 +515,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/changePassword.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/memberIfon.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/workbench.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="75" column="10" lean-forward="true" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/member.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="73" column="33" lean-forward="false" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/platforms/web/web.entry.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dingding/src/pages/Statistics/statistics.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partolRemind.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="41" column="12" lean-forward="false" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/startPartol.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="39" column="49" lean-forward="true" selection-start-line="39" selection-start-column="49" selection-end-line="39" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -761,89 +529,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/login/login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="28" column="58" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/pointLocation.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="96" column="36" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/home/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dingding/static/css/public.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2352">
           <caret line="147" column="8" lean-forward="false" selection-start-line="147" selection-start-column="1" selection-end-line="147" selection-end-column="8" />
-          <folding>
-            <marker date="1531300627783" expanded="true" signature="219:243" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/components/selectSector.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="56" column="16" lean-forward="true" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/components/selectItem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="52" column="23" lean-forward="false" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partoltask.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/components/selectComponent.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/missingLoaction.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="44" column="15" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="44" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/replacePrtol.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="72" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -855,18 +544,261 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/home/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="82" column="36" lean-forward="false" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/addPrtol.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="70" column="43" lean-forward="false" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="43" />
+        <state relative-caret-position="452">
+          <caret line="97" column="66" lean-forward="false" selection-start-line="97" selection-start-column="66" selection-end-line="97" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partolRemind.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="48" column="64" lean-forward="false" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partoltask.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/replacePrtol.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="106" column="71" lean-forward="false" selection-start-line="106" selection-start-column="71" selection-end-line="106" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/workbenchView.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/lib/测试.html" />
+    <entry file="file://$USER_HOME$/Desktop/测试.html" />
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/staffList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/missingLoaction.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/login/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-624">
+          <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/lib/urlEncode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/lib/storage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../which-language-demo/weex-vue-fed-todo/src/lib/storage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/lib/env.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="58" lean-forward="false" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/platforms/web/web.entry.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="45" />
+          <folding>
+            <element signature="e#328#370#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/memberIfon.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-672">
+          <caret line="29" column="60" lean-forward="true" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/changePassword.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/lib/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="152" column="31" lean-forward="false" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/container/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="184" column="4" lean-forward="false" selection-start-line="184" selection-start-column="4" selection-end-line="189" selection-end-column="5" />
+          <folding>
+            <element signature="e#78#115#0" expanded="true" />
+            <element signature="e#316#361#0" expanded="true" />
+            <element signature="e#545#610#0" expanded="true" />
+            <element signature="e#1248#1304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/repository/repository.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="79" lean-forward="true" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/pointLocation.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-32">
+          <caret line="73" column="20" lean-forward="true" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/startPartol.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="23" column="103" lean-forward="true" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="103" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/partoling.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="139" column="19" lean-forward="false" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
+        <state relative-caret-position="192">
+          <caret line="83" column="110" lean-forward="false" selection-start-line="83" selection-start-column="110" selection-end-line="83" selection-end-column="110" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/login/register.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="130" column="19" lean-forward="true" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="19" />
+          <folding>
+            <element signature="e#1860#1917#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/patrolSystem.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="121" column="28" lean-forward="false" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/components/selectSector.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/components/selectComponent.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/workbench/workbench.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="108" column="49" lean-forward="true" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="49" />
+          <folding>
+            <element signature="e#1581#1638#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/lib/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="75" column="44" lean-forward="true" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/pages/member/member.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="84" column="14" lean-forward="true" selection-start-line="79" selection-start-column="12" selection-end-line="84" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingding/src/components/selectItem.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="69" column="35" lean-forward="true" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
           <folding />
         </state>
       </provider>

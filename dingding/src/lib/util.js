@@ -2,24 +2,49 @@ import dingtalk from 'weex-dingtalk';
 import journey from 'weex-dingtalk-journey';
 
 const { requireModule, querystring, url, env } = journey;
-const modal = requireModule('modal');
-const stream = requireModule('stream');
+import { APPHOST } from './env.js';
+
+
 
 let uid = 1;
 
-export function fetchBundleUrl() {
-    return env.bundleUrl;
-}
+export function jsApiOAuth() {
+    let Config = {
+        method: 'post',
+        uri: APPHOST + '/Appinterface/authoJsApi',
+        body:''
+    };
+    let jsApiList = ['device.nfc.nfcRead'];
+    return new Promise(function(resolve, reject) {
+        request(Config, function(error, res) {
 
-export function openUrl(url) {
-    dingtalk.ready(function() {
-        dingtalk.apis.biz.util.openLink({
-            url: url
+            if (!error) {
+               // console.log(res.data.errcode )
+                const data = res.data.data;
+                if (res.data.errcode === '1') {
+                    const oauth = {
+                        agentId: data.agentId || '',
+                        corpId: data.corpId || '',
+                        timeStamp: data.timeStamp || '',
+                        nonceStr: data.nonceStr || '',
+                        signature: data.signature || '',
+                        jsApiList: jsApiList || []
+                    };
+                    //console.log(oauth);
+                    dingtalk.config(oauth);
+                    resolve();
+                }
+            } else {
+                reject(res);
+            }
         });
     });
-}2
+}
+
 
 export function request(config, cb, progressCb) {
+    const modal = requireModule('modal');
+    const stream = requireModule('stream');
     let { method, uri, body, type, headers } = config;
     if (!uri || typeof uri !== 'string') {
         return;
@@ -48,7 +73,7 @@ export function request(config, cb, progressCb) {
         requestConf.url = uri;
     } else {
         requestConf.url = uri;
-        requestConf.body = body;
+        requestConf.body = JSON.stringify(body);
     }
     stream.fetch(requestConf, function(res) {
         let u = false;
@@ -62,26 +87,41 @@ export function request(config, cb, progressCb) {
     }, progressCb);
 }
 
-export function fetchCorpId() {
-    const { originalUrl } = env;
-    return url.parse(originalUrl, 'corpId');
-}
 
-export function authCode() {
-    return new Promise(function(resolve, reject) {
-        dingtalk.ready(function() {
-            dingtalk.apis.runtime.permission.requestAuthCode({
-                corpId: fetchCorpId(),
-                onSuccess(result) {
-                    resolve(result);
-                },
-                onFail(err) {
-                    reject(err);
-                }
-            });
+// device.nfc.nfcRead
+
+
+export function setNfc(cb) {
+    dingtalk.ready(function() {
+        dingtalk.apis.device.nfc.nfcRead({
+            onSuccess: function(data) {
+                cb(data)
+            },
+            onFail: function(err) {
+               // alert(JSON.stringify(err))
+                cb(err)
+            }
         });
     });
 }
+
+
+
+export function getNetwork(cb) {
+    dingtalk.ready(function() {
+        dingtalk.apis.device.connection.getNetworkType({
+            onSuccess: function(data) {
+                cb(data)
+            },
+            onFail: function(err) {
+                //alert(JSON.stringify(err))
+                cb(err)
+            }
+        });
+    });
+}
+
+
 
 export function setRight(config, cb) {
     const { control } = config;
@@ -93,14 +133,14 @@ export function setRight(config, cb) {
     });
 }
 
-export function removeRightEvent(cb) {
-    dingtalk.ready(function() {
-        dingtalk.off('navRightButton', cb);
-    });
-}
-
-export function setLeft(config, cb) {
+export function setLeft(cb) {
+    const config = {
+        show: true,
+        control: true,
+        text: '返回'
+    };
     const { control } = config;
+
     dingtalk.ready(function() {
         dingtalk.apis.biz.navigation.setLeft(config);
         if (control) {
@@ -109,13 +149,9 @@ export function setLeft(config, cb) {
     });
 }
 
-export function removeLeftEvent(cb) {
-    dingtalk.ready(function() {
-        dingtalk.off('goBack', cb);
-    });
-}
 
 export function toast(msg) {
+    const modal = requireModule('modal');
     modal.toast({
         message: msg,
         duration: 2
@@ -123,8 +159,11 @@ export function toast(msg) {
 }
 
 export function confirm(msg, cb) {
+    const modal = requireModule('modal');
     modal.confirm({
-        message: msg
+        message: msg,
+        okTitle:'确定',
+        cancelTitle:'取消'
     }, function(result) {
         if (typeof cb === 'function') {
             cb(result);
@@ -132,27 +171,14 @@ export function confirm(msg, cb) {
     })
 }
 
-export function getUid() {
-    uid++;
-    return String(uid + 'icepy');
-}
+
 
 export function setTitle(title) {
+
     dingtalk.ready(function() {
+
         dingtalk.apis.biz.navigation.setTitle({
-            title: title
+            title: title,
         })
     });
-}
-
-export function share(opt) {
-    dingtalk.ready(function() {
-        dingtalk.apis.biz.util.share({
-            type: 0,
-            url: 'https://github.com/icepy',
-            title: 'icepy',
-            content: '1234',
-            image: 'https://avatars2.githubusercontent.com/u/3321837?v=4&s=400&u=474bf7c009911c87a36679fe18ab6e5aba26d9b7'
-        })
-    })
 }

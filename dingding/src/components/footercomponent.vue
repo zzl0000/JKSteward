@@ -5,7 +5,7 @@
             	<li @click="jump('home',1)">
             			<div class="img">
             				<img v-bind:src="imgUrl.home[0]" v-if="cur_id == 1">
-            				<img v-bind:src="imgUrl.home[1]" v-else></span>
+            				<img v-bind:src="imgUrl.home[1]" v-else>
             			</div>
             			<span>消息</span>           		
             	</li>
@@ -25,14 +25,14 @@
             			<span>工作台</span>
 
             	</li>
-            	<li @click="jump('statistics',4)">
-            			<div class="img">
-            				<img v-bind:src="imgUrl.statistics[0]" v-if="cur_id == 4">
-            				<img v-bind:src="imgUrl.statistics[1]" v-else>
-            			</div>
-            			<span>自查统计</span>
+            	<!--<li @click="jump('statistics',4)">-->
+            			<!--<div class="img">-->
+            				<!--<img v-bind:src="imgUrl.statistics[0]" v-if="cur_id == 4">-->
+            				<!--<img v-bind:src="imgUrl.statistics[1]" v-else>-->
+            			<!--</div>-->
+            			<!--<span>自查统计</span>-->
 
-            	</li>
+            	<!--</li>-->
             	<li @click="jump('member',5)">
             			<div class="img">
             				<img v-bind:src="imgUrl.member[0]" v-if="cur_id == 5">
@@ -49,20 +49,23 @@
 		name:'',
 		data () {
 		 let imgUrls ={
-	        	'home':['/static/img/nav-icon02.png','/static/img/nav-icon01.png'],
-	        	'repository':['/static/img/nav-icon04.png','/static/img/nav-icon03.png'],
-	        	'workbench':['/static/img/nav-icon06.png','/static/img/nav-icon05.png'],
-	        	'statistics':['/static/img/nav-icon08.png','/static/img/nav-icon07.png'],
-	        	'member':['/static/img/nav-icon10.png','/static/img/nav-icon09.png']
-	      }  
+	        	'home':['./static/img/nav-icon02.png','./static/img/nav-icon01.png'],
+	        	'repository':['./static/img/nav-icon04.png','./static/img/nav-icon03.png'],
+	        	'workbench':['./static/img/nav-icon06.png','./static/img/nav-icon05.png'],
+	        	'statistics':['./static/img/nav-icon08.png','./static/img/nav-icon07.png'],
+	        	'member':['./static/img/nav-icon10.png','./static/img/nav-icon09.png']
+	      };
 	      return {
 	        imgUrl: imgUrls,
-	        cur_id : this.$route.params.id
+	        cur_id : this.$route.query.id
 	      }
 	    },
+		created() {
+			console.log(this.$route.query.id)
+		},
 		methods: {	
 	        jump (url,id) {
-	          this.$router.push({path:url,  name:url,params: {id: id}})
+	          this.$router.push({path:url,  name:url,query: {id: id}})
 	     	}
    		 }
 	}

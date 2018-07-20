@@ -21,7 +21,7 @@
 
 		</div>
 		<div class="subtn">
-				<button class="btn btn-blue mb-list border-radius" @click="jump('partoling')">开始巡更</button>
+			<button class="btn btn-blue mb-list border-radius" @click="jump('partoling')">开始巡更</button>
 		</div>
 	</div>
 </template>
@@ -31,12 +31,12 @@
 		name:'workbench',
 		data () {
 			let imgUrls =[
-				'/static/img/partol-bg.png',
-				'/static/img/equipment-icon.png',
+				'./static/img/partol-bg.png',
+				'./static/img/equipment-icon.png',
 				];
 			let items = {
-					staffName:'王小二',
-					position:'值班班长',
+					staffName:'',
+					position:'',
 					currTime: this.$api.formats()
 				};	
 	        return {
@@ -46,8 +46,8 @@
 		},
 		created (){
              this.$setTitle('员工签到');
-		     this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
-		     this.item.position = this.$storage.getItem('position') || this.item.position;
+		     this.item.staffName = this.$storage.getItem('staffName') ;
+		     this.item.position = this.$storage.getItem('position') ;
 		},
 		methods: {
 			 back () {
@@ -55,7 +55,6 @@
 		      },
 		     jump (url) {
 		     	let _self = this;
-		     	const modal = weex.requireModule('modal');
 		     	let params ={
 		     		token : _self.$storage.getItem('token'),
 		     		signTime:_self.item.currTime,
@@ -66,18 +65,12 @@
                     if(res.errcode == 200){
                         //存储 Token 及用户信息
                         _self.$storage.setItem('signId',res.data.signId);
-                        modal.toast({
-                            message: res.errmsg,
-                            duration: 2
-                        })
+                        _self.$toast(res.errmsg)
 						setTimeout(function(){
                             _self.$router.push(url);
 						},2001)
                     }else{
-                        modal.toast({
-                            message: res.errmsg,
-                            duration: 2
-                        })
+                        _self.$toast(res.errmsg)
                     }
 
 			  	})

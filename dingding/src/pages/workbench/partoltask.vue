@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<!-- 顶部导航栏 -->
 	    <div class="top-nav b-white  boder-bottom mb" >
-	        <div class="back" @click="back()"><img src="/static/img/back-icon.png" height="36" width="20"></div>
+	        <div class="back" @click="back()"><img src="../../../static/img/back-icon.png" height="36" width="20"></div>
 	        <div class="top-title"><span>任务列表</span></div>
 	    </div>
 

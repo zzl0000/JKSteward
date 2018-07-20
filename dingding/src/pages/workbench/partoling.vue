@@ -1,7 +1,25 @@
 <template>
     <div class="wrapper">
         <!-- 顶部导航栏 -->
+        <!-- 加载层 -->
+        <div class="loading-layer"v-show="" >
+            <div class="loading-bg img">
+                <img v-bind:src="imgUrl[0]" height="1206" width="750">
+            </div>
 
+            <div class="tips-layer">
+                <div class="tips-bg">
+                    <div class="img"><img v-bind:src="imgUrl[1]" height="184" width="204" ></div>
+                    <p>
+                        <span>请打开设备右侧开关</span>
+                        <span class="min">红灯闪烁表示设备开启</span>
+                    </p>
+                </div>
+            </div>
+            <div class="subtn">
+                <button class="btn btn-blue mb-list border-radius" @click="connect">连接读卡器</button>
+            </div>
+        </div>
         <div class="pl-content" v-if="todo.isComplete == false">
 
             <!-- 巡更人员信息 -->
@@ -27,14 +45,14 @@
                 <input type="text" readonly="readonly" name="" v-model="todo.pointName">
                 <div class="select">
                     <span  @click="choosePointLocation">请选择</span>
-                    <div class="img"><img src="/static/img/advance-cion.png" height="32" width="18"></div>
+                    <div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18"></div>
                 </div>
 
             </div>
             <!-- 巡更 table -->
 
             <div class="partol-table pd-list b-white">
-                <table class="table">
+                <table class="table" cellpadding="0" cellspacing="0">
                     <thead>
                     <tr>
                         <th>点位名称</th>
@@ -53,25 +71,25 @@
             </div>
 
         </div>
-        <!-- 抢单块 -->
+        <!--&lt;!&ndash; 抢单块 &ndash;&gt;-->
 
-        <div class="qd-content" v-if="todo.isComplete == false" @click="jump('addPrtol')">
-            <div class="b-bule">
-                <span>巡检登记</span>
-            </div>
-        </div>
+        <!--<div class="qd-content" v-if="todo.isComplete == false" @click="jump('addPrtol')">-->
+            <!--<div class="b-bule">-->
+                <!--<span>巡检登记</span>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <!-- 悬浮块 -->
         <div class="subtn" v-if="todo.isComplete == false">
             <button class="btn btn-blue mb-list border-radius" @click="endpPatrol('patrolSystem')">结束巡更</button>
         </div>
 
-        <selectComponent v-on:fn="hidePanel" v-else post-url="getTaskInfo"></selectComponent>
+        <selecTask v-on:fn="hidePanel" v-else post-url="getTaskInfo"></selecTask>
 
     </div>
 </template>
 <script>
-    import selectComponent from '../../components/selectComponent.vue';
+    import selecTask from '../../components/selecTask.vue';
 
     export default {
         name: 'workbench',
@@ -99,11 +117,25 @@
             }
         },
         created() {
-            this.$setTitle(this.todo.title)
+            this.$setTitle(this.todo.title);
             this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
             this.item.position = this.$storage.getItem('position') || this.item.position;
+            this.getNfc();
+            //this.getNetworkType();
         },
         methods: {
+            getNfc() {
+                var _self = this;
+                _self.$setNfc(function(rs){
+                    _self.todo.pointId = rs.tagId
+                })
+            },
+            getNetworkType(){
+                var _self = this;
+                _self.$getNetwork(function(rs){
+                    alert(JSON.stringify(rs))
+                })
+            },
             jump (url) {
                 this.$router.push({path:url,  name:url})
             },
@@ -122,8 +154,8 @@
                 this.getPointList(rs);
             },
             endpPatrol(url) {
+
                 let _self = this;
-                const modal = weex.requireModule('modal');
                 let params = {
                     token: _self.$storage.getItem('token'),
                     signId: _self.$storage.getItem('signId'),
@@ -134,20 +166,17 @@
                     console.log(res);
                     if (res.errcode == 200) {
                         //存储 Token 及用户信息
-                        modal.toast({
-                            message: res.errmsg,
-                            duration: 2
-                        })
+                        _self.$toast(res.errmsg);
                         setTimeout(function () {
                             _self.$router.push(url);
                         }, 2001)
                     } else {
-                        modal.toast({
-                            message: res.errmsg,
-                            duration: 2
-                        })
+                        _self.$toast(res.errmsg)
                     }
                 })
+            },
+            uplodPointInfo() {
+
             },
             getPointList(rs){
                 //console.log(id)
@@ -162,12 +191,17 @@
                     if (res.errcode == 200) {
                         _slef.list = res.data.listData
                     } else {
-                        modal.toast({
-                            message: res.errmsg,
-                            duration: 2
-                        })
+                        _self.$toast(res.errmsg)
                     }
                 })
+            },
+            connect() {
+                let imgUrls = [
+                    '/static/img/partol-bg.png',
+                    '/static/img/equipment-icon01.png',
+                ];
+                this.imgUrl = imgUrls;
+                //this.$router.push('');
             }
         },
         filters: {
@@ -175,15 +209,15 @@
                 console.log(value)
                 if (!value) return ''
                 if(value == "N"){
-                    value = '已检'
-                }else{
                     value = '未检'
+                }else{
+                    value = '已检'
                 }
                 return value
             }
         },
         components: {
-            selectComponent
+            selecTask
         }
     }
 </script>
@@ -195,6 +229,12 @@
         flex-flow: nowrap;
         justify-content: space-between;
         align-items: center;
+    }
+    .partol-task input{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #45a4f2;
     }
 
     .partol-task .select {

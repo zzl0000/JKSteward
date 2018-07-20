@@ -7,7 +7,8 @@ import VueRouter from 'vue-router';
 
 import dingtalk from 'weex-dingtalk';
 import journey from 'weex-dingtalk-journey';
-// import { toast,setLeft } from '../lib/util.js';
+
+import { setLeft,setTitle, } from '../lib/util.js';
 
 
 // 第三步导入组件
@@ -47,7 +48,7 @@ import memberIfon from '../pages/member/memberIfon.vue';
 import changePassword from '../pages/member/changePassword.vue';
 import aboutUS from '../pages/member/aboutUS.vue';
 import staffList from '../pages/member/staffList.vue';
-
+import staffAudit from '../pages/member/staffAudit.vue';
 
 
 const routes = [{
@@ -161,6 +162,11 @@ const routes = [{
                 path: 'staffList',
                 name: 'staffList',
                 component: staffList
+            },
+            {
+                path: 'staffAudit',
+                name: 'staffAudit',
+                component: staffAudit
             }
         ]
     }
@@ -179,25 +185,23 @@ export default function Router(Vue) {
     const router = new VueRouter({
         routes: routes
     });
-    const left = {
-        show: true,
-        control: true,
-        text: '返回'
-    }
+
     const backHandler = function(e) {
         if (env.isWeb) {
             e.preventDefault();
         }
-
         router.go(-1);
     }
 
-    //setLeft(left, backHandler);
+
+    //
     // jsApiOAuth().then(function(){
-    //   console.log('签名完成');
+    //     //console.log('签名完成');
+    //     //setLeft(backHandler);
     // }).catch(function(err){
-    //   console.log(JSON.stringify(err))
+    //     //console.log(JSON.stringify(err))
     // });
+
     return {
         router
     }

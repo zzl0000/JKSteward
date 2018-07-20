@@ -15,7 +15,7 @@
 							<em class="">每天</em>
 						</p>
 						<div class="img">
-							<img src="/static/img/close-icon.png" height="74" width="108">
+							<img src="../../../static/img/close-icon.png" height="74" width="108">
 						</div>
 					</li>
 				</ul>

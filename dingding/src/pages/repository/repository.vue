@@ -33,9 +33,9 @@
 		name:'workbench',
 		data () {
 			let imgUrls =[
-				'/static/img/apply-icon02.png',
-				'/static/img/apply-icon04.png',
-				'/static/img/apply-icon07.png'];
+				'./static/img/apply-icon02.png',
+				'./static/img/apply-icon04.png',
+				'./static/img/apply-icon07.png'];
 	        return {
 	        	imgUrl: imgUrls
 	        }

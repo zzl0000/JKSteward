@@ -13,9 +13,9 @@
 </template>
 
 <script>
-	
 
-	  
+
+
 	export default {
 	    name: 'select',
 	    data () {
@@ -35,7 +35,7 @@
 	    		orgId:'6849',
 	    		thirdParty:1
 	    	}
-             this.$api.post('/Appinterface/deptList?',params,function(res) {
+             this.$api.post('/Appinterface/deptList?',params,'',function(res) {
              		console.log(res);
               })
         },
@@ -54,14 +54,14 @@
 	    }
 	  }
 </script>
-	
+
 <style>
 
 	.search{
 		padding: 0.2rem 0.4rem;
 	}
 	.search-control{
-		background-color: #f5f5f7; 
+		background-color: #f5f5f7;
 		border-radius: 0.1rem;
 		flex-flow: initial;
 		align-items: center;
@@ -75,7 +75,7 @@
 	.search-control .img{
 		width: .46rem;
 		height: .46rem;
-		left: .25rem; 
+		left: .25rem;
 	}
 	.search-control .form-group input{
 		padding-left: .25rem;
@@ -94,5 +94,5 @@
 		height: 100%;
 	}
 
-	
+
 </style>

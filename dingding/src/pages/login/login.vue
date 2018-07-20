@@ -1,26 +1,26 @@
 <template>
 
-  <div class="wrapper b-white">
+  <div class="wrapper b-white login_item">
     <div class="login-model">
        <div class="login-top">
-          <div class="log"><img src="/static/img/log-icon.png" height="168" width="197"></div>
-          <span>大管家循环系统 </span>
+          <div class="log"><img src="../../../static/img/log-icon.png" height="168" width="197"></div>
+          <span>大管家巡航系统 </span>
       </div>
       <!-- 登录模块 -->
       <div class="login-lump mb-model">
         <div class="login-form">
          <div class="mb form-group">
-            <img src="/static/img/user-icon.png"  height="52" width="52">
+            <img src="../../../static/img/user-icon.png"  height="52" width="52">
             <input type="text" class="bule-boder-bottom" v-model="userNumber" name="" placeholder="请输入用户名">
          </div>
          <div class="form-group mt">
-             <img src="/static/img/pasword-icon.png"   height="52" width="53">
+             <img src="../../../static/img/pasword-icon.png"   height="52" width="53">
              <input type="password" class="bule-boder-bottom"  v-model="userPassword" name="" placeholder="请输入密码">
          </div>
       </div>
       <div class="login-operation">
-            <button class="btn btn-blue mb" @click="login" > 登录 </button>
-            <button class="btn td-color" @click="jump"> 注册账号 </button>
+            <button class="btn btn-blue mb" @click="login" :disabled="isDisable" > 登录 </button>
+            <button class="btn td-color" @click="jump" style="display: none"> 注册账号 </button>
         </div>
       </div>
     </div>
@@ -36,6 +36,7 @@
     name: 'login',
     data (){
       return{
+            isDisable:false,
             userNumber:'',
             userPassword:''
       }
@@ -44,12 +45,15 @@
 
           login() {
               var _self = this;
+              _self.isDisable = true;
                const modal = weex.requireModule('modal');
               if(this.userNumber.length < 1){
-                   _self.$api.toast('请输入手机号')
+                   _self.$api.toast('请输入手机号');
+                  this.isDisable = false
                   return;
               }else if(this.userPassword.length < 1){
-                  _self.$api.toast('请输入密码')
+                  _self.$api.toast('请输入密码');
+                  this.isDisable = false
                   return;
               }
 
@@ -69,6 +73,7 @@
                    _self.$storage.setItem('sessionId',res.sessionId);
                     //保存
                    _self.$storage.setItem('projectId',res.data.organization2.orgCode);
+                    _self.$storage.setItem('orgName',res.data.organization2.orgName);
                     _self.$storage.setItem('signature',_self.getmd5(_self.userNumber,_self.userPassword));
                    modal.toast({
                         message: '登录成功',
@@ -78,6 +83,7 @@
                     _self.$router.push('home');
                   },2000)
                 }else{
+                    this.isDisable = false
                       modal.toast({
                         message: res.errmsg,
                         duration: 2
@@ -100,7 +106,7 @@
                     return c;
                 }
 
-               var md5 = self.$crypto.createHash("md5");
+               var md5 = _self.$crypto.createHash("md5");
                md5.update(key + b() +'jkwycruise'); //生成Key
                var a = md5.digest('hex');
                console.log(a);
@@ -112,6 +118,10 @@
 </script>
 
 <style scoped>
+  .login_item{
+        height: calc(100vh - .4rem);
+      min-height: 15rem;
+   }
 
   .login-model{
       top: 2.5rem;

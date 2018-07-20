@@ -71,7 +71,7 @@
           this.$router.push('/')
       },
       getRegister (){
-              const modal = weex.requireModule('modal');
+
               /*if(this.loginAcct.length < 13){ 
                   // this.$refs.toast.$emit('toast','请输入手机号');  
                   return;  

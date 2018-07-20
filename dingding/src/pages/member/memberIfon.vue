@@ -54,9 +54,9 @@
 				phone:''
 			};
             let getParams = {
-                userId: this.$storage.getItem('userId'),
                 sessionId: this.$storage.getItem('sessionId'),
                 thirdParty:1,
+                userId: this.$storage.getItem('userId')
             };
 			return{
 				data : params,
@@ -85,8 +85,9 @@
 				this.$router.go(-1);
 			},
             setmd5(key){
-                var md5 = this.$crypto.createHash("md5");
-                md5.update('sessionId='+ this.getParams.sessionId +'&thirdParty=1&userId='+ this.getParams.userId +'&key='+ key +''); //这个是 排序加密
+                var _self = this;
+                var md5 = _self.$crypto.createHash("md5");
+                md5.update(_self.$urlEncode(_self.getParams).substring(1) + '&key='+ key +''); //这个是 排序加密
                 var d= md5.digest('hex').toUpperCase();
                 console.log(d);
                 return d;

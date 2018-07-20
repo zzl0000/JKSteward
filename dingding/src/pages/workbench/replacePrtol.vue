@@ -14,7 +14,7 @@
 		    			<div class="img"><img v-bind:src="imgUrl[1]" height="184" width="204" ></div>
 			    		<p>
 			    			<span class="td-color">操作提示:请把xxx贴近巡更点</span> 
-			    			<span class="td-color min">巡更点ID:123456789912213213213</span>
+			    			<span class="td-color min">巡更点ID:{{todo.pointId}}</span>
 			    		</p>
 		    		</div>		
 		    	</div>
@@ -25,13 +25,13 @@
 		    <div class="add-form mb-model border-radius">
 		    	<div class="form-group">
 		    		<label>你所在的项目</label>
-		    		<input type="text" name="" value="金科十年城">
+		    		<input type="text" name="" v-model="orgName" readonly>
 		    	</div>
 		    	<div class="form-group" @click="choosePointLocation">
 		    		<label>巡更点名称</label>
 		    		<p style="padding:0">
 		    			<span v-text="todo.pointName"></span>
-		    			<div class="img"><img src="/static/img/advance-cion.png" height="32" width="18"></div>
+		    			<div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18"></div>
 		    		</p>
 		    		
 		    	</div>
@@ -41,7 +41,7 @@
 		    	</div>
 		    </div>
 			<div class="subtn">
-					<button class="btn btn-blue mb-list border-radius" @click="submit">保存</button>
+					<button class="btn btn-blue mb-list border-radius" v-on:click="submit()">保存</button>
 			</div>
 		</div>
 		<selectComponent v-on:fn="hidePanel" v-else post-url="getPointList" ></selectComponent>
@@ -60,18 +60,27 @@
 				isComplete:false,
 	        	title:'替换巡更点位',
 	        	pointName:'请选择需要替换的点位名称',
-	        	pointId:''
-			}	
+                newPoint:'',
+                oldPoint:''
+			};
 	        return {
 	        	imgUrl: imgUrls,
 	        	todo : todos,
                 remark:'',
+                orgName: this.$storage.getItem('orgName')
 	        }
 		},
 		created (){
-            this.$setTitle(this.todo.title)
+            this.$setTitle(this.todo.title);
+            this.getNfc();
 		},
 		methods: {
+            getNfc() {
+                var _self = this;
+                _self.$setNfc(function(rs){
+                    _self.todo.pointId = rs.tagId
+                })
+            },
 			 back (type) {
 			 	if(type){
 			 		this.todo.isComplete = false;
@@ -92,30 +101,23 @@
 		      		this.todo.isComplete = false;
 		      		this.title = '替换巡更点位';
 		      		this.todo.pointName = rs.pointName;
-	       		    this.todo.pointId = rs.id;
+	       		    this.todo.oldPoint = rs.id;
                     this.$setTitle(this.todo.title)
 		      },
-			  submit () {
-                  	const modal = weex.requireModule('modal');
+			  submit() {
 				  	let params = {
 				  		token: this.$storage.getItem('token'),
-                        oldPoint: this.todo.pointId,
-                        newPoint: this.todo.pointId,
+                        oldPoint: this.todo.oldPoint,
+                        newPoint: this.todo.newPoint,
 				  		remark:this.remark,
 				  		thirdParty:1
 				  	}
 			  		this.$api.post('/dian/app/replacePoint',params,'', function(res) {
-			  			console.log(res);
+			  			//console.log(res);
                         if (res.errcode == 200) {
-                            modal.toast({
-                                message: res.errmsg,
-                                duration: 2
-                            })
+                            _self.$toast(res.errmsg)
                         } else {
-                            modal.toast({
-                                message: res.errmsg,
-                                duration: 2
-                            })
+                            _self.$toast(res.errmsg)
                         }
 			  		})
 			  }

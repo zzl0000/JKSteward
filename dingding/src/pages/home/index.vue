@@ -29,8 +29,8 @@
 						</ul>
 					</div>
 			</div>	
-			<!-- 问题出路 -->
-			<div class="problem b-white mb mb-list">
+			<!-- 问题处理 -->
+			<div class="problem b-white mb mb-list" style="display: none">
 				<div class="subnav boder-bottom">
 						<span class="title">我的问题处理</span>
 						<span class="more">更多</span>
@@ -47,13 +47,12 @@
 						</li>
 					</ul>
 				</div>
-				
 			</div>
 		</div>
 
 		<!-- 抢单块 -->
 
-		<div class="qd-content">
+		<div class="qd-content" style="display: none">
 			<div class="b-bule">
 				<span>抢单</span>
 			</div>
@@ -80,6 +79,7 @@
 			}
 		},
 		created: function () {
+		    //console.log(this.$setTitle);
             this.$setTitle('金科大管家');
         	let _self = this;
         	/*请求数据*/

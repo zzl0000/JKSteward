@@ -2,7 +2,6 @@
     <div class="wrapper">
 
         <div class="content">
-            <!-- 请选择所属部门 -->
             <div class="b-white">
                 <ul v-if="isComplete == false">
                     <li  v-for="item in  items" @click.stop="select(item.taskId,item.taskName)"
@@ -15,14 +14,13 @@
                          class="pd-list boder-bottom">{{item.pointName}}
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
+    import { setLeft } from '../lib/util.js';
     export default {
         name: 'select',
         props: ['postUrl'],
@@ -34,18 +32,21 @@
             }
         },
         created: function () {
+
             if( this.postUrl == 'getPointList'){
                 this.isComplete = true;
             }else{
                 this.isComplete = false;
             }
             let _self = this;
+
+
             let params = {
                 token: this.$storage.getItem('token'),
                 projectId: this.$storage.getItem('projectId'),
                 thirdParty: 1
             }
-            this.$api.post('/dian/app/' + this.postUrl + '?', params, function (res) {
+            this.$api.post('/dian/app/' + this.postUrl + '?', params,'', function (res) {
                 if (res.errcode == 200) {
                     _self.items = res.data.listData
                 } else {
@@ -58,6 +59,7 @@
             })
         },
         methods: {
+
             select(id, pointName) {
                 this.$emit('fn', {id, pointName});
             }

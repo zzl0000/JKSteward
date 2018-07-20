@@ -6,7 +6,8 @@
  *
  * return URL参数字符串
  */
-var urlEncode = function (param, key, encode) {
+
+export function urlEncode (param, key, encode) {
     if(param==null) return '';
     var paramStr = '';
     var t = typeof (param);

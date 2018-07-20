@@ -67,7 +67,18 @@ export function apiStream(method, url, params,headersData,success, failuer) {
             url: baseUrl + url + toParams(params)
         }, function(res) {
             if (res.ok) {
-                success(res.data);
+                var data = JSON.parse(res.data);
+                if(data.errcode == 7){
+                    modal.toast({
+                        message: data.errmsg,
+                        duration: 2
+                    });
+                    setTimeout(function () {
+                        window.location.href= './'
+                    },300)
+                }else{
+                    success(JSON.parse(res.data));
+                }
             } else {
                 modal.toast({
                     message: '请求失败,请检查网络!',
@@ -89,7 +100,19 @@ export function apiStream(method, url, params,headersData,success, failuer) {
                 //console.log("fetch request ", JSON.stringify(res.ok))
                 if (res.ok) {
                     // 解密
-                    success(JSON.parse(res.data));
+                    var data = JSON.parse(res.data);
+                    if(data.errcode == 7){
+                        modal.toast({
+                            message: data.errmsg,
+                            duration: 2
+                        });
+                        setTimeout(function () {
+                            window.location.href= './'
+                        },300)
+                    }else{
+                        success(JSON.parse(res.data));
+                    }
+
                 } else {
                     modal.toast({
                         message: '请求失败,请检查网络!',
