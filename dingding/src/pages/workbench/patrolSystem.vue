@@ -160,6 +160,7 @@
         width: 100%;
         position: absolute;
         bottom: .99rem;
+        z-index: 1;
     }
 
     .pl-content {

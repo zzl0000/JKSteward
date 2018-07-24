@@ -24,7 +24,7 @@
             <div class="add-form mb-model border-radius">
                 <div class="form-group">
                     <label>你所在的项目</label>
-                    <input type="text" name="" v-model="orgName" readonly>
+                    <input type="text"  v-model="orgName" readonly>
                 </div>
                 <div class="form-group">
                     <label>巡更点名称</label>
@@ -35,12 +35,13 @@
                 </div>
                 <div class="form-group">
                     <label>备注</label>
-                    <input type="text" name="" v-model="remark" placeholder="请输入备注信息">
+                    <input type="text"  v-model="remark"  placeholder="请输入备注信息" style="width: 40%">
                 </div>
             </div>
             <div class="subtn">
                 <button class="btn btn-blue mb-list border-radius"  @click.stop="submit">保存</button>
             </div>
+            <audio controls autoplay style="display: none" src="./static/audio/dingdong.wav"></audio>
         </div>
     </div>
 </template>
@@ -75,7 +76,7 @@
             getNfc() {
                 var _self = this;
                 _self.$setNfc(function(rs){
-                    _self.todo.pointId = rs.tagId
+                    _self.todo.pointId = rs.tagId.replace(/':'/g,'');
                 })
             },
             submit() {

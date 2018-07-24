@@ -76,9 +76,9 @@
 		},
 		methods: {
             getNfc() {
-                var _self = this;
+                let _self = this;
                 _self.$setNfc(function(rs){
-                    _self.todo.pointId = rs.tagId
+                    _self.todo.pointId = rs.tagId.replace(/':'/g,'');
                 })
             },
 			 back (type) {
@@ -94,7 +94,7 @@
 		      choosePointLocation (){
 		      		this.todo.isComplete = true;
 		      		this.title = '巡更点';
-                   this.$setTitle(this.todo.title)
+                    this.$setTitle(this.todo.title)
 		      },
 		      hidePanel(rs){
 		      		console.log(rs);
@@ -105,6 +105,7 @@
                     this.$setTitle(this.todo.title)
 		      },
 			  submit() {
+                    let _self = this;
 				  	let params = {
 				  		token: this.$storage.getItem('token'),
                         oldPoint: this.todo.oldPoint,

@@ -1,25 +1,7 @@
 <template>
     <div class="wrapper">
         <!-- 顶部导航栏 -->
-        <!-- 加载层 -->
-        <div class="loading-layer"v-show="" >
-            <div class="loading-bg img">
-                <img v-bind:src="imgUrl[0]" height="1206" width="750">
-            </div>
 
-            <div class="tips-layer">
-                <div class="tips-bg">
-                    <div class="img"><img v-bind:src="imgUrl[1]" height="184" width="204" ></div>
-                    <p>
-                        <span>请打开设备右侧开关</span>
-                        <span class="min">红灯闪烁表示设备开启</span>
-                    </p>
-                </div>
-            </div>
-            <div class="subtn">
-                <button class="btn btn-blue mb-list border-radius" @click="connect">连接读卡器</button>
-            </div>
-        </div>
         <div class="pl-content" v-if="todo.isComplete == false">
 
             <!-- 巡更人员信息 -->
@@ -44,7 +26,7 @@
                 <label>巡更任务</label>
                 <input type="text" readonly="readonly" name="" v-model="todo.pointName">
                 <div class="select">
-                    <span  @click="choosePointLocation">请选择</span>
+                    <span @click="choosePointLocation">请选择</span>
                     <div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18"></div>
                 </div>
 
@@ -74,13 +56,14 @@
         <!--&lt;!&ndash; 抢单块 &ndash;&gt;-->
 
         <!--<div class="qd-content" v-if="todo.isComplete == false" @click="jump('addPrtol')">-->
-            <!--<div class="b-bule">-->
-                <!--<span>巡检登记</span>-->
-            <!--</div>-->
+        <!--<div class="b-bule">-->
+        <!--<span>巡检登记</span>-->
+        <!--</div>-->
         <!--</div>-->
 
         <!-- 悬浮块 -->
         <div class="subtn" v-if="todo.isComplete == false">
+
             <button class="btn btn-blue mb-list border-radius" @click="endpPatrol('patrolSystem')">结束巡更</button>
         </div>
 
@@ -107,13 +90,15 @@
                 isComplete: false,
                 title: '巡更中',
                 pointName: '',
-                pointId: ''
+                taskId: ''
             }
             return {
                 imgUrl: imgUrls,
                 item: items,
                 todo: todos,
-                list: ''
+                list: [],
+                state: '',
+                pointListS: [],
             }
         },
         created() {
@@ -121,23 +106,66 @@
             this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
             this.item.position = this.$storage.getItem('position') || this.item.position;
             this.getNfc();
-            //this.getNetworkType();
         },
         methods: {
             getNfc() {
                 var _self = this;
-                _self.$setNfc(function(rs){
-                    _self.todo.pointId = rs.tagId
+               if(_self.list != undefined){
+                   if(_self.list.length === 0){
+                       return false;
+                   }
+               }
+                _self.$setNfc(function (rs) {
+                    // alert(JSON.stringify(rs));
+                    if (rs.errorCode == 3) {
+                        _self.$toast('设备不支持NFC, 请更换设备');
+                        return false;
+                    }
+                    _self.changePointState(rs.tagId.replace(/':'/g,''));
+                    _self.todo.pointId = rs.tagId.replace(/':'/g,'');
+                    let pointList = {
+                        pointId: rs.tagId.replace(/':'/g,''),
+                        inspecTime: _self.$api.formats(),
+                        result: '1',
+                        remark: 'z正常'
+                    };
+                    _self.getNetworkType(function () {
+                       // alert(_self.state)
+                        if (_self.state) {
+                            _self.pointListS.push(pointList);
+                            _self.uplodPointInfo(_self.pointListS);
+                        } else {
+                            _self.pointListS.push(pointList);
+                        }
+                        _self.getNfc();
+                    });
+
                 })
             },
-            getNetworkType(){
+            getNetworkType(fn) {
+                let _self = this;
+                _self.$getNetwork(function (rs) {
+                    // alert(JSON.stringify(rs))
+                    if (rs.result == '4G' || rs.result == 'wifi') {
+                        _self.state = true;
+                    } else {
+                        _self.state = false;
+                    }
+                    fn()
+                });
+            },
+            changePointState(rs) {
                 var _self = this;
-                _self.$getNetwork(function(rs){
-                    alert(JSON.stringify(rs))
-                })
-            },
-            jump (url) {
-                this.$router.push({path:url,  name:url})
+                console.log(_self.list)
+                if(_self.list.length === 0){
+                     return false;
+                }
+                for(let i = 0; i <= _self.list.length; i++ ){
+                    if(rs === _self.list[i].pointId){
+                        _self.list[i].pointState = 'Y';
+                    }
+                }
+
             },
             choosePointLocation() {
                 this.todo.isComplete = true;
@@ -149,9 +177,10 @@
                 this.todo.isComplete = false;
                 this.todo.title = '巡更中';
                 this.todo.pointName = rs.pointName;
-                this.todo.pointId = rs.Id;
+                this.todo.taskId = rs.Id;
                 this.$setTitle(this.todo.title)
                 this.getPointList(rs);
+                this.getNfc();
             },
             endpPatrol(url) {
 
@@ -162,7 +191,7 @@
                     outTime: _self.item.currTime,
                     thirdParty: 1
                 }
-                this.$api.post('/dian/app/signOutPatrol', params,'', function (res) {
+                this.$api.post('/dian/app/signOutPatrol', params, '', function (res) {
                     console.log(res);
                     if (res.errcode == 200) {
                         //存储 Token 及用户信息
@@ -175,19 +204,40 @@
                     }
                 })
             },
-            uplodPointInfo() {
+            uplodPointInfo(pointList) {
+                let _self = this;
+                let params = {
+                    token: _self.$storage.getItem('token'),
+                    signId: _self.$storage.getItem('signId'),
+                    projectId: _self.$storage.getItem('projectId'),
+                    resultList: '',
+                    thirdParty: 1
+                };
 
+                params.resultList = {
+                    taskId: _self.todo.taskId,
+                    completeTime: '',
+                    listData: '',
+                };
+                params.resultList.listData = pointList;
+
+                alert(JSON.stringify(params));
+
+                this.$api.post('/dian/app/patrolPunchCard', params, '', function (res) {
+                    //console.log(res);
+                    _self.$toast(res.errmsg)
+                })
             },
-            getPointList(rs){
+            getPointList(rs) {
                 //console.log(id)
                 let _slef = this;
                 let params = {
                     token: this.$storage.getItem('token'),
-                    taskId:rs.id,
-                    thirdParty:1
+                    taskId: rs.id,
+                    thirdParty: 1
                 }
-                this.$api.post('/dian/app/isStart', params,'', function (res) {
-                    console.log(res);
+                this.$api.post('/dian/app/isStart', params, '', function (res) {
+                    //console.log(res);
                     if (res.errcode == 200) {
                         _slef.list = res.data.listData
                     } else {
@@ -195,22 +245,18 @@
                     }
                 })
             },
-            connect() {
-                let imgUrls = [
-                    '/static/img/partol-bg.png',
-                    '/static/img/equipment-icon01.png',
-                ];
-                this.imgUrl = imgUrls;
-                //this.$router.push('');
+            jump(url) {
+                this.$router.push({path: url, name: url})
             }
+
         },
         filters: {
             capitalize: function (value) {
-                console.log(value)
+                //console.log(value)
                 if (!value) return ''
-                if(value == "N"){
+                if (value == "N") {
                     value = '未检'
-                }else{
+                } else {
                     value = '已检'
                 }
                 return value
@@ -230,7 +276,8 @@
         justify-content: space-between;
         align-items: center;
     }
-    .partol-task input{
+
+    .partol-task input {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -249,11 +296,11 @@
         margin-left: .15rem;
     }
 
-    .qd-content{
-       bottom: 2.8rem;
+    .qd-content {
+        bottom: 2.8rem;
     }
 
-    .qd-content span{
+    .qd-content span {
         width: 50%;
         font-size: .36rem;
         text-align: center;

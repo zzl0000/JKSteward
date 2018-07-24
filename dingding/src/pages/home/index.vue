@@ -8,6 +8,7 @@
 						<span class="title">我的消息</span>
 						<span class="more">更多</span>
 					</div>
+
 					<div class="news-list">
 						<ul>
 							<li>
@@ -177,6 +178,7 @@
 		position: absolute;
 		right: .25rem;
 		bottom: 1.60rem;
+		z-index: 1;
 	}
 	.qd-content div{
 		border-radius: 100%;

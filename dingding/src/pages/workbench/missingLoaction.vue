@@ -14,15 +14,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                      <td>1号点位</td>
-                      <td>11</td>
-                      <td>11</td>
-                    </tr>
-                    <tr>
-                      <td>2号点位</td>
-                      <td>22</td>
-                      <td>22</td>
+                    <tr v-for="item in  pointList">
+                        <td>{{item.name || ''}}</td>
+                        <td>0</td>
+                        <td>0</td>
                     </tr>
                 </tbody>
             </table>
@@ -36,8 +31,17 @@
 <script>
 	export default {
 		name:'',
+        data() {
+		  return{
+              pointList:[]
+          }
+        },
         created (){
-            this.$setTitle('漏检点位')
+            var _self = this;
+            this.$setTitle('漏检点位');
+            _self.pointList = JSON.parse(_self.$storage.getItem('pointList'));
+            console.log(JSON.parse(_self.$storage.getItem('pointList')))
+
         },
 		methods: {
 			 back () {
