@@ -41,7 +41,7 @@
             <div class="subtn">
                 <button class="btn btn-blue mb-list border-radius"  @click.stop="submit">保存</button>
             </div>
-            <audio controls autoplay style="display: none" src="./static/audio/dingdong.wav"></audio>
+            <!--<audio controls autoplay style="display: none" src="./static/audio/dingdong.wav"></audio>-->
         </div>
     </div>
 </template>
@@ -76,7 +76,8 @@
             getNfc() {
                 var _self = this;
                 _self.$setNfc(function(rs){
-                    _self.todo.pointId = rs.tagId.replace(/':'/g,'');
+                    _self.todo.pointId = rs.tagId.replace(/:/g,'');
+                    _self.getNfc();
                 })
             },
             submit() {
@@ -100,6 +101,9 @@
                     console.log(res);
                     if (res.errcode == 200) {
                         _self.$toast(res.errmsg)
+                        setTimeout(function () {
+                            _self.$router.go(-1);
+                        },3000)
                     } else {
                         _self.$toast(res.errmsg)
                     }

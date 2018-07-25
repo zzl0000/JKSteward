@@ -93,6 +93,7 @@
                 taskId: ''
             }
             return {
+                isTime:false,
                 imgUrl: imgUrls,
                 item: items,
                 todo: todos,
@@ -110,32 +111,33 @@
         methods: {
             getNfc() {
                 var _self = this;
-               if(_self.list != undefined){
-                   if(_self.list.length === 0){
-                       return false;
-                   }
-               }
+                //alert(_self.list);
+
                 _self.$setNfc(function (rs) {
-                    // alert(JSON.stringify(rs));
+                    //alert(JSON.stringify(rs));
                     if (rs.errorCode == 3) {
                         _self.$toast('设备不支持NFC, 请更换设备');
                         return false;
                     }
-                    _self.changePointState(rs.tagId.replace(/':'/g,''));
-                    _self.todo.pointId = rs.tagId.replace(/':'/g,'');
+
+                    _self.todo.pointId = rs.tagId.replace(/:/g,'');
                     let pointList = {
-                        pointId: rs.tagId.replace(/':'/g,''),
+                        pointId: rs.tagId.replace(/:/g,''),
                         inspecTime: _self.$api.formats(),
                         result: '1',
-                        remark: 'z正常'
+                        remark: '正常'
                     };
                     _self.getNetworkType(function () {
-                       // alert(_self.state)
+                        //alert(_self.state)
                         if (_self.state) {
-                            _self.pointListS.push(pointList);
-                            _self.uplodPointInfo(_self.pointListS);
+                            _self.changePointState(_self.todo.pointId,function() {
+                                 _self.pointListS = [pointList];
+                                _self.uplodPointInfo(_self.pointListS);
+                            });
                         } else {
-                            _self.pointListS.push(pointList);
+                            _self.changePointState(_self.todo.pointId,function() {
+                                _self.pointListS.push(pointList);
+                            });
                         }
                         _self.getNfc();
                     });
@@ -154,15 +156,41 @@
                     fn()
                 });
             },
-            changePointState(rs) {
+            changePointState(rs,fn) {
                 var _self = this;
-                console.log(_self.list)
+                //alert(_self.list.length)
                 if(_self.list.length === 0){
                      return false;
                 }
                 for(let i = 0; i <= _self.list.length; i++ ){
                     if(rs === _self.list[i].pointId){
-                        _self.list[i].pointState = 'Y';
+
+                        if(_self.list[i].pointState === 'Y'){
+
+                            _self.isTime = true;
+
+                            let curTime = new Date(_self.list[i].completeTime);
+
+                            let curMin= curTime.getMinutes();
+                            curTime.setMinutes(curMin + 5);
+                            //alert(curTime.getTime(),)
+                            if(curTime.getTime() <= new Date().getTime()){
+                                _self.isTime = false;
+                            }
+                            // alert( _self.isTime)
+                            if(_self.isTime){
+                                _self.$toast('此点位已经打卡，请5分钟后再操作');
+                                return false;
+                            }else{
+                                _self.list[i].completeTime = _self.$api.formats()
+                                fn();
+                            }
+                        }else{
+                            _self.list[i].pointState = 'Y';
+                            _self.list[i].completeTime = _self.$api.formats()
+                            fn();
+                        }
+
                     }
                 }
 
@@ -173,13 +201,13 @@
                 this.$setTitle(this.todo.title)
             },
             hidePanel(rs) {
-                //console.log(rs);
+                //alert(JSON.stringify(rs))
                 this.todo.isComplete = false;
                 this.todo.title = '巡更中';
                 this.todo.pointName = rs.pointName;
-                this.todo.taskId = rs.Id;
+                this.todo.taskId = rs.id;
                 this.$setTitle(this.todo.title)
-                this.getPointList(rs);
+                this.getPointList();
                 this.getNfc();
             },
             endpPatrol(url) {
@@ -214,34 +242,35 @@
                     thirdParty: 1
                 };
 
-                params.resultList = {
+                params.resultList = [{
                     taskId: _self.todo.taskId,
                     completeTime: '',
                     listData: '',
-                };
-                params.resultList.listData = pointList;
-
-                alert(JSON.stringify(params));
+                }];
+                params.resultList[0].listData = pointList;
 
                 this.$api.post('/dian/app/patrolPunchCard', params, '', function (res) {
                     //console.log(res);
-                    _self.$toast(res.errmsg)
+                    _self.$toast(res.errmsg);
+                    setTimeout(function () {
+                        _self.getNfc();
+                    },0)
+
                 })
             },
-            getPointList(rs) {
-                //console.log(id)
+            getPointList() {
                 let _slef = this;
                 let params = {
                     token: this.$storage.getItem('token'),
-                    taskId: rs.id,
+                    taskId: _slef.todo.taskId,
                     thirdParty: 1
                 }
                 this.$api.post('/dian/app/isStart', params, '', function (res) {
-                    //console.log(res);
+
                     if (res.errcode == 200) {
                         _slef.list = res.data.listData
                     } else {
-                        _self.$toast(res.errmsg)
+                        _slef.$toast(res.errmsg)
                     }
                 })
             },

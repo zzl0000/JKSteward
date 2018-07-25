@@ -14,7 +14,7 @@
                         <label>漏检</label>
                         <div class="space-between" @click="detail('missingLoaction', item.pointList)">
                             <span class="tips">8个</span>
-                            <p class="td-color">{{item.taskName}} {{item.startTime}} {{item.endTime}}</p>
+                            <p class="td-color">{{item.taskName}} {{item.startTime.substring(10)}} {{item.endTime.substring(10)}}</p>
                             <div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18">
                             </div>
                         </div>
@@ -23,14 +23,14 @@
                         <label>已完成</label>
                         <div>
                             <span></span>
-                            <p class="td-color">{{item.taskName}} {{item.startTime}} {{item.endTime}}</p>
+                            <p class="td-color">{{item.taskName}} {{item.startTime.substring(10)}} {{item.endTime.substring(10)}}</p>
                         </div>
                     </li>
                     <li v-for="item in  taskItems" v-if="item.state == 2">
                         <label>进行中</label>
                         <div>
                             <span></span>
-                            <p class="td-color">{{item.taskName}} {{item.startTime}} {{item.endTime}}</p>
+                            <p class="td-color">{{item.taskName}} {{item.startTime.substring(10)}} {{item.endTime.substring(10)}}</p>
                         </div>
                     </li>
                 </ul>

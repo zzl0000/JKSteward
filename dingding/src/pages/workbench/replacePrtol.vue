@@ -14,7 +14,7 @@
 		    			<div class="img"><img v-bind:src="imgUrl[1]" height="184" width="204" ></div>
 			    		<p>
 			    			<span class="td-color">操作提示:请把xxx贴近巡更点</span> 
-			    			<span class="td-color min">巡更点ID:{{todo.pointId}}</span>
+			    			<span class="td-color min">巡更点ID:{{todo.newPoint}}</span>
 			    		</p>
 		    		</div>		
 		    	</div>
@@ -78,7 +78,9 @@
             getNfc() {
                 let _self = this;
                 _self.$setNfc(function(rs){
-                    _self.todo.pointId = rs.tagId.replace(/':'/g,'');
+                    // alert(rs.tagId);
+                    _self.todo.newPoint = rs.tagId.replace(/:/g,'');
+                    _self.getNfc();
                 })
             },
 			 back (type) {
@@ -116,7 +118,11 @@
 			  		this.$api.post('/dian/app/replacePoint',params,'', function(res) {
 			  			//console.log(res);
                         if (res.errcode == 200) {
-                            _self.$toast(res.errmsg)
+                            _self.$toast(res.errmsg);
+                            setTimeout(function () {
+                                _self.$router.go(-1);
+                            },3000)
+
                         } else {
                             _self.$toast(res.errmsg)
                         }

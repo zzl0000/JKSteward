@@ -111,10 +111,11 @@ export function getNetwork(cb) {
     dingtalk.ready(function() {
         dingtalk.apis.device.connection.getNetworkType({
             onSuccess: function(data) {
+               // alert(JSON.stringify(data))
                 cb(data)
             },
             onFail: function(err) {
-                //alert(JSON.stringify(err))
+               // alert(JSON.stringify(err))
                 cb(err)
             }
         });
