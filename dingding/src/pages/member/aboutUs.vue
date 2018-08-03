@@ -5,7 +5,7 @@
          <div class="aboutus-group boder-bottom">
               <div class="aboutus-icon"><img src="../../../static/img/log-icon.png" height="168" width="197"></div>
               <div class="aboutus-info">
-                  <p>大管家续航系统</p>
+                  <p>大管家巡航系统</p>
                   <span>当前版本号2.2.2</span>
               </div>
          </div>

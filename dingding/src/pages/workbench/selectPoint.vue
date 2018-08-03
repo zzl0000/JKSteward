@@ -3,13 +3,7 @@
 
         <div class="content">
             <div class="b-white">
-                <ul v-if="isComplete == false">
-                    <li  v-for="item in  items" @click.stop="select(item.taskId,item.taskName)"
-                        class="pd-list boder-bottom">{{item.taskName}}
-                    </li>
-
-                </ul>
-                <ul  v-else>
+                <ul>
                     <li  v-for="item in  items" @click.stop="select(item.pointId,item.pointName)"
                          class="pd-list boder-bottom">{{item.pointName}}
                     </li>
@@ -20,33 +14,28 @@
 </template>
 
 <script>
-    import { setLeft } from '../lib/util.js';
+
     export default {
         name: 'select',
-        props: ['postUrl'],
         data() {
             return {
                 items: '',
-                url: this.postUrl,
+                url: 'getPointList',
                 isComplete:false
             }
         },
         created: function () {
 
-            if( this.postUrl == 'getPointList'){
-                this.isComplete = true;
-            }else{
-                this.isComplete = false;
-            }
             let _self = this;
-
+            //this.$storage.setItem('type','0')
+            _self.$setTitle('替换巡更点位');
 
             let params = {
                 token: this.$storage.getItem('token'),
                 projectId: this.$storage.getItem('projectId'),
                 thirdParty: 1
             }
-            this.$api.post('/dian/app/' + this.postUrl + '?', params,'', function (res) {
+            this.$api.post('/dian/app/' + _self.url + '?', params,'', function (res) {
                 if (res.errcode == 200) {
                     _self.items = res.data.listData
                 } else {
@@ -56,12 +45,13 @@
                     })
                 }
 
-            })
+            });
+           
         },
         methods: {
-
             select(id, pointName) {
-                this.$emit('fn', {id, pointName});
+                this.$router.push({ path:'replacePrtol',  name:'replacePrtol', query: {id: id,pointName:pointName }});
+                this.$storage.setItem('type','1')
             }
         }
     }

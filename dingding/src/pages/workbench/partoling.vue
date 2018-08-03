@@ -2,7 +2,7 @@
     <div class="wrapper">
         <!-- 顶部导航栏 -->
 
-        <div class="pl-content" v-if="todo.isComplete == false">
+        <div class="pl-content" >
 
             <!-- 巡更人员信息 -->
             <div class="user-opreation-list b-white mb b-white">
@@ -24,9 +24,9 @@
             <!-- 巡更任务 -->
             <div class="partol-task b-white pd-list boder-bottom">
                 <label>巡更任务</label>
-                <input type="text" readonly="readonly" name="" v-model="todo.pointName">
+                <input type="text" readonly="readonly" name="" v-model="todo.taskName">
                 <div class="select">
-                    <span @click="choosePointLocation">请选择</span>
+                    <span @click="choosePointLocation('selectTask')">请选择</span>
                     <div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18"></div>
                 </div>
 
@@ -62,17 +62,15 @@
         <!--</div>-->
 
         <!-- 悬浮块 -->
-        <div class="subtn" v-if="todo.isComplete == false">
-
-            <button class="btn btn-blue mb-list border-radius" @click="endpPatrol('patrolSystem')">结束巡更</button>
+        <div class="subtn">
+            <button class="btn btn-blue mb-list border-radius" @click="endpPatrol('endPartol')">结束巡更</button>
         </div>
 
-        <selecTask v-on:fn="hidePanel" v-else post-url="getTaskInfo"></selecTask>
+        <!--<selecTask v-on:fn="hidePanel" v-else post-url="getTimeOutTask"></selecTask>-->
 
     </div>
 </template>
 <script>
-    import selecTask from '../../components/selecTask.vue';
 
     export default {
         name: 'workbench',
@@ -87,26 +85,30 @@
                 currTime: this.$api.formats()
             };
             let todos = {
-                isComplete: false,
                 title: '巡更中',
-                pointName: '',
+                taskName: '',
                 taskId: ''
             }
             return {
-                isTime:false,
+                isTime: false,
                 imgUrl: imgUrls,
                 item: items,
                 todo: todos,
                 list: [],
                 state: '',
+                pointListA: JSON.parse(this.$storage.getItem('pointListA')) || new Object(),
                 pointListS: [],
             }
         },
         created() {
+
+            let  _self = this;
             this.$setTitle(this.todo.title);
             this.item.staffName = this.$storage.getItem('staffName') || this.item.staffName;
             this.item.position = this.$storage.getItem('position') || this.item.position;
-            this.getNfc();
+           // console.log(this.$storage.getItem('type'));
+            this.hidePanel();
+
         },
         methods: {
             getNfc() {
@@ -120,9 +122,9 @@
                         return false;
                     }
 
-                    _self.todo.pointId = rs.tagId.replace(/:/g,'');
+                    _self.todo.pointId = rs.tagId.replace(/:/g, '');
                     let pointList = {
-                        pointId: rs.tagId.replace(/:/g,''),
+                        pointId: rs.tagId.replace(/:/g, ''),
                         inspecTime: _self.$api.formats(),
                         result: '1',
                         remark: '正常'
@@ -130,16 +132,19 @@
                     _self.getNetworkType(function () {
                         //alert(_self.state)
                         if (_self.state) {
-                            _self.changePointState(_self.todo.pointId,function() {
-                                 _self.pointListS = [pointList];
+                            _self.changePointState(_self.todo.pointId, function () {
+                                if(_self.pointListS.length == 0){
+                                    _self.pointListS = [pointList];
+                                }
                                 _self.uplodPointInfo(_self.pointListS);
                             });
                         } else {
-                            _self.changePointState(_self.todo.pointId,function() {
+                            _self.changePointState(_self.todo.pointId, function () {
                                 _self.pointListS.push(pointList);
+                                _self.getNfc();
                             });
                         }
-                        _self.getNfc();
+
                     });
 
                 })
@@ -148,82 +153,86 @@
                 let _self = this;
                 _self.$getNetwork(function (rs) {
                     // alert(JSON.stringify(rs))
-                    if (rs.result == '4G' || rs.result == 'wifi') {
+                    if (rs.result === '4g' || rs.result === 'wifi' || rs.result === '4G') {
                         _self.state = true;
                     } else {
+                        _self.$toast('请使用4g网络或wifi打卡');
                         _self.state = false;
                     }
                     fn()
                 });
             },
-            changePointState(rs,fn) {
-                var _self = this;
-                //alert(_self.list.length)
-                if(_self.list.length === 0){
-                     return false;
+            changePointState(rs, fn) {
+                let _self = this;
+                if(JSON.stringify(_self.list).indexOf(rs) === -1){
+                    _self.$toast('点位不存在');
+                    _self.getNfc();
+                    return false;
                 }
-                for(let i = 0; i <= _self.list.length; i++ ){
-                    if(rs === _self.list[i].pointId){
 
-                        if(_self.list[i].pointState === 'Y'){
-
+                for (let i = 0; i <= _self.list.length; i++) {
+                     if (rs === _self.list[i].pointId) {
+                        if (_self.list[i].pointState === 'Y') {
                             _self.isTime = true;
-
                             let curTime = new Date(_self.list[i].completeTime);
-
-                            let curMin= curTime.getMinutes();
+                            let curMin = curTime.getMinutes();
                             curTime.setMinutes(curMin + 5);
-                            //alert(curTime.getTime(),)
-                            if(curTime.getTime() <= new Date().getTime()){
+                            // alert(curTime.getTime(),)
+                            if (curTime.getTime() <= new Date().getTime()) {
                                 _self.isTime = false;
                             }
                             // alert( _self.isTime)
-                            if(_self.isTime){
+                            if (_self.isTime) {
                                 _self.$toast('此点位已经打卡，请5分钟后再操作');
+                                _self.getNfc();
                                 return false;
-                            }else{
-                                _self.list[i].completeTime = _self.$api.formats()
+                            } else {
+                                _self.list[i].completeTime = _self.$api.formats();
                                 fn();
                             }
-                        }else{
+                        } else {
                             _self.list[i].pointState = 'Y';
-                            _self.list[i].completeTime = _self.$api.formats()
+                            _self.list[i].completeTime = _self.$api.formats();
                             fn();
                         }
-
                     }
                 }
 
             },
-            choosePointLocation() {
-                this.todo.isComplete = true;
-                this.todo.title = '巡更任务';
-                this.$setTitle(this.todo.title)
+            choosePointLocation(url) {
+                let _self = this;
+                this.$storage.setItem('type','0')
+                _self.$router.push(url);
+
             },
-            hidePanel(rs) {
-                //alert(JSON.stringify(rs))
-                this.todo.isComplete = false;
-                this.todo.title = '巡更中';
-                this.todo.pointName = rs.pointName;
-                this.todo.taskId = rs.id;
-                this.$setTitle(this.todo.title)
-                this.getPointList();
+            hidePanel() {
+              //  console.log(this.$storage.getItem('taskId'),this.$route.query.id)
+                this.todo.taskName = this.$storage.getItem('taskName');
+                this.todo.taskId = this.$route.query.id;
+                this.$storage.setItem('taskId',0)
+                // if(this.$storage.getItem('taskId') != this.$route.query.id){
+                //     this.$storage.setItem('taskId',this.$route.query.id)
+                // }
+                //console.log(this.$storage.getItem('taskId'),this.todo.taskId);
+                if(this.$route.query.id){
+                    this.getPointList();
+                }
                 this.getNfc();
             },
             endpPatrol(url) {
-
                 let _self = this;
                 let params = {
-                    token: _self.$storage.getItem('token'),
+                    token: _self.$storage.setItem('token'),
                     signId: _self.$storage.getItem('signId'),
                     outTime: _self.item.currTime,
                     thirdParty: 1
                 }
                 this.$api.post('/dian/app/signOutPatrol', params, '', function (res) {
-                    console.log(res);
+                   // console.log(res);
                     if (res.errcode == 200) {
                         //存储 Token 及用户信息
                         _self.$toast(res.errmsg);
+                        _self.$storage.setItem('signId', 'undefined');
                         setTimeout(function () {
                             _self.$router.push(url);
                         }, 2001)
@@ -248,32 +257,50 @@
                     listData: '',
                 }];
                 params.resultList[0].listData = pointList;
+                if(JSON.stringify(_self.list).indexOf('"pointState":"N"') === -1){
+                    params.resultList[0].completeTime =  _self.$api.formats();
+                }
 
                 this.$api.post('/dian/app/patrolPunchCard', params, '', function (res) {
                     //console.log(res);
                     _self.$toast(res.errmsg);
+                    if(JSON.stringify(_self.list).indexOf('"pointState":"N"') === -1){
+                        _self.$toast('打卡已完成');
+                    }
                     setTimeout(function () {
                         _self.getNfc();
-                    },0)
+                    }, 0)
 
                 })
             },
             getPointList() {
-                let _slef = this;
+
+                let _self = this;
                 let params = {
                     token: this.$storage.getItem('token'),
-                    taskId: _slef.todo.taskId,
+                    taskId: _self.todo.taskId,
                     thirdParty: 1
                 }
-                this.$api.post('/dian/app/isStart', params, '', function (res) {
+                let index = _self.todo.taskId;
 
+                this.$api.post('/dian/app/isStart', params, '', function (res) {
                     if (res.errcode == 200) {
-                        _slef.list = res.data.listData
+
+                        _self.list = res.data.listData;
+
+                        _self.pointListA[index] = _self.list;
+
+                        //console.log(JSON.stringify(_slef.pointListA));
+                        _self.$storage.setItem('pointListA',JSON.stringify(_self.pointListA));
+
                     } else {
-                        _slef.$toast(res.errmsg)
+                        _self.$toast(res.errmsg)
                     }
                 })
+
+
             },
+
             jump(url) {
                 this.$router.push({path: url, name: url})
             }
@@ -290,9 +317,6 @@
                 }
                 return value
             }
-        },
-        components: {
-            selecTask
         }
     }
 </script>
@@ -323,6 +347,10 @@
         width: .21rem;
         height: .36rem;
         margin-left: .15rem;
+    }
+    .partol-table {
+        height: 7rem;
+        overflow-y: scroll;
     }
 
     .qd-content {

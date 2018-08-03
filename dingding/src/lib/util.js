@@ -135,20 +135,18 @@ export function setRight(config, cb) {
 }
 
 export function setLeft(cb) {
-    const config = {
-        show: true,
-        control: true,
-        text: '返回'
-    };
-    const { control } = config;
+    //console.log(cb)
+    document.addEventListener('backbutton', function(e) {
 
-    dingtalk.ready(function() {
-        dingtalk.apis.biz.navigation.setLeft(config);
-        if (control) {
-            dingtalk.on('goBack', cb);
-        }
+        // 在这里处理你的业务逻辑
+        e.preventDefault();
+        cb()
+        //console.log(cb())
     });
+
 }
+
+
 
 
 export function toast(msg) {
@@ -183,3 +181,5 @@ export function setTitle(title) {
         })
     });
 }
+
+

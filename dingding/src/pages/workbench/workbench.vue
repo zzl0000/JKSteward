@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
 
-        <div class="pl-content" v-if="isComplete == false">
+        <div class="pl-content">
             <!-- 巡检应用 -->
             <div class=" b-white mb">
                 <div class="subnav boder-bottom">
@@ -22,11 +22,11 @@
                     <span class="title">常用应用</span>
                 </div>
                 <ul class="apply-list">
-                    <li>
+                    <li @click="jump('')">
                         <div class="img"><img v-bind:src="imgUrl[0]"></div>
                         <span>审批</span>
                     </li>
-                    <li>
+                    <li @click="jump('')">
                         <div class="img"><img v-bind:src="imgUrl[1]"></div>
                         <span>通讯录</span>
                     </li>
@@ -34,19 +34,16 @@
             </div>
             <!-- 悬浮块 -->
             <div class="qd-content">
-                <div class="b-bule" @click="amendItem()">
+                <div class="b-bule" @click="amendItem('selectItem')">
                     <span>修改项目</span>
                 </div>
             </div>
         </div>
 
-        <selectItem v-else-if="isComplete == true" v-on:fn="hidePanel"></selectItem>
-
         <FooterComponent></FooterComponent>
     </div>
 </template>
 <script>
-    import selectItem from '../../components/selectItem.vue';
     import FooterComponent from '../../components/footercomponent.vue';
 
     export default {
@@ -80,7 +77,6 @@
                 './static/img/apply-icon06.png'];
 
             return {
-                isComplete: false,
                 items: itemArray,
                 imgUrl: imgUrls,
                 title: this.$storage.getItem('orgName')
@@ -88,31 +84,33 @@
         },
         created: function () {
             let _self = this;
-            _self.$setTitle(_self.title);
+            _self.init()
 
         },
         methods: {
             jump(url) {
+                if(url == ''){
+                    this.$toast('此功能暂未开放')
+                    return false;
+                }
                 this.$router.push(url);
             },
-            amendItem() {
-                this.isComplete = true;
+            amendItem(url) {
+                let _self = this;
+                this.$storage.setItem('type','0');
+                _self.$router.push(url)
             },
-            hidePanel(rs) {
+            init() {
+                let _self = this;
 
-                this.isComplete = 0;
-                if (rs != '') {
-                    {
-                        this.$setTitle(rs.text);
-                        this.$storage.setItem('projectId', rs.id);
-                        this.$storage.setItem('orgName', rs.text);
-                    }
-
+                this.$setTitle(_self.$route.query.text || _self.title);
+                if(this.$route.query.ids){
+                    this.$storage.setItem('projectId',  this.$route.query.ids);
+                    this.$storage.setItem('orgName',  this.$route.query.text);
                 }
             }
         },
         components: {
-            selectItem,
             FooterComponent
         }
     }

@@ -4,7 +4,7 @@
 		<div class="content">
 			<!-- 用户信息 -->
 			<div class="user-ifon b-white mb">
-				<div class="user-header"><span class="t-white-color">王</span></div>
+				<div class="user-header"><span class="t-white-color">{{nickName.substring(0,1)}}</span></div>
 				<div class="user-list">
 					<p class="td-color">姓名:<span class="t-bold-color">{{nickName}}</span></p>
 					<p class="td-color">岗位:<span class="t-bold-color">{{fax}}</span></p>

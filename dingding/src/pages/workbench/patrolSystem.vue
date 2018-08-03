@@ -3,7 +3,7 @@
         <div>
             <div class="pl-content b-white">
                 <ul class="partol-tbl mb-list">
-                    <li @click="jump('startPartol')">
+                    <li @click="startPartol('startPartol')">
                         <div class="img">
                             <img v-bind:src="pImgUrl[0]">
                         </div>
@@ -63,7 +63,8 @@
         },
         created() {
             this.$setTitle('智能巡更');
-            var _self = this;
+            var _self = this
+            //console.log(this.$storage.getItem('userId'));
 
             this.$api.post('/APIInterface/platformOauth', _self.params, '', function (res) {
                 //console.log(_self.$storage.getItem('projectId'));
@@ -98,6 +99,13 @@
                 this.$router.go(-1);
             },
             jump(url) {
+                this.$router.push(url)
+            },
+            startPartol(url){
+                console.log(this.$storage.getItem('signId'))
+               if(this.$storage.getItem('signId') !== ''){
+                   url = 'partoling'
+               }
                 this.$router.push(url)
             }
 
@@ -160,7 +168,7 @@
         width: 100%;
         position: absolute;
         bottom: .99rem;
-        z-index: 1;
+        z-index: ;
     }
 
     .pl-content {

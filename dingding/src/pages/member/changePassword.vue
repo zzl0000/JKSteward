@@ -6,15 +6,15 @@
       <div class="b-white">
          <div class="form-group boder-bottom">
             <label>原密码</label>
-            <input type="text" class="" v-model="lastpwd" name="" placeholder="原密码">
+            <input type="password" class="" v-model="params.lastpwd" name="" placeholder="原密码">
          </div>
          <div class="form-group boder-bottom">
              <label>新密码</label>
-            <input type="text" class="" v-model="newpwd" name="" placeholder="新密码">
+            <input type="password" class="" v-model="params.newpwd" name="" placeholder="新密码">
          </div>
          <div class="form-group boder-bottom">
              <label>确认密码</label>
-            <input type="text" class="" v-model="confpwd" name="" placeholder="确认密码">
+            <input type="password" class="" v-model="params.confpwd" name="" placeholder="确认密码">
          </div>
       </div> 
       <div class="register-operation mb-model">
@@ -27,11 +27,16 @@
   export default {
       name:'changePassword',
       data (){
-       
+          let params ={
+              confpwd:'',
+              lastpwd:'',
+              newpwd:'',
+              sessionId: this.$storage.getItem('sessionId'),
+              thirdParty:1,
+              userId: this.$storage.getItem('userId')
+          }
         return{
-            lastpwd:'',
-            newpwd:'',
-            confpwd:''
+            params : params,
         }
       },
       created: function () {
@@ -45,25 +50,37 @@
         },
         getRegister (){
               var _self = this;
-              const modal = weex.requireModule('modal');  
-              if(_self.lastpwd.length < 1 || _self.newpwd.length < 1){  
+              if(_self.params.lastpwd.length < 1 || _self.params.newpwd.length < 1){
                    _self.$api.toast('密码不能为空')
                   return;  
-              }else if(_self.newpwd != _self.confpwd){  
+              }else if(_self.params.newpwd != _self.params.confpwd){
                   _self.$api.toast('两次密码输入不一致')  
                   return;  
               };
-              let params ={
-                  userId: this.$storage.getItem('userId'),
-                  sessionId: this.$storage.getItem('sessionId'),
-                  lastpwd:_self.lastpwd,
-                  newpwd:_self.newpwd
-              }
+
+                _self.headersData = {
+                    signature:_self.setmd5(_self.$storage.getItem('signature')),
+                    uid:_self.$storage.getItem('userId'),
+                }
               /*请求数据*/
-              this.$api.post('/Appinterface/userLogin',params,function(data) {
-                console.log(JSON.stringify(data));
+              this.$api.post('/Appinterface/updatePwd',_self.params, _self.headersData,function(rs) {
+                  _self.$toast(rs.errmsg);
+                  if(rs.errcode == 1){
+                      setTimeout(function () {
+                          _self.$router.push('/');
+                      },3000)
+                  }
+
               })
-        }
+        },
+          setmd5(key){
+              var _self = this;
+              var md5 = _self.$crypto.createHash("md5");
+              md5.update(_self.$urlEncode(_self.params).substring(1) + '&key='+ key +''); //这个是 排序加密
+              var d= md5.digest('hex').toUpperCase();
+              console.log(d);
+              return d;
+          }
     }
   }
 

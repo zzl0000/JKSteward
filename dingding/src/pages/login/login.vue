@@ -37,8 +37,8 @@
     data (){
       return{
             isDisable:false,
-            userNumber:'',
-            userPassword:''
+            userNumber:this.$storage.getItem('userName') || '',
+            userPassword:this.$storage.getItem('passWord') || ''
       }
     },
     methods:{
@@ -49,13 +49,16 @@
                const modal = weex.requireModule('modal');
               if(this.userNumber.length < 1){
                    _self.$api.toast('请输入手机号');
-                  this.isDisable = false
+                  _self.isDisable = false
                   return;
               }else if(this.userPassword.length < 1){
                   _self.$api.toast('请输入密码');
-                  this.isDisable = false
+                  _self.isDisable = false
                   return;
               }
+              // 缓存登录账号和密码
+              _self.$storage.setItem('userName',this.userNumber);
+              _self.$storage.setItem('passWord',this.userPassword);
 
               let params = {
                   userName:this.userNumber,
@@ -75,6 +78,7 @@
                    _self.$storage.setItem('projectId',res.data.organization2.orgCode);
                     _self.$storage.setItem('orgName',res.data.organization2.orgName);
                     _self.$storage.setItem('signature',_self.getmd5(_self.userNumber,_self.userPassword));
+                    _self.$storage.setItem('signId', 'undefined');
                    modal.toast({
                         message: '登录成功',
                         duration: 1
@@ -83,7 +87,7 @@
                     _self.$router.push('home');
                   },2000)
                 }else{
-                    this.isDisable = false
+                    _self.isDisable = false;
                       modal.toast({
                         message: res.errmsg,
                         duration: 2

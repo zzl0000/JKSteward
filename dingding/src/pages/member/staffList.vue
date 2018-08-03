@@ -3,7 +3,7 @@
 		<!-- 顶部导航栏 -->
 		<div class="content">
 			<!-- 所属部门 -->
-			<div v-for="item in sectionList" class="mb sector-select b-white pd-list">
+			<div v-for="(item,index) in sectionList" class="mb sector-select b-white pd-list" @click="setFiltrate(index)">
 				<div  class="sector-select-list">
 					<span>{{item.name}}({{item.ulist.length}})</span>
 					<div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18"></div>
@@ -68,7 +68,10 @@
                 var d= md5.digest('hex').toUpperCase();
                 console.log(d);
                 return d;
-            }
+            },
+            setFiltrate(id){
+                this.peopleList =  this.sectionList[id].ulist;
+			}
 		}
 	}
 </script>

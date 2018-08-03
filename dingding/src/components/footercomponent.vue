@@ -61,7 +61,7 @@
 	      }
 	    },
 		created() {
-			console.log(this.$route.query.id)
+			//console.log(this.$route.query.id)
 		},
 		methods: {	
 	        jump (url,id) {

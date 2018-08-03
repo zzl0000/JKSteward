@@ -75,25 +75,25 @@ export function apiStream(method, url, params, headersData, success, failuer) {
                 var data = JSON.parse(res.data);
                 if (data.errcode == 7) {
                     modal.toast({
-                        message: data.errmsg,
+                        message: '账号已在另一个设备上登陆，请重新登陆',
                         duration: 2
                     });
                     setTimeout(function () {
                         window.location.href = './'
-                    }, 300)
+                    }, 2000)
                 } else {
                     success(JSON.parse(res.data));
                 }
             } else {
                 modal.toast({
-                    message: '请求失败,请检查网络!',
+                    message: '网络异常，请重试!',
                     duration: 2
                 })
             }
         })
 
     } else if (method === 'POST') {
-        // alert(toParams(params));
+      //  alert(toParams(params));
         stream.fetch({
                 method: 'POST',
                 mode: 'cors',
@@ -108,22 +108,21 @@ export function apiStream(method, url, params, headersData, success, failuer) {
                     var data = JSON.parse(res.data);
                     if (data.errcode == 7) {
                         modal.toast({
-                            message: data.errmsg,
+                            message: '账号已在另一个设备上登陆，请重新登陆',
                             duration: 2
                         });
                         setTimeout(function () {
                             window.location.href = './'
-                        }, 300)
+                        }, 2000)
                     } else {
                         success(JSON.parse(res.data));
                     }
 
                 } else {
-                    alert(JSON.stringify(res))
-                    // modal.toast({
-                    //     message: JSON.stringify(res),
-                    //     duration: 2
-                    // })
+                    modal.toast({
+                        message: '网络异常，请重试!',
+                        duration: 2
+                    })
                 }
             },
             function (progress) {

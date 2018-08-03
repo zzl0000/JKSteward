@@ -5,7 +5,7 @@
             <div class="b-white">
                 <div class="search boder-bottom">
                     <div class="search-control">
-                        <div class="img"><img src="../../static/img/search-icon.png" height="23" width="23"></div>
+                        <div class="img"><img src="../../../static/img/search-icon.png" height="23" width="23"></div>
                         <div class="form-group">
                             <input type="text" v-model="key" placeholder="请输入所属项目">
                         </div>
@@ -29,7 +29,6 @@
 
 <script>
 
-
     export default {
         name: 'select',
         data() {
@@ -48,17 +47,19 @@
         },
         created: function () {
             var _self = this;
+            this.$storage.setItem('type','0')
             _self.$setTitle('请选择所属项目');
             // 获取项目列表
             _self.$api.post('/Appinterface/XMList', _self.params, '', function (rs) {
                 _self.items = rs.data.listObj
-
             });
 
         },
         methods: {
             select(key, id, text) {
-                this.$emit('fn', {key, id, text});
+                this.$router.push({ path:'workbench',  name:'workbench', query: {key:key, ids: id,text:text }});
+                this.$storage.setItem('type','1')
+                //this.$emit('fn', {key, id, text});
             },
             query(parentId) {
                 let _self = this;

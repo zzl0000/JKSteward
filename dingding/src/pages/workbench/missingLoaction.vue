@@ -8,16 +8,14 @@
 				<table class="table">
                 <thead>
                     <tr>
+                        <th>巡更任务名称</th>
                         <th>点位名称</th>
-                        <th>今日巡检次数</th>
-                        <th>本月巡检次数</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="item in  pointList">
+                        <td width="60%">{{taskName || ''}}</td>
                         <td>{{item.name || ''}}</td>
-                        <td>0</td>
-                        <td>0</td>
                     </tr>
                 </tbody>
             </table>
@@ -33,6 +31,7 @@
 		name:'',
         data() {
 		  return{
+              taskName:this.$storage.getItem('taskName'),
               pointList:[]
           }
         },
@@ -44,9 +43,7 @@
 
         },
 		methods: {
-			 back () {
-		        this.$router.go(-1);
-		      }
+
    		 }
 	}
 </script>

@@ -74,13 +74,14 @@
         },
         methods: {
             getNfc() {
-                var _self = this;
+                let _self = this;
                 _self.$setNfc(function(rs){
                     _self.todo.pointId = rs.tagId.replace(/:/g,'');
                     _self.getNfc();
                 })
             },
             submit() {
+                let _self = this;
                 if (this.todo.pointId == '') {
                     this.$api.toast('巡更ID不能为空');
                     return;
@@ -100,7 +101,7 @@
                 this.$api.post('/dian/app/addPoint', params, '', function (res) {
                     console.log(res);
                     if (res.errcode == 200) {
-                        _self.$toast(res.errmsg)
+                        _self.$toast(res.errmsg);
                         setTimeout(function () {
                             _self.$router.go(-1);
                         },3000)

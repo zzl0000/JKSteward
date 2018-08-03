@@ -61,10 +61,11 @@
 		     		thirdParty:1
 		     	}
 		     	this.$api.post('/dian/app/signPatrol',params,'',function(res) {
-			  			console.log(res);
+					console.log(res);
                     if(res.errcode == 200){
-                        //存储 Token 及用户信息
+                        //存储 Token 及用户信息 和签到时间
                         _self.$storage.setItem('signId',res.data.signId);
+                        _self.$storage.setItem('signTime',_self.item.currTime);
                         _self.$toast(res.errmsg)
 						setTimeout(function(){
                             _self.$router.push(url);
