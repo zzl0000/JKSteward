@@ -53,20 +53,20 @@
                 let taskName = rs.taskName + rs.startTime +  rs.endTime;
 
                 if(rs.state === 3){
-                    this.$toast('当前巡更任务已超时');
+                    this.$alert('当前巡更任务已超时');
                     return false
                 }else if(rs.state === 1){
-                    this.$toast('当前巡更任务已完成');
+                    this.$alert('当前巡更任务已完成');
                     return false
                 }
                 else if(rs.state === 4){
-                    this.$toast('当前巡更任务未开始');
+                    this.$alert('当前巡更任务未开始');
                     return false
                 }else {
                     this.$router.push({ path:'partoling',  name:'partoling', query: {id: id}});
                     this.$storage.setItem('type','1')
                     this.$storage.setItem('taskName',taskName)
-                   // console.log(this.$storage)
+
                 }
             }
         }

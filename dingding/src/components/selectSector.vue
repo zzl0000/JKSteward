@@ -35,7 +35,7 @@
 	    		orgId:'6849',
 	    		thirdParty:1
 	    	}
-             this.$api.post('/Appinterface/deptList?',params,'',function(res) {
+             this.$api.post('/cruise/Appinterface/deptList?',params,'',function(res) {
              		console.log(res);
               })
         },

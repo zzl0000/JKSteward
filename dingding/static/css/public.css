@@ -241,11 +241,11 @@ th {
     padding-bottom: .30rem;
     border: none !important;
     color: white !important;
-    border:0.02rem solid #45a4f2 !important;
+    border:1px solid #45a4f2 !important;
 }
 
 td {
     padding-top: .15rem;
     padding-bottom: .15rem;
-    border:0.02rem solid #979797 !important;
+    border:1px solid #979797 !important;
 }

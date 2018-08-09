@@ -17,8 +17,7 @@ function getItem(storage_key) {
     var storage = requireModule('storage');
     
     storage.getItem(storage_key, event => {
-        //console.log('get value:', event)
-        //this.state = 'value: ' + event.data
+
         if (event.data == 'undefined') {
             res = '';
         } else {

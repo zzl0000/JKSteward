@@ -50,7 +50,7 @@
             var _self = this;
             _self.$setTitle('请选择所属项目');
             // 获取项目列表
-            _self.$api.post('/Appinterface/XMList', _self.params, '', function (rs) {
+            _self.$api.post('/cruise/Appinterface/XMList', _self.params, '', function (rs) {
                 _self.items = rs.data.listObj
 
             });
@@ -63,14 +63,14 @@
             query(parentId) {
                 let _self = this;
                 _self.params.parentId = parentId;
-                _self.$api.post('/Appinterface/XMList', _self.params, '', function (rs) {
+                _self.$api.post('/cruise/Appinterface/XMList', _self.params, '', function (rs) {
                     _self.items = rs.data.listObj
                 })
             },
             search(){
                 let _self = this;
                 _self.params.key = _self.key;
-                _self.$api.post('/Appinterface/XMList', _self.params, '', function (rs) {
+                _self.$api.post('/cruise/Appinterface/XMList', _self.params, '', function (rs) {
                     _self.items = rs.data.listObj
                 })
             }

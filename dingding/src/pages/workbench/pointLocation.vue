@@ -12,7 +12,7 @@
                 <ul>
                     <li v-for="item in  taskItems" v-if="item.state == 3">
                         <label>漏检</label>
-                        <div class="space-between" @click="detail('missingLoaction', item.pointList)">
+                        <div class="space-between" @click="detail('missingLoaction', item)">
                             <span class="tips">{{item.pointList.length}}个</span>
                             <p class="td-color">{{item.taskName}} {{item.startTime}}<br/> {{item.endTime}}</p>
                             <div class="img"><img src="../../../static/img/advance-cion.png" height="32" width="18">
@@ -41,18 +41,18 @@
             <div class="partol-table pd-list b-white">
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th>点位名称</th>
-                        <th>今日巡检次数</th>
-                        <th>本月巡检次数</th>
-                    </tr>
+                        <tr>
+                            <th>点位名称</th>
+                            <th>今日巡检次数</th>
+                            <th>本月巡检次数</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="item in  items">
-                        <td>{{item.pointName}}</td>
-                        <td>{{item.todayNum}}</td>
-                        <td>{{item.monthNum}}</td>
-                    </tr>
+                        <tr v-for="item in  items">
+                            <td>{{item.pointName}}</td>
+                            <td>{{item.todayNum}}</td>
+                            <td>{{item.monthNum}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -103,7 +103,6 @@
             };
             this.$api.post('/dian/app/getPointList', params, '', function (res) {
                 if (res.errcode == 200) {
-                    //console.log(res)
                     _self.items = res.data.listData
                 }
             });
@@ -113,10 +112,9 @@
             this.$api.post('/dian/app/getTimeOutTask', params, '', function (res) {
                 if (res.errcode == 200) {
                     _self.taskItems = res.data;
-                    //console.log(_self.taskItems)
+
                 }
             })
-
 
         },
         methods: {
@@ -124,11 +122,12 @@
                 this.$router.go(-1);
             },
             jump(url, id) {
+                this.$storage.setItem('tagId', 'undefined');
                 this.$router.push({path: url, name: url, query: {id: id}})
             },
-            detail(url, pointList) {
+            detail(url, pointData) {
                 this.$router.push({path: url, name: url});
-                this.$storage.setItem('pointList',JSON.stringify(pointList))
+                this.$storage.setItem('pointList',JSON.stringify(pointData))
             }
 
         }

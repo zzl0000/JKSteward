@@ -27,7 +27,7 @@
         created: function () {
 
             let _self = this;
-            //this.$storage.setItem('type','0')
+
             _self.$setTitle('替换巡更点位');
 
             let params = {

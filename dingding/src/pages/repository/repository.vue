@@ -8,15 +8,15 @@
 						<span class="title">巡检应用</span>
 					</div>
 					<ul class="apply-list">
-						<li>
+						<li @click="jump('')">
 							<div class="img"><img v-bind:src="imgUrl[0]"></div>
 							<span class="td-color">品质巡检知识库</span>
 						</li>
-						<li>
+						<li @click="jump('')">
 							<div class="img"><img v-bind:src="imgUrl[1]"></div>
 							<span class="td-color">设备巡检知识库</span>
 						</li>
-						<li>
+						<li @click="jump('')">
 							<div class="img"><img v-bind:src="imgUrl[2]"></div>
 							<span class="td-color">设备维保知识库</span>
 						</li>
@@ -43,14 +43,15 @@
         created: function () {
             this.$setTitle('知识库');
             let _self = this;
-            /*请求数据*/
-            // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
-            //    	console.log(data);
-            //  })
-
         },
 		methods: {
-
+            jump(url) {
+                if(url == ''){
+                    this.$toast('此功能暂未开放')
+                    return false;
+                }
+                this.$router.push(url);
+            }
    		 },
    		components:{
    			FooterComponent

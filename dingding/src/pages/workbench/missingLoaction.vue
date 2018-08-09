@@ -4,7 +4,7 @@
 
 			<!-- 巡更 table -->
 			
-			<div class="partol-table pd-list b-white">
+			<div class="partol-table pd-list b-white" style="height: calc(100vh - .4rem)">
 				<table class="table">
                 <thead>
                     <tr>
@@ -13,8 +13,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in  pointList">
-                        <td width="60%">{{taskName || ''}}</td>
+                    <tr v-for="item in  pointData.pointList">
+                        <td width="60%">{{taskName}}</td>
                         <td>{{item.name || ''}}</td>
                     </tr>
                 </tbody>
@@ -31,14 +31,15 @@
 		name:'',
         data() {
 		  return{
-              taskName:this.$storage.getItem('taskName'),
-              pointList:[]
+              pointData:'',
+              taskName:''
           }
         },
         created (){
             var _self = this;
             this.$setTitle('漏检点位');
-            _self.pointList = JSON.parse(_self.$storage.getItem('pointList'));
+            _self.pointData = JSON.parse(_self.$storage.getItem('pointList'));
+            _self.taskName = _self.pointData.taskName + _self.pointData.startTime + _self.pointData.endTime
             console.log(JSON.parse(_self.$storage.getItem('pointList')))
 
         },
@@ -50,5 +51,4 @@
 
 <style>
 
-	
 </style>

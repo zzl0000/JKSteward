@@ -63,7 +63,7 @@
                 uid:_self.$storage.getItem('userId'),
             }
             // 获取审核人员 详情
-            _self.$api.post('/Appinterface/userDetail',_self.params,_self.headersData,function(rs) {
+            _self.$api.post('/cruise/Appinterface/userDetail',_self.params,_self.headersData,function(rs) {
                 _self.peopleData = rs.data.obj
             })
 		},
@@ -87,7 +87,7 @@
                             signature:_self.setmd5(_self.$storage.getItem('signature'), params),
                             uid:_self.$storage.getItem('userId'),
                         }
-                        _self.$api.post('/Appinterface/UserCheckDelete',params,headersData,function(rs) {
+                        _self.$api.post('/cruise/Appinterface/UserCheckDelete',params,headersData,function(rs) {
                             if(rs.errcode == 1){
                                 _self.$toast(rs.errmsg)
                                 setTimeout(function () {
@@ -113,7 +113,7 @@
                             signature:_self.setmd5(_self.$storage.getItem('signature'), params),
                             uid:_self.$storage.getItem('userId'),
 						}
-                        _self.$api.post('/Appinterface/UserCheckDelete',params,headersData,function(rs) {
+                        _self.$api.post('/cruise/Appinterface/UserCheckDelete',params,headersData,function(rs) {
                            if(rs.errcode == 1){
                                _self.$toast(rs.errmsg)
 								setTimeout(function () {

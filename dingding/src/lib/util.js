@@ -1,9 +1,8 @@
 import dingtalk from 'weex-dingtalk';
 import journey from 'weex-dingtalk-journey';
 
-const { requireModule, querystring, url, env } = journey;
-import { APPHOST } from './env.js';
-
+const {requireModule, querystring, url, env} = journey;
+import {APPHOST} from './env.js';
 
 
 let uid = 1;
@@ -12,14 +11,13 @@ export function jsApiOAuth() {
     let Config = {
         method: 'post',
         uri: APPHOST + '/Appinterface/authoJsApi',
-        body:''
+        body: ''
     };
     let jsApiList = ['device.nfc.nfcRead'];
-    return new Promise(function(resolve, reject) {
-        request(Config, function(error, res) {
+    return new Promise(function (resolve, reject) {
+        request(Config, function (error, res) {
 
             if (!error) {
-               // console.log(res.data.errcode )
                 const data = res.data.data;
                 if (res.data.errcode === '1') {
                     const oauth = {
@@ -30,7 +28,6 @@ export function jsApiOAuth() {
                         signature: data.signature || '',
                         jsApiList: jsApiList || []
                     };
-                    //console.log(oauth);
                     dingtalk.config(oauth);
                     resolve();
                 }
@@ -45,7 +42,7 @@ export function jsApiOAuth() {
 export function request(config, cb, progressCb) {
     const modal = requireModule('modal');
     const stream = requireModule('stream');
-    let { method, uri, body, type, headers } = config;
+    let {method, uri, body, type, headers} = config;
     if (!uri || typeof uri !== 'string') {
         return;
     }
@@ -75,7 +72,7 @@ export function request(config, cb, progressCb) {
         requestConf.url = uri;
         requestConf.body = JSON.stringify(body);
     }
-    stream.fetch(requestConf, function(res) {
+    stream.fetch(requestConf, function (res) {
         let u = false;
         let data = {};
         if (res.ok) {
@@ -92,30 +89,26 @@ export function request(config, cb, progressCb) {
 
 
 export function setNfc(cb) {
-    dingtalk.ready(function() {
+    dingtalk.ready(function () {
         dingtalk.apis.device.nfc.nfcRead({
-            onSuccess: function(data) {
+            onSuccess: function (data) {
                 cb(data)
             },
-            onFail: function(err) {
-               // alert(JSON.stringify(err))
+            onFail: function (err) {
                 cb(err)
             }
         });
     });
 }
-
 
 
 export function getNetwork(cb) {
-    dingtalk.ready(function() {
+    dingtalk.ready(function () {
         dingtalk.apis.device.connection.getNetworkType({
-            onSuccess: function(data) {
-               // alert(JSON.stringify(data))
+            onSuccess: function (data) {
                 cb(data)
             },
-            onFail: function(err) {
-               // alert(JSON.stringify(err))
+            onFail: function (err) {
                 cb(err)
             }
         });
@@ -123,10 +116,9 @@ export function getNetwork(cb) {
 }
 
 
-
 export function setRight(config, cb) {
-    const { control } = config;
-    dingtalk.ready(function() {
+    const {control} = config;
+    dingtalk.ready(function () {
         dingtalk.apis.biz.navigation.setRight(config);
         if (control) {
             dingtalk.on('navRightButton', cb);
@@ -135,19 +127,17 @@ export function setRight(config, cb) {
 }
 
 export function setLeft(cb) {
-    //console.log(cb)
-    document.addEventListener('backbutton', function(e) {
 
+    document.addEventListener('backbutton', function (e) {
         // 在这里处理你的业务逻辑
         e.preventDefault();
         cb()
-        //console.log(cb())
     });
 
 }
 
 
-
+let isModal = false;
 
 export function toast(msg) {
     const modal = requireModule('modal');
@@ -155,15 +145,26 @@ export function toast(msg) {
         message: msg,
         duration: 2
     });
+
 }
+
+export function alert(msg) {
+    const modal = requireModule('modal');
+    modal.alert({
+        message: msg,
+        duration: 2
+    });
+
+}
+
 
 export function confirm(msg, cb) {
     const modal = requireModule('modal');
     modal.confirm({
         message: msg,
-        okTitle:'确定',
-        cancelTitle:'取消'
-    }, function(result) {
+        okTitle: '确定',
+        cancelTitle: '取消'
+    }, function (result) {
         if (typeof cb === 'function') {
             cb(result);
         }
@@ -171,15 +172,30 @@ export function confirm(msg, cb) {
 }
 
 
-
 export function setTitle(title) {
 
-    dingtalk.ready(function() {
+    dingtalk.ready(function () {
 
         dingtalk.apis.biz.navigation.setTitle({
             title: title,
         })
     });
 }
+
+export function pointDistinct(arrs) {
+
+    var result = [];
+    var obj = {};
+    for (var i = 0; i < arrs.length; i++) {
+
+        if (!obj[arrs[i].pointId]) {
+            result.push(arrs[i]);
+            obj[arrs[i].pointId] = true;
+        }
+    }
+
+    return result;
+}
+
 
 

@@ -8,7 +8,7 @@ import VueRouter from 'vue-router';
 import dingtalk from 'weex-dingtalk';
 import journey from 'weex-dingtalk-journey';
 
-import { setLeft,setTitle,setClose } from '../lib/util.js';
+import {setLeft, setTitle, setClose} from '../lib/util.js';
 import storage from '../lib/storage.js';
 
 // 第三步导入组件
@@ -41,7 +41,6 @@ import selectPoint from '../pages/workbench/selectPoint.vue';
 import missingLoaction from '../pages/workbench/missingLoaction.vue';
 
 
-
 import partolRemind from '../pages/workbench/partolRemind.vue';
 
 // 会员中心
@@ -56,10 +55,10 @@ import staffAudit from '../pages/member/staffAudit.vue';
 
 
 const routes = [{
-        path: '/',
-        name: 'login',
-        component: login
-    },
+    path: '/',
+    name: 'login',
+    component: login
+},
     {
         path: '/home',
         name: 'home',
@@ -83,27 +82,26 @@ const routes = [{
                 path: '/',
                 name: 'workbench',
                 component: workbench,
-                beforeEnter:(to, from, next) => {
+                beforeEnter: (to, from, next) => {
                     //console.log(storage.getItem('type'))
-                    if(from.path === '/selectItem' && storage.getItem('type') == 1){
-                       // next('workbench')
-                    }else {
-                        from.path === '/selectItem' ? next('/') :next();
+                    if (from.path === '/selectItem' && storage.getItem('type') == 1) {
+                        // next('workbench')
+                    } else {
+                        from.path === '/selectItem' ? next('/') : next();
                     }
-
                 }
             },
             {
                 path: 'selectItem',
                 name: 'selectItem',
                 component: selectItem,
-                beforeEnter:(to, from, next) => {
-                     //console.log(storage.getItem('type'))
+                beforeEnter: (to, from, next) => {
+                    //console.log(storage.getItem('type'))
 
-                    if(storage.getItem('type') == 1){
+                    if (storage.getItem('type') == 1) {
                         next('/workbench/?id=3')
-                    }else {
-                        from.path === '/workbench' ? next('/') :next();
+                    } else {
+                        from.path === '/workbench' ? next('/') : next();
                     }
 
                 }
@@ -116,18 +114,36 @@ const routes = [{
             {
                 path: 'endPartol',
                 name: 'endPartol',
-                component: endPartol
+                component: endPartol,
+                beforeEnter: (to, from, next) => {
+                    console.log(from.path)
+                    if (from.path === '/workbench/patrolSystem') {
+                        next('/workbench/')
+                    } else if (from.path === '/workbench/') {
+                        next('/')
+
+                    } else if (from.path === '/') {
+                        next(false)
+                    } else {
+                        next();
+                    }
+                }
             },
             {
                 path: 'partoling',
                 name: 'partoling',
                 component: partoling,
-                beforeEnter:(to, from, next) => {
+                beforeEnter: (to, from, next) => {
+
                     //console.log(storage.getItem('type'))
-                    if(from.path === '/selectTask' && storage.getItem('type') == 1){
+
+                    if (from.path === '/selectTask' && storage.getItem('type') == 1) {
                         next('/workbench/patrolSystem')
-                    }else {
-                        from.path === '/selectTask' ? next('/') :next();
+                    } else if (from.path === '/workbench/endPartol') {
+                        next(false);
+                    }
+                    else {
+                        from.path === '/selectTask' ? next('/') : next();
                     }
 
                 }
@@ -136,13 +152,22 @@ const routes = [{
                 path: 'selectTask',
                 name: 'selectTask',
                 component: selectTask,
-                beforeEnter:(to, from, next) => {
-                    //console.log(storage.getItem('type'))
-
-                    if(storage.getItem('type') == 1){
+                beforeEnter: (to, from, next) => {
+                    // console.log(from.path)
+                    if (storage.getItem('type') == 1) {
                         next('/workbench/patrolSystem')
-                    }else {
-                        from.path === '/partoling' ? next('/') :next();
+                    } else if (storage.getItem('type') == 2) {
+                        next('/workbench/')
+                    } else if (storage.getItem('type') == 3) {
+                        if (from.path === '/') {
+                            next(false)
+                        } else {
+                            next('/')
+                        }
+
+                    }
+                    else {
+                        from.path === '/partoling' ? next('/') : next();
                     }
 
                 }
@@ -155,7 +180,12 @@ const routes = [{
             {
                 path: 'patrolSystem',
                 name: 'patrolSystem',
-                component: patrolSystem
+                component: patrolSystem,
+                beforeEnter: (to, from, next) => {
+                    // console.log(from.path)
+                    next()
+                    //from.path === '/workbench' ? next('/') :next();
+                }
             },
             {
                 path: 'pointLocation',
@@ -176,12 +206,12 @@ const routes = [{
                 path: 'replacePrtol',
                 name: 'replacePrtol',
                 component: replacePrtol,
-                beforeEnter:(to, from, next) => {
-                   // console.log(storage.getItem('type'))
-                    if(from.path === '/selectPoint' && storage.getItem('type3') == 1){
+                beforeEnter: (to, from, next) => {
+                    //console.log(storage.getItem('type'))
+                    if (from.path === '/selectPoint' && storage.getItem('type3') == 1) {
                         next('/workbench/patrolSystem')
-                    }else {
-                        from.path === '/selectPoint' ? next('/') :next();
+                    } else {
+                        from.path === '/selectPoint' ? next('/') : next();
                     }
 
                 }
@@ -190,14 +220,21 @@ const routes = [{
                 path: 'selectPoint',
                 name: 'selectPoint',
                 component: selectPoint,
-                beforeEnter:(to, from, next) => {
-                   // console.log(storage.getItem('type'))
+                beforeEnter: (to, from, next) => {
 
-                    if(storage.getItem('type') == 1){
-
-                        next('/workbench/pointLocation')
-                    }else {
-                        from.path === '/replacePrtol' ? next('/') :next();
+                    if (storage.getItem('type') == 1) {
+                        console.log(from.path)
+                        // if (from.path == '/workbench/patrolSystem') {
+                        //     next('/workbench/');
+                        // } else if (from.path == '/workbench/pointLocation') {
+                        //     next('/workbench/patrolSystem');
+                        // } else if (from.path == '/workbench/') {
+                        //     next('/')
+                        // } else {
+                        //     next('/workbench/pointLocation')
+                        // }
+                    } else {
+                        from.path === '/replacePrtol' ? next('/') : next();
                     }
 
                 }
@@ -220,10 +257,10 @@ const routes = [{
         path: '/member',
         component: memberView,
         children: [{
-                path: '/',
-                name: 'member',
-                component: member
-            },
+            path: '/',
+            name: 'member',
+            component: member
+        },
             {
                 path: 'memberIfon',
                 name: 'memberIfon',
@@ -254,7 +291,7 @@ const routes = [{
 ];
 
 
-dingtalk.error(function(err) {
+dingtalk.error(function (err) {
     console.log(JSON.stringify(err))
     toast('Error : ' + JSON.stringify(err));
 });
@@ -267,20 +304,12 @@ export default function Router(Vue) {
         routes: routes
     });
 
-    const backHandler = function(e) {
+    const backHandler = function (e) {
         if (env.isWeb) {
             e.preventDefault();
         }
         router.go(-1);
     }
-
-    //
-    // jsApiOAuth().then(function(){
-    //     //console.log('签名完成');
-    //     //setLeft(backHandler);
-    // }).catch(function(err){
-    //     //console.log(JSON.stringify(err))
-    // });
 
     return {
         router

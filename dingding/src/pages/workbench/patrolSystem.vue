@@ -15,7 +15,7 @@
                         </div>
                         <span>点位管理</span>
                     </li>
-                    <li @click="jump('partolRemind')">
+                    <li @click="jump('')">
                         <div class="img">
                             <img v-bind:src="pImgUrl[2]">
                         </div>
@@ -23,10 +23,7 @@
                     </li>
                 </ul>
             </div>
-
         </div>
-
-
     </div>
 
 </template>
@@ -63,11 +60,12 @@
         },
         created() {
             this.$setTitle('智能巡更');
-            var _self = this
-            //console.log(this.$storage.getItem('userId'));
+            var _self = this;
+            this.$storage.setItem('type','2');
 
-            this.$api.post('/APIInterface/platformOauth', _self.params, '', function (res) {
-                //console.log(_self.$storage.getItem('projectId'));
+
+            this.$api.post('/cruise/APIInterface/platformOauth', _self.params, '', function (res) {
+
                 if (res.errcode == 1) {
                     //存储 Token 及用户信息
                     _self.openId = res.data.openId;
@@ -77,7 +75,7 @@
                         thirdParty: 1,
                     }
                     _self.$api.post('/dian/app/getToken', params, '', function (res) {
-                        console.log(res);
+
                         if (res.errcode == 200) {
                             //存储 Token 及用户信息
                             _self.$storage.setItem('token', res.data.token);
@@ -95,14 +93,15 @@
 
         },
         methods: {
-            back() {
-                this.$router.go(-1);
-            },
             jump(url) {
+                if(url == ''){
+                    this.$toast('此功能暂未开放')
+                    return false;
+                }
                 this.$router.push(url)
             },
             startPartol(url){
-                console.log(this.$storage.getItem('signId'))
+
                if(this.$storage.getItem('signId') !== ''){
                    url = 'partoling'
                }

@@ -80,13 +80,8 @@
 			}
 		},
 		created: function () {
-		    //console.log(this.$setTitle);
             this.$setTitle('金科大管家');
         	let _self = this;
-        	/*请求数据*/
-            // this.$api.post('/Appinterface/todayWork',_self.params,function(data) {
-			// 	console.log(data);
-			// })
     	},
 		methods: {
 			back (){

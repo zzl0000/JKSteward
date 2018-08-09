@@ -77,11 +77,10 @@
             this.$setTitle('个人中心');
 
             /*请求数据*/
-            this.$api.post('/Appinterface/userInfo?',_self.params,_self.headersData,function(rs) {
+            this.$api.post('/cruise/Appinterface/userInfo?',_self.params,_self.headersData,function(rs) {
                 _self.nickName = rs.data[0].nickName;
                 _self.commpany = rs.data[0].commpany;
                 _self.fax = rs.data[0].fax
-                // console.log(rs);
             })
 
         },
@@ -96,7 +95,7 @@
                     cancelTitle :'取消'
                 }, function (value) {
                     if(value == '确定'){
-                        _self.$api.post('/Appinterface/userLoginOut',_self.params,'',function(data) {
+                        _self.$api.post('/cruise/Appinterface/userLoginOut',_self.params,'',function(data) {
                             console.log(data);
                         });
                         _self.$router.push('/');

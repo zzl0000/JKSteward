@@ -59,7 +59,6 @@
             select(key, id, text) {
                 this.$router.push({ path:'workbench',  name:'workbench', query: {key:key, ids: id,text:text }});
                 this.$storage.setItem('type','1')
-                //this.$emit('fn', {key, id, text});
             },
             query(parentId) {
                 let _self = this;

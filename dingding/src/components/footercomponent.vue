@@ -2,14 +2,14 @@
 	<!-- 底部导航 -->
 		<div class="footer-nav b-white">
             <ul>
-            	<li @click="jump('home',1)">
+            	<li @click="jump('',1)">
             			<div class="img">
             				<img v-bind:src="imgUrl.home[0]" v-if="cur_id == 1">
             				<img v-bind:src="imgUrl.home[1]" v-else>
             			</div>
             			<span>消息</span>           		
             	</li>
-            	<li @click="jump('repository',2)">
+            	<li @click="jump('',2)">
             			<div class="img">
             				<img v-bind:src="imgUrl.repository[0]" v-if="cur_id == 2">
             				<img v-bind:src="imgUrl.repository[1]" v-else>
@@ -65,6 +65,10 @@
 		},
 		methods: {	
 	        jump (url,id) {
+                if(url == ''){
+                    this.$toast('此功能暂未开放')
+                    return false;
+                }
 	          this.$router.push({path:url,  name:url,query: {id: id}})
 	     	}
    		 }

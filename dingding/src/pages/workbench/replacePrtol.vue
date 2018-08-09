@@ -51,8 +51,8 @@
         name: 'workbench',
         data() {
             let imgUrls = [
-                '/static/img/partol-bg01.png',
-                '/static/img/equipment-icon01.png'
+                './static/img/partol-bg01.png',
+                './static/img/equipment-icon01.png'
             ];
             let todos = {
                 title: '替换巡更点位',
@@ -82,8 +82,8 @@
             getNfc() {
                 let _self = this;
                 _self.$setNfc(function (rs) {
-                     self.$storage.setItem('tagId',rs.tagId.replace(/:/g, ''));
-                    _self.todo.newPoint = rs.tagId.replace(/:/g, '')
+                    _self.$storage.setItem('tagId',rs.tagId.replace(/:/g, ''));
+                    _self.todo.newPoint = rs.tagId.replace(/:/g, '');
                     _self.getNfc();
                 })
             },
@@ -105,7 +105,7 @@
                     return false;
                 }
                 this.$api.post('/dian/app/replacePoint', params, '', function (res) {
-                    //console.log(res);
+
                     if (res.errcode == 200) {
                         _self.$toast(res.errmsg);
                         setTimeout(function () {

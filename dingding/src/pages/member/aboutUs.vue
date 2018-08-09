@@ -20,11 +20,6 @@
     created: function () {
           this.$setTitle('关于我们');
           let _self = this;
-          /*请求数据*/
-          // this.$api.post('/Appinterface/userInfo?',_self.params,function(data) {
-          //    	console.log(data);
-          //  })
-
       },
     methods:{
       back (){

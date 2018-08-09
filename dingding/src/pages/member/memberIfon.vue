@@ -4,7 +4,7 @@
 		<div class="content">
 			<!-- 用户信息 -->
 			<div class="user-ifon b-white mb">
-				<div class="user-header"><span class="t-white-color">王</span></div>
+				<div class="user-header"><span class="t-white-color">{{data.nickName.substring(0,1)}}</span></div>
 				<div class="user-list user-list-flow">
 					<p class="td-color">姓名:<span class="t-bold-color">{{data.nickName}}</span></p>
 					<p class="td-color">岗位:<span class="t-bold-color">{{data.fax}}</span></p>
@@ -72,11 +72,9 @@
                 uid:_self.$storage.getItem('userId'),
             }
             /*请求数据*/
-            this.$api.post('/Appinterface/userInfo?',_self.getParams,_self.headersData,function(rs) {
+            this.$api.post('/cruise/Appinterface/userInfo?',_self.getParams,_self.headersData,function(rs) {
                 _self.data = rs.data[0];
                 _self.data.ors = rs.data[0].ors[0]
-
-                // console.log(rs);
             })
 
         },

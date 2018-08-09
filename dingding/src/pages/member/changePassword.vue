@@ -56,6 +56,10 @@
               }else if(_self.params.newpwd != _self.params.confpwd){
                   _self.$api.toast('两次密码输入不一致')  
                   return;  
+              }
+              else if(_self.params.newpwd.length < 6 || _self.params.confpwd.length < 6){
+                  _self.$api.toast('密码长度不够,最少6位')
+                  return;
               };
 
                 _self.headersData = {
@@ -63,7 +67,7 @@
                     uid:_self.$storage.getItem('userId'),
                 }
               /*请求数据*/
-              this.$api.post('/Appinterface/updatePwd',_self.params, _self.headersData,function(rs) {
+              this.$api.post('/cruise/Appinterface/updatePwd',_self.params, _self.headersData,function(rs) {
                   _self.$toast(rs.errmsg);
                   if(rs.errcode == 1){
                       setTimeout(function () {

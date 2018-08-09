@@ -67,24 +67,26 @@
                 };
 
             /*请求数据*/
-              this.$api.post('/Appinterface/userLogin',params,'',function(res) {
+              this.$api.post('/cruise/Appinterface/userLogin',params,'',function(res) {
                 if(res.errcode == 1){
-
+                    if(_self.$storage.getItem('userId')  != res.userId){
+                        _self.$storage.setItem('signId', 'undefined')
+                    }
                     //保存userID
                    _self.$storage.setItem('userId',res.userId);
                     //保存sessionId
                    _self.$storage.setItem('sessionId',res.sessionId);
                     //保存
-                   _self.$storage.setItem('projectId',res.data.organization2.orgCode);
+                    _self.$storage.setItem('projectId',res.data.organization2.orgCode);
                     _self.$storage.setItem('orgName',res.data.organization2.orgName);
                     _self.$storage.setItem('signature',_self.getmd5(_self.userNumber,_self.userPassword));
-                    _self.$storage.setItem('signId', 'undefined');
+
                    modal.toast({
                         message: '登录成功',
                         duration: 1
                     });
                   setTimeout(function(){
-                    _self.$router.push('home');
+                    _self.$router.push('workbench/');
                   },2000)
                 }else{
                     _self.isDisable = false;

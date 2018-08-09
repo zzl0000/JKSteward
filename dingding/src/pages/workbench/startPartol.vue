@@ -68,7 +68,7 @@
                         _self.$storage.setItem('signTime',_self.item.currTime);
                         _self.$toast(res.errmsg)
 						setTimeout(function(){
-                            _self.$router.push(url);
+                            _self.$router.replace(url);
 						},2001)
                     }else{
                         _self.$toast(res.errmsg)

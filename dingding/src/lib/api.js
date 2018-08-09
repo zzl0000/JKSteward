@@ -49,7 +49,7 @@ export function toParams(obj) {
 export function apiStream(method, url, params, headersData, success, failuer) {
     const modal = weex.requireModule('modal');
     const stream = weex.requireModule('stream');
-    const baseUrl = 'http://dev-oa-api.tq-service.com';
+    const baseUrl = 'http://api.tq-service.com';
     let headers;
     if (params) {
         params = filterNull(params);
@@ -63,7 +63,7 @@ export function apiStream(method, url, params, headersData, success, failuer) {
     } else {
         headers = {"Content-Type": "application/x-www-form-urlencoded"};
     }
-    // console.log(headers)
+
     // return;
     /* stream */
     if (method === 'GET') {
@@ -93,7 +93,7 @@ export function apiStream(method, url, params, headersData, success, failuer) {
         })
 
     } else if (method === 'POST') {
-      //  alert(toParams(params));
+
         stream.fetch({
                 method: 'POST',
                 mode: 'cors',
@@ -102,7 +102,7 @@ export function apiStream(method, url, params, headersData, success, failuer) {
                 body: toParams(params)
             },
             function (res) {
-                //console.log("fetch request ", JSON.stringify(res.ok))
+
                 if (res.ok) {
                     // 解密
                     var data = JSON.parse(res.data);

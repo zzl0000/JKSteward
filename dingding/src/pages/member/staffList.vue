@@ -49,9 +49,17 @@
                 uid:_self.$storage.getItem('userId'),
             }
             // 获取审核人员名单
-            _self.$api.post('/Appinterface/checkUserList',_self.params,_self.headersData,function(rs) {
-                _self.sectionList = rs.data.obj;
-                _self.peopleList = rs.data.user;
+            _self.$api.post('/cruise/Appinterface/checkUserList',_self.params,_self.headersData,function(rs) {
+                if(rs.errcode == 13){
+                    _self.$api.toast(rs.errmsg);
+                    setTimeout(function () {
+                        _self.$router.go(-1);
+                    },2000)
+				}else{
+                    _self.sectionList = rs.data.obj;
+                    _self.peopleList = rs.data.user;
+				}
+
             })
 		},
 		methods: {

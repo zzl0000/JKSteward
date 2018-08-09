@@ -9,7 +9,7 @@
 	    	
 	    	<div class="remind-list pd-list" >
 	    		<ul>
-					<li v-for="item in  items" class="boder-bottom" >
+					<li v-for="item in  items" class="boder-bottom" @click="jump('')" >
 						<p class="">
 							<span class="time">7.50</span>
 							<em class="">每天</em>
@@ -65,8 +65,11 @@
             })
         },
 		methods: {
-			 back () {
-		        this.$router.go(-1);
+			 jump (url) {
+                 if(url == ''){
+                     this.$toast('此功能暂未开放')
+                     return false;
+                 }
 		      }
    		 }
 	}

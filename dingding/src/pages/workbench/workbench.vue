@@ -85,7 +85,7 @@
         created: function () {
             let _self = this;
             _self.init()
-
+            this.$storage.setItem('type','3');
         },
         methods: {
             jump(url) {

@@ -3,7 +3,7 @@ import weex from 'weex-vue-render';
 import api from '../../lib/api.js';
 import storage from '../../lib/storage.js';
 import validate from '../../lib/validate.js';
-import { setTitle,setLeft, setNfc, getNetwork, confirm ,toast} from '../../lib/util.js';
+import { setTitle,setLeft, setNfc, getNetwork, confirm ,toast, alert, pointDistinct} from '../../lib/util.js';
 import { urlEncode } from '../../lib/urlEncode.js';
 import crypto from 'crypto'
 
@@ -22,6 +22,8 @@ Vue.prototype.$getNetwork = getNetwork;
 Vue.prototype.$urlEncode = urlEncode;
 Vue.prototype.$confirm = confirm;
 Vue.prototype.$toast = toast;
+Vue.prototype.$alert = alert;
+Vue.prototype.$pointDistinct = pointDistinct;
 
 
 const { router } = Router(Vue);
